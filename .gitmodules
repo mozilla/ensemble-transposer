@@ -1,0 +1,3 @@
+[submodule "lib/ensemble_transpose"]
+	path = lib/ensemble_transpose
+	url = https://github.com/mozilla/ensemble_transpose.git
