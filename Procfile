@@ -1,1 +1,1 @@
-web: PYTHONPATH=$PYTHONPATH:lib gunicorn server:api --log-file -
+web: PYTHONPATH=$PYTHONPATH:lib gunicorn --reload --log-file - server:api
