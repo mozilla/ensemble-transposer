@@ -8,7 +8,9 @@ class FirefoxHardwareReport:
     def on_get(self, req, res):
         res.media = transpose('manifests/firefox-hardware-report.json')
 
-cors = CORS(allow_all_origins=True, allow_methods_list=['GET'])
+cors = CORS(allow_all_origins=True,
+            allow_all_headers=True,
+            allow_methods_list=['GET'])
 api = falcon.API(middleware=[cors.middleware])
 
 # Routes
