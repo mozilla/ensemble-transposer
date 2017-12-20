@@ -2,6 +2,24 @@
     "source": "https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json",
     "extra_metadata": {
         "title": "Firefox Hardware Report",
-        "description": "The Firefox Hardware Report is a public weekly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. This information can be used by developers to improve the Firefox experience for users."
+        "description": "The Firefox Hardware Report is a public weekly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. This information can be used by developers to improve the Firefox experience for users.",
+        "sections": [
+            {
+                "name": "Graphics",
+                "charts": ["resolution", "gpuModel", "gpuVendor", "has"]
+            },
+            {
+                "name": "Processor",
+                "charts": ["cpuSpeed", "ram", "cpuCores", "cpuVendor"]
+            },
+            {
+                "name": "Operating System",
+                "charts": ["osName", "browserArch", "osArch"]
+            },
+            {
+                "name": "Flash",
+                "charts": ["hasFlash"]
+            }
+        ]
     }
 }
