@@ -6,6 +6,20 @@
         "units": {
             "y": "%"
         },
+        "titlemap": {
+            "resolution": "Display Resolution",
+            "gpuModel": "GPU Model",
+            "gpuVendor": "GPU",
+            "has": "Unity",
+            "cpuSpeed": "CPU Speeds",
+            "ram": "Memory",
+            "cpuCores": "CPU Cores",
+            "cpuVendor": "CPU",
+            "osName": "Operating System",
+            "browserArch": "Browsers by Architecture",
+            "osArch": "OSs by Architecture",
+            "hasFlash": "Flash"
+        },
         "sections": [
             {
                 "title": "Graphics",

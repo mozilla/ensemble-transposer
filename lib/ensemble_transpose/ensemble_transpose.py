@@ -50,12 +50,19 @@ def _source_to_intermediate(source_data):
 
 
 def _intermediate_to_ensemble(intermediate_data, extra_metadata):
-    def find_section(metric_name):
+    def _find_section(metric_name):
         for sm in extra_metadata["sections"]:
             if metric_name in sm["charts"]:
                 return get_key(sm["title"])
 
         return ''
+
+
+    def _get_human_readable_title(metric_name):
+        if metric_name in extra_metadata["titlemap"]:
+            return extra_metadata["titlemap"][metric_name]
+        else:
+            return metric_name
 
 
     report = Report(extra_metadata['title'],
@@ -68,8 +75,9 @@ def _intermediate_to_ensemble(intermediate_data, extra_metadata):
         for metric_name in entry["metrics"]:
 
             if metric_name not in charts:
-                section = find_section(metric_name)
-                charts[metric_name] = Chart(metric_name, '', section,
+                section = _find_section(metric_name)
+                title = _get_human_readable_title(metric_name)
+                charts[metric_name] = Chart(title, '', section,
                                             extra_metadata["units"])
                 report.add_chart(charts[metric_name])
 
