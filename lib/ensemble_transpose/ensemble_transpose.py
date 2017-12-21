@@ -59,10 +59,15 @@ def _intermediate_to_ensemble(intermediate_data, extra_metadata):
 
 
     def _get_human_readable_title(metric_name):
-        if metric_name in extra_metadata["titlemap"]:
-            return extra_metadata["titlemap"][metric_name]
+        if metric_name in extra_metadata["chart_titles"]:
+            return extra_metadata["chart_titles"][metric_name]
         else:
             return metric_name
+
+
+    def _get_description(metric_name):
+        if metric_name in extra_metadata["chart_descriptions"]:
+            return extra_metadata["chart_descriptions"][metric_name]
 
 
     report = Report(extra_metadata['title'],
@@ -77,7 +82,8 @@ def _intermediate_to_ensemble(intermediate_data, extra_metadata):
             if metric_name not in charts:
                 section = _find_section(metric_name)
                 title = _get_human_readable_title(metric_name)
-                charts[metric_name] = Chart(title, '', section,
+                description = _get_description(metric_name)
+                charts[metric_name] = Chart(title, description, section,
                                             extra_metadata["units"])
                 report.add_chart(charts[metric_name])
 
@@ -167,7 +173,7 @@ class Chart(object):
         Raises TypeError when any arguments are of the wrong type or format.
         """
         args = locals()
-        for arg in ["title", "desc", "section"]:
+        for arg in ["title", "section"]:
             if not isinstance(args[arg], str):
                 err_msg = "Argument '%s' must be a string" % arg
                 raise TypeError(err_msg)
