@@ -1,4 +1,4 @@
-ensemble-transpose serves existing datasets in the format that
+ensemble-transposer serves existing datasets in the format that
 [Ensemble](https://github.com/mozilla/ensemble) expects.
 
 ## Development
