@@ -1,55 +1,14 @@
 import json
-import sys
 
-from collections import Iterable
-from numbers import Number
 from urllib.request import urlopen
 
 
 def transpose(manifest_filename):
     manifest_data = json.load(open(manifest_filename))
+    extra_metadata = manifest_data['extra_metadata']
     source_url = manifest_data['source']
     source_data = json.loads(urlopen(source_url).read())
 
-    intermediate_data = _source_to_intermediate(source_data)
-    ensemble_data = _intermediate_to_ensemble(intermediate_data, manifest_data['extra_metadata'])
-
-    return ensemble_data
-
-
-def get_key(title):
-    return title.replace(' ', '').lower()
-
-
-def _source_to_intermediate(source_data):
-    intermediate_data = []
-
-    for day in source_data:
-        metrics_dict = {}
-        day_dict = {'metrics': metrics_dict}
-        for k, v in day.items():
-            k_split = k.split('_', 1)
-            if len(k_split) == 1:
-                # it's metadata
-                day_dict[k] = v
-            else:
-                # it's a metric
-                metric_name = k_split[0]
-                if metric_name == "cpuCoresSpeed":
-                    # these aren't used and are janky
-                    continue
-                bucket_name = k_split[1]
-                metric_dict = metrics_dict.get(metric_name, None)
-                if metric_dict is None:
-                    metric_dict = dict()
-                    metrics_dict[metric_name] = metric_dict
-                metric_dict[bucket_name] = v
-        intermediate_data.append(day_dict)
-
-    return intermediate_data
-
-
-def _intermediate_to_ensemble(intermediate_data, extra_metadata):
     def _find_section(metric_name):
         for sm in extra_metadata["sections"]:
             if metric_name in sm["charts"]:
@@ -57,18 +16,15 @@ def _intermediate_to_ensemble(intermediate_data, extra_metadata):
 
         return ''
 
-
     def _get_human_readable_title(metric_name):
         if metric_name in extra_metadata["chart_titles"]:
             return extra_metadata["chart_titles"][metric_name]
         else:
             return metric_name
 
-
     def _get_description(metric_name):
         if metric_name in extra_metadata["chart_descriptions"]:
             return extra_metadata["chart_descriptions"][metric_name]
-
 
     report = Report(extra_metadata['title'],
                     extra_metadata['description'],
@@ -76,7 +32,7 @@ def _intermediate_to_ensemble(intermediate_data, extra_metadata):
 
     charts = {}
     populations = {}
-    for entry in intermediate_data:
+    for entry in source_data:
         for metric_name in entry["metrics"]:
 
             if metric_name not in charts:
@@ -100,8 +56,11 @@ def _intermediate_to_ensemble(intermediate_data, extra_metadata):
                              entry["metrics"][metric_name][population_name] * 100)
                 populations[metric_name][population_name].add_point(new_point)
 
-
     return report.render_json()
+
+
+def get_key(title):
+    return title.replace(' ', '').lower()
 
 
 def _is_dict_w_strings(value, expected_keys):

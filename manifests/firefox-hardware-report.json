@@ -1,5 +1,5 @@
 {
-    "source": "https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json",
+    "source": "https://fhwr-unflattener.herokuapp.com/",
     "extra_metadata": {
         "title": "Firefox Hardware Report (Ensemble proof of concept)",
         "description": "This dashboard offers an example of what Ensemble can do. This dashboard intends to perfectly replicate the official Hardware Report using Ensemble, but some bugs may exist and some data may be incorrect. The official hardware report can be viewed at hardware.metrics.mozilla.com",
