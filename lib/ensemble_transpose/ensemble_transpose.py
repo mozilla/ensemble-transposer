@@ -43,7 +43,7 @@ def transpose(manifest_filename):
             populations[metric_name][population_name] = Population(population_name)
             charts[metric_name].add_population(populations[metric_name][population_name])
 
-        if type(entry["metrics"][metric_name]) is list:
+        if type(entry["metrics"][metric_name]) is dict:
             data_point = entry["metrics"][metric_name][population_name]
         else:
             data_point = entry["metrics"][metric_name]
@@ -76,7 +76,7 @@ def transpose(manifest_filename):
             if metric_name not in populations:
                 populations[metric_name] = {}
 
-            if type(entry["metrics"][metric_name]) is list:
+            if type(entry["metrics"][metric_name]) is dict:
                 for population_name in entry["metrics"][metric_name]:
                     _add_population(population_name, metric_name, entry)
             else:
