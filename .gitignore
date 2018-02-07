@@ -1,3 +1,7 @@
 # Python
 env/
 *.pyc
+
+# Data that is currently private, but that will be made available through
+# ensemble-transposer in the future
+private

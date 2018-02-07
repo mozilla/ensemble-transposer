@@ -1,13 +1,25 @@
 import json
+import urllib
+import os
 
 from urllib.request import urlopen
+
+# https://stackoverflow.com/a/15713991/4297741
+def _is_url(str):
+    return urllib.parse.urlparse(str).scheme != ""
 
 
 def transpose(manifest_filename):
     manifest_data = json.load(open(manifest_filename))
     extra_metadata = manifest_data['extra_metadata']
-    source_url = manifest_data['source']
-    source_data = json.loads(urlopen(source_url).read())
+    source = manifest_data['source']
+    charts = {}
+    populations = {}
+
+    if _is_url(source):
+        source_data = json.loads(urlopen(source).read())
+    else:
+        source_data = json.load(open(source))
 
     def _find_section(metric_name):
         for sm in extra_metadata["sections"]:
@@ -26,35 +38,49 @@ def transpose(manifest_filename):
         if metric_name in extra_metadata["chart_descriptions"]:
             return extra_metadata["chart_descriptions"][metric_name]
 
+    def _add_population(population_name, metric_name, entry):
+        if population_name not in populations[metric_name]:
+            populations[metric_name][population_name] = Population(population_name)
+            charts[metric_name].add_population(populations[metric_name][population_name])
+
+        if type(entry["metrics"][metric_name]) is list:
+            data_point = entry["metrics"][metric_name][population_name]
+        else:
+            data_point = entry["metrics"][metric_name]
+
+        if isinstance(data_point, float):
+            data_point *= 100
+
+        new_point = (entry["date"], data_point)
+        populations[metric_name][population_name].add_point(new_point)
+
+
     report = Report(extra_metadata['title'],
                     extra_metadata['description'],
                     extra_metadata['sections'])
 
-    charts = {}
-    populations = {}
-    for entry in source_data:
+    for entry in source_data['data']:
         for metric_name in entry["metrics"]:
 
             if metric_name not in charts:
+                units = None
+                if "units" in extra_metadata:
+                    units = extra_metadata["units"]
+
                 section = _find_section(metric_name)
                 title = _get_human_readable_title(metric_name)
                 description = _get_description(metric_name)
-                charts[metric_name] = Chart(title, description, section,
-                                            extra_metadata["units"])
+                charts[metric_name] = Chart(title, description, section, units)
                 report.add_chart(charts[metric_name])
 
-            for population_name in entry["metrics"][metric_name]:
-                if metric_name not in populations:
-                    populations[metric_name] = {}
+            if metric_name not in populations:
+                populations[metric_name] = {}
 
-                if population_name not in populations[metric_name]:
-                    populations[metric_name][population_name] = []
-                    populations[metric_name][population_name] = Population(population_name)
-                    charts[metric_name].add_population(populations[metric_name][population_name])
-
-                new_point = (entry["date"],
-                             entry["metrics"][metric_name][population_name] * 100)
-                populations[metric_name][population_name].add_point(new_point)
+            if type(entry["metrics"][metric_name]) is list:
+                for population_name in entry["metrics"][metric_name]:
+                    _add_population(population_name, metric_name, entry)
+            else:
+                _add_population("default", metric_name, entry)
 
     return report.render_json()
 
