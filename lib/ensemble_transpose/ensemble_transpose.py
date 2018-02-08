@@ -54,10 +54,13 @@ def transpose(manifest_filename):
         new_point = (entry["date"], data_point)
         populations[metric_name][population_name].add_point(new_point)
 
+    sections = None
+    if "sections" in extra_metadata:
+        sections = extra_metadata['sections']
 
     report = Report(extra_metadata['title'],
                     extra_metadata['description'],
-                    extra_metadata['sections'])
+                    sections)
 
     for entry in source_data['data']:
         for metric_name in entry["metrics"]:
@@ -67,7 +70,9 @@ def transpose(manifest_filename):
                 if "units" in extra_metadata:
                     units = extra_metadata["units"]
 
-                section = _find_section(metric_name)
+                section = None
+                if sections:
+                    section = _find_section(metric_name)
                 title = _get_human_readable_title(metric_name)
                 description = _get_description(metric_name)
                 charts[metric_name] = Chart(title, description, section, units)
@@ -153,12 +158,12 @@ class Chart(object):
     """
     Data accumulator and JSON renderer for Ensemble's 'chart' entity.
     """
-    def __init__(self, title="", desc="", section="", units=None, labels=None):
+    def __init__(self, title="", desc="", section=None, units=None, labels=None):
         """
         Raises TypeError when any arguments are of the wrong type or format.
         """
         args = locals()
-        for arg in ["title", "section"]:
+        for arg in ["title"]:
             if not isinstance(args[arg], str):
                 err_msg = "Argument '%s' must be a string" % arg
                 raise TypeError(err_msg)
@@ -244,7 +249,8 @@ class Report(object):
         self.desc = desc
         self.ensemble_version = '0.0.2'
         self.sections = []
-        self.set_sections(section_metadata)
+        if section_metadata:
+            self.set_sections(section_metadata)
         self.charts = []
 
     def add_section(self, section):
