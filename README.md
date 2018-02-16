@@ -5,12 +5,14 @@ ensemble-transposer serves existing datasets in the format that
 
 ### Install
 
-1. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
-2. Run `python3 -m venv env`
-3. Run `source env/bin/activate`
-4. Run `pip install -r requirements.txt`
+`npm install`
 
 ### Run
 
-1. Run `source env/bin/activate`
-3. Run `heroku local`
+#### Locally
+
+`npm run local`
+
+#### In production
+
+`npm run start`

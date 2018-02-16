@@ -1,0 +1,23 @@
+{
+    "name": "ensemble-transposer",
+    "version": "0.0.1",
+    "scripts": {
+        "start": "node build/server",
+        "build": "babel src --source-maps --minified --out-dir build",
+        "postinstall": "npm run build",
+        "local": "npm-run-all --parallel local:*",
+        "local:build-and-watch": "babel src --watch --source-maps --minified --out-dir build",
+        "local:start-and-watch": "nodemon build/server"
+    },
+    "dependencies": {
+        "decimal": "0.0.2",
+        "npm-run-all": "^4.1.2",
+        "request": "^2.83.0",
+        "restify": "^6.3.4"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "nodemon": "^1.15.0"
+    }
+}
