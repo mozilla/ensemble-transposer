@@ -7,7 +7,7 @@
         "build": "babel src --source-maps --minified --out-dir build",
         "postinstall": "npm run build",
         "local": "npm-run-all --parallel local:*",
-        "local:build-and-watch": "babel src --watch --source-maps --minified --out-dir build",
+        "local:build-and-watch": "babel src --watch --source-maps --out-dir build",
         "local:start-and-watch": "nodemon build/server"
     },
     "dependencies": {
