@@ -11,13 +11,13 @@
         "local:start-and-watch": "nodemon build/server"
     },
     "dependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
         "decimal": "0.0.2",
         "request": "^2.83.0",
         "restify": "^6.3.4"
     },
     "devDependencies": {
-        "babel-cli": "^6.26.0",
-        "babel-preset-env": "^1.6.1",
         "nodemon": "^1.15.0",
         "npm-run-all": "^4.1.2"
     }
