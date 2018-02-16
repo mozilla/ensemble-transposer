@@ -8,15 +8,9 @@ import transpose from './transpose';
 const server = restify.createServer();
 const port = process.env.PORT || 8000;
 
-function respond(req, res, next, privateManifest) {
+function respond(req, res, next) {
     const dataset = req.params.dataset;
-
-    let manifestFilename;
-    if (privateManifest) {
-        manifestFilename = `private/manifests/${dataset}.json`;
-    } else {
-        manifestFilename = `manifests/${dataset}.json`;
-    }
+    const manifestFilename = `manifests/${dataset}.json`;
 
     fs.readFile(manifestFilename, 'utf8', (error, contents) => {
         if (error) {
@@ -48,7 +42,6 @@ server.pre(cors.preflight);
 server.pre(cors.actual);
 
 server.get('/:dataset', respond);
-server.get('/private/:dataset', (req, res, next) => respond(req, res, next, true));
 
 server.listen(port, function() {
     console.log('%s listening at %s', server.name, server.url);

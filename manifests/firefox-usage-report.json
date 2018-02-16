@@ -1,0 +1,25 @@
+{
+    "source": "data/firefox-usage-report.json",
+    "extraMetadata": {
+        "title": "Firefox usage",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas vitae leo vulputate semper. Phasellus faucibus nulla eu imperdiet finibus. Sed et hendrerit turpis. Aenean tristique rhoncus leo quis congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sed vehicula nulla, porta suscipit augue. Mauris ut scelerisque magna.",
+        "charts": {
+            "YOW!": {
+                "title": "Yearly active users",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+            },
+            "MAU": {
+                "title": "Monthly active users",
+                "description": "Nam lacinia eros at nulla vestibulum commodo. Ut consectetur ipsum sed dolor lacinia sagittis. Aenean rutrum lectus eget velit tempus congue. Aenean tempus massa et nisi porta sollicitudin eu at massa. Nullam semper augue at odio varius rhoncus. Integer ex ex, rutrum maximus enim id, lobortis elementum justo."
+            },
+            "propOfWAUFromNewClients": {
+                "title": "Proportion of Weekly Active Users from new clients",
+                "description": "Sed laoreet molestie nulla, eget pretium orci sollicitudin eget. Donec et nulla ut ex consequat rhoncus. Cras tincidunt venenatis dui ac iaculis. Ut luctus dolor quam, eget suscipit leo ultrices sit amet."
+            },
+            "propOnLatestVersion": {
+                "title": "Proportion on latest version",
+                "description": "Nulla aliquet, mi ac fermentum condimentum, ligula magna feugiat velit, eget placerat odio velit non nisl. Praesent non purus ante. Sed at aliquam arcu. Nunc egestas, lorem mattis luctus volutpat, lorem nisl pellentesque dui, vel tempus justo sem non leo. Phasellus ultricies placerat mauris, nec ultricies orci dignissim ultrices. Duis sem ligula, tristique sed arcu eget, volutpat commodo sapien."
+            }
+        }
+    }
+}
