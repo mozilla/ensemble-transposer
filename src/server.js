@@ -1,5 +1,6 @@
 import restify from 'restify';
 import fs from 'fs';
+import restifyCORSMiddleware from 'restify-cors-middleware';
 
 import transpose from './transpose';
 
@@ -32,6 +33,12 @@ function respond(req, res, next) {
     next();
 }
 
+const cors = restifyCORSMiddleware({
+    origins: ['*'],
+});
+
+server.pre(cors.preflight);
+server.pre(cors.actual);
 server.get('/:dataset', respond);
 
 server.listen(port, function() {
