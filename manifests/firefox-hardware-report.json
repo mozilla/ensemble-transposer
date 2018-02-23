@@ -1,8 +1,8 @@
 {
     "source": "https://fhwr-unflattener.herokuapp.com/",
     "extraMetadata": {
-        "title": "Firefox Hardware Report (Ensemble proof of concept)",
-        "description": "This dashboard offers an example of what Ensemble can do. This dashboard intends to perfectly replicate the official Hardware Report using Ensemble, but some bugs may exist and some data may be incorrect. The official hardware report can be viewed at hardware.metrics.mozilla.com",
+        "title": "Hardware",
+        "description": "The Firefox Hardware Report is a public weekly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. This information can be used by developers to improve the Firefox experience for users.",
         "charts": {
             "resolution": {
                 "title": "Display Resolution",
