@@ -91,9 +91,7 @@ export default (manifest, callback) => {
                         charts[metricName].addPopulation(populations[metricName][populationName]);
                     }
 
-                    // Avoid artifacts from floating point arithmetic when multiplying by 100
-                    const rawYValue = onePopulationInSource ? entry.metrics[metricName] : entry.metrics[metricName][populationName];
-                    const yValue = decimal(rawYValue).mul(100).toNumber();
+                    const yValue = onePopulationInSource ? entry.metrics[metricName] : entry.metrics[metricName][populationName];
 
                     const dataPoint = new DataPoint(entry.date, yValue);
 
