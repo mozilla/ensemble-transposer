@@ -40,7 +40,7 @@ export default (manifest, callback) => {
         function newChart(metricName) {
             const chartMeta = manifest.extraMetadata.charts[metricName];
 
-            const title = chartMeta.title;
+            const title = chartMeta.title || metricName;
             const description = chartMeta.description;
             const section = getSectionTitle(metricName);
             const units = chartMeta.units;
