@@ -82,7 +82,7 @@ function processSource(error, body, manifest, callback) {
                 const chartMeta = manifest.extraMetadata.charts[metricName];
                 const chartTitle = chartMeta.title || metricName;
                 const chartDescription = chartMeta.description;
-                const chartSection = chartMeta.section;
+                const chartSection = getSectionTitle(metricName);
                 const chartUnits = chartMeta.units;
 
                 const chart = dataset.getChart(chartTitle, chartDescription, chartSection, chartUnits);
@@ -147,8 +147,6 @@ class Dataset {
         Object.keys(this.charts).forEach(chartTitle => {
             renderedCharts.push(this.charts[chartTitle].render());
         });
-
-        console.dir(this.categories);
 
         const output = {
             title: this.title,
