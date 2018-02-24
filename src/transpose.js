@@ -4,110 +4,114 @@ import decimal from 'decimal';
 
 
 export default (manifest, callback) => {
-    function isURL(str) {
-        return str.startsWith('http');
+    if (isURL(manifest.source)) {
+        request(manifest.source, (error, response, body) => processSource(error, body, manifest, callback));
+    } else {
+        fs.readFile(manifest.source, 'utf8', (error, body) => processSource(error, body, manifest, callback));
+    }
+}
+
+function isURL(str) {
+    return str.startsWith('http');
+}
+
+function propertyExists(obj, property) {
+    return property in obj;
+}
+
+function processSource(error, body, manifest, callback) {
+    if (error) {
+        return callback({
+            error: `Error getting ${manifest.source}`,
+        });
     }
 
-    function processManifest(error, content) {
-        if (error) {
-            return callback({
-                error: `Error getting ${manifest.source}`,
+    function getSectionTitle(metricName) {
+        if (manifest.extraMetadata.sections) {
+            const sectionMeta = manifest.extraMetadata.sections.find(sectionMeta => {
+                return sectionMeta.charts.includes(metricName);
             });
-        }
 
-        const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description);
-        const charts = {};
-        const populations = {};
-
-        const source = JSON.parse(content);
-
-        function getSectionTitle(metricName) {
-            if (manifest.extraMetadata.sections) {
-                const sectionMeta = manifest.extraMetadata.sections.find(sectionMeta => {
-                    return sectionMeta.charts.includes(metricName);
-                });
-
-                if (sectionMeta) {
-                    return sectionTitleToKey(sectionMeta.title);
-                }
+            if (sectionMeta) {
+                return sectionTitleToKey(sectionMeta.title);
             }
         }
+    }
 
-        function sectionTitleToKey(sectionTitle) {
-            return sectionTitle.replace(' ', '').toLowerCase();
-        }
+    function sectionTitleToKey(sectionTitle) {
+        return sectionTitle.replace(' ', '').toLowerCase();
+    }
 
-        function newChart(metricName) {
-            const chartMeta = manifest.extraMetadata.charts[metricName];
+    const source = JSON.parse(body);
+    const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description);
 
-            const title = chartMeta.title || metricName;
-            const description = chartMeta.description;
-            const section = getSectionTitle(metricName);
-            const units = chartMeta.units;
-
-            return new Chart(title, description, section, units);
-        }
-
-        // Add sections to dataset object
-        if (manifest.extraMetadata.sections) {
-            manifest.extraMetadata.sections.forEach(sectionMeta => {
-                const title = sectionMeta.title;
-                const key = sectionTitleToKey(title);
-                dataset.addSection(new Section(key, title));
-            });
-        }
-
-        // For each entry in the dataset...
-        source.data.forEach(entry => {
-
-            // For each metric in that entry...
-            // https://stackoverflow.com/a/18202926/4297741
-            Object.keys(entry.metrics).forEach(metricName => {
-                if (!(metricName in charts)) {
-                    charts[metricName] = newChart(metricName);
-                    dataset.addChart(charts[metricName]);
-                }
-
-                // If the source dataset doesn't specify any populations, assume
-                // one "default" population.
-                let thisChartsPopulations = [];
-                let onePopulationInSource;
-                if (entry.metrics[metricName] === null || typeof(entry.metrics[metricName]) !== 'object') {
-                    thisChartsPopulations = ['default'];
-                    onePopulationInSource = true;
-                } else {
-                    thisChartsPopulations = Object.keys(entry.metrics[metricName]);
-                    onePopulationInSource = false;
-                }
-
-                // For each popultaion in that metric...
-                thisChartsPopulations.forEach(populationName => {
-                    if (!(metricName in populations)) {
-                        populations[metricName] = {};
-                    }
-
-                    if (!(populationName in populations[metricName])) {
-                        populations[metricName][populationName] = new Population(populationName);
-                        charts[metricName].addPopulation(populations[metricName][populationName]);
-                    }
-
-                    const yValue = onePopulationInSource ? entry.metrics[metricName] : entry.metrics[metricName][populationName];
-
-                    const dataPoint = new DataPoint(entry.date, yValue);
-
-                    populations[metricName][populationName].addDataPoint(dataPoint);
-                });
-            });
+    // Add sections to dataset object
+    if (manifest.extraMetadata.sections) {
+        manifest.extraMetadata.sections.forEach(sectionMeta => {
+            const title = sectionMeta.title;
+            const key = sectionTitleToKey(title);
+            dataset.addSection(new Section(key, title));
         });
-
-        callback(dataset.render());
     }
 
-    if (isURL(manifest.source)) {
-        request(manifest.source, (error, response, body) => processManifest(error, body));
-    } else {
-        fs.readFile(manifest.source, 'utf8', processManifest);
-    }
+    // For each category NAME, where a category looks like:
+    //
+    // "US": {...}
+    Object.keys(source).forEach(categoryName => {
+
+        // For each entry OBJECT in that category, where an entry looks like:
+        //
+        // {
+        //     "date": "2018-01-01",
+        //     "metrics": {...}
+        // }
+        source[categoryName].forEach(entry => {
+
+            // For each metric NAME in that entry, where a metric looks like:
+            //
+            // "YAU": 1000
+            //
+            // OR
+            //
+            // "Operating System": {
+            //     "Windows": 1000,
+            //     "Mac": 1000
+            // }
+            Object.keys(entry.metrics).forEach(metricName => {
+                const chartMeta = manifest.extraMetadata.charts[metricName];
+                const chartTitle = chartMeta.title || metricName;
+                const chartDescription = chartMeta.description;
+                const chartSection = chartMeta.section;
+                const chartUnits = chartMeta.units;
+
+                const chart = dataset.getChart(chartTitle, chartDescription, chartSection, chartUnits);
+                const category = chart.getCategory(categoryName);
+
+                // If the source dataset doesn't specify any populations, create
+                // one "default" population.
+                let populations;
+                const multiplePopulations = typeof(entry.metrics[metricName]) === 'object';
+                if (multiplePopulations) {
+                    populations = Object.keys(entry.metrics[metricName]);
+                } else {
+                    populations = ['default'];
+                }
+
+                // For each population NAME
+                populations.forEach(populationName => {
+                    const population = category.getPopulation(populationName);
+                    const yValue = multiplePopulations ? entry.metrics[metricName][populationName] : entry.metrics[metricName];
+                    const dataPoint = new DataPoint(entry.date, yValue);
+                    population.addDataPoint(dataPoint);
+                }); // For each population NAME
+
+            }); // For each metric NAME
+
+        }); // For each entry OBJECT
+
+    }); // For each category NAME
+
+    callback(dataset.render());
 }
 
 class Dataset {
@@ -116,12 +120,15 @@ class Dataset {
         this.description = description;
 
         this.version = '0.0.2';
-        this.charts = [];
+        this.charts = {};
         this.sections = [];
     }
 
-    addChart(chart) {
-        this.charts.push(chart);
+    getChart(title, description, section, units) {
+        if (!propertyExists(this.charts, title)) {
+            this.charts[title] = new Chart(title, description, section, units);
+        }
+        return this.charts[title];
     }
 
     addSection(section) {
@@ -129,11 +136,17 @@ class Dataset {
     }
 
     render() {
+        let renderedCharts = [];
+
+        Object.keys(this.charts).forEach(chartTitle => {
+            renderedCharts.push(this.charts[chartTitle].render());
+        });
+
         const output = {
             title: this.title,
             version: this.version,
             description: this.description,
-            charts: this.charts.map(c => c.render()),
+            charts: renderedCharts,
         };
 
         if (this.sections.length > 0) {
@@ -165,11 +178,45 @@ class Chart {
         this.section = section;
         this.units = units;
 
+        this.categories = {};
+    }
+
+    getCategory(categoryName) {
+        if (!propertyExists(this.categories, categoryName)) {
+            this.categories[categoryName] = new Category(categoryName);
+        }
+        return this.categories[categoryName];
+    }
+
+    render() {
+        const renderedCategories = {};
+
+        Object.keys(this.categories).forEach(categoryName => {
+            renderedCategories[categoryName] = this.categories[categoryName].render();
+        });
+
+        return {
+            title: this.title,
+            description: this.description,
+            section: this.section,
+            units: this.units,
+            categories: renderedCategories,
+        };
+    }
+}
+
+class Category {
+    constructor(name) {
+        this.name = name;
+
         this.populations = {};
     }
 
-    addPopulation(population) {
-        this.populations[population.getName()] = population;
+    getPopulation(populationName) {
+        if (!propertyExists(this.populations, populationName)) {
+            this.populations[populationName] = new Population(populationName);
+        }
+        return this.populations[populationName];
     }
 
     render() {
@@ -180,12 +227,8 @@ class Chart {
         });
 
         return {
-            title: this.title,
-            description: this.description,
-            section: this.section,
-            units: this.units,
             populations: renderedPopulations,
-        };
+        }
     }
 }
 
@@ -198,10 +241,6 @@ class Population {
 
     addDataPoint(dataPoint) {
         this.dataPoints.push(dataPoint);
-    }
-
-    getName() {
-        return this.name;
     }
 
     render() {
