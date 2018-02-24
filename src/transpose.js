@@ -58,6 +58,7 @@ function processSource(error, body, manifest, callback) {
     //
     // "US": {...}
     Object.keys(source).forEach(categoryName => {
+        dataset.addCategoryName(categoryName);
 
         // For each entry OBJECT in that category, where an entry looks like:
         //
@@ -122,6 +123,7 @@ class Dataset {
         this.version = '0.0.2';
         this.charts = {};
         this.sections = [];
+        this.categoryNames = [];
     }
 
     getChart(title, description, section, units) {
@@ -135,6 +137,10 @@ class Dataset {
         this.sections.push(section);
     }
 
+    addCategoryName(categoryName) {
+        this.categoryNames.push(categoryName);
+    }
+
     render() {
         let renderedCharts = [];
 
@@ -142,11 +148,14 @@ class Dataset {
             renderedCharts.push(this.charts[chartTitle].render());
         });
 
+        console.dir(this.categories);
+
         const output = {
             title: this.title,
             version: this.version,
             description: this.description,
             charts: renderedCharts,
+            categories: this.categoryNames,
         };
 
         if (this.sections.length > 0) {
@@ -154,20 +163,6 @@ class Dataset {
         }
 
         return output;
-    }
-}
-
-class Section {
-    constructor(key, title) {
-        this.key = key;
-        this.title = title;
-    }
-
-    render() {
-        return {
-            key: this.key,
-            title: this.title,
-        };
     }
 }
 
@@ -258,6 +253,20 @@ class DataPoint {
         return {
             x: this.x,
             y: this.y,
+        };
+    }
+}
+
+class Section {
+    constructor(key, title) {
+        this.key = key;
+        this.title = title;
+    }
+
+    render() {
+        return {
+            key: this.key,
+            title: this.title,
         };
     }
 }
