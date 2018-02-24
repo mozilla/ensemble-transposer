@@ -84,8 +84,9 @@ function processSource(error, body, manifest, callback) {
                 const chartDescription = chartMeta.description;
                 const chartSection = getSectionTitle(metricName);
                 const chartUnits = chartMeta.units;
+                const chartLabels = chartMeta.labels;
 
-                const chart = dataset.getChart(chartTitle, chartDescription, chartSection, chartUnits);
+                const chart = dataset.getChart(chartTitle, chartDescription, chartSection, chartUnits, chartLabels);
                 const category = chart.getCategory(categoryName);
 
                 // If the source dataset doesn't specify any populations, create
@@ -126,9 +127,9 @@ class Dataset {
         this.categoryNames = [];
     }
 
-    getChart(title, description, section, units) {
+    getChart(title, description, section, units, labels) {
         if (!propertyExists(this.charts, title)) {
-            this.charts[title] = new Chart(title, description, section, units);
+            this.charts[title] = new Chart(title, description, section, units, labels);
         }
         return this.charts[title];
     }
@@ -165,11 +166,12 @@ class Dataset {
 }
 
 class Chart {
-    constructor(title, description, section, units) {
+    constructor(title, description, section, units, labels) {
         this.title = title;
         this.description = description;
         this.section = section;
         this.units = units;
+        this.labels = labels;
 
         this.categories = {};
     }
@@ -193,6 +195,7 @@ class Chart {
             description: this.description,
             section: this.section,
             units: this.units,
+            labels: this.labels,
             categories: renderedCategories,
         };
     }
