@@ -68,17 +68,14 @@ function processSource(error, body, manifest, callback) {
         // }
         source[categoryName].forEach(entry => {
 
-            // For each metric NAME in that entry, where a metric looks like:
+            // For each metric NAME in the manifest:
             //
-            // "YAU": 1000
-            //
-            // OR
-            //
-            // "Operating System": {
-            //     "Windows": 1000,
-            //     "Mac": 1000
-            // }
-            Object.keys(entry.metrics).forEach(metricName => {
+            // (By consequence, anything not named in the manifest will not be
+            // part of the final output. Also, the ordering of metrics in the
+            // final output should mirror the ordering of metrics in the
+            // manifest, although object ordering in JavaScript isn't
+            // gauranteed.)
+            Object.keys(manifest.extraMetadata.charts).forEach(metricName => {
                 const chartMeta = manifest.extraMetadata.charts[metricName];
                 const chartTitle = chartMeta.title || metricName;
                 const chartDescription = chartMeta.description;

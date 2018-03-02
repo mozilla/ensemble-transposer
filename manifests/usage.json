@@ -1,0 +1,17 @@
+{
+    "source": "data/usage.json",
+    "extraMetadata": {
+        "title": "Usage",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas vitae leo vulputate semper. Phasellus faucibus nulla eu imperdiet finibus. Sed et hendrerit turpis. Aenean tristique rhoncus leo quis congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sed vehicula nulla, porta suscipit augue. Mauris ut scelerisque magna.",
+        "charts": {
+            "os": {
+                "title": "Operating System",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+            },
+            "locale": {
+                "title": "Locale",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+            }
+        }
+    }
+}
