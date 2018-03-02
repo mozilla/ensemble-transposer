@@ -5,43 +5,47 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas vitae leo vulputate semper. Phasellus faucibus nulla eu imperdiet finibus. Sed et hendrerit turpis. Aenean tristique rhoncus leo quis congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sed vehicula nulla, porta suscipit augue. Mauris ut scelerisque magna.",
         "charts": {
             "Average Daily Use": {
-                "units": {
-                    "y": "hours"
-                },
-                "labels": {
-                    "y": "hours"
-                },
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa.",
+                "axes": {
+                    "y": {
+                        "unit": "hours",
+                        "label": "hours"
+                    }
+                }
             },
             "Average Intensity": {
-                "labels": {
-                    "y": "intensity"
-                },
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa.",
+                "axes": {
+                    "y": {
+                        "label": "intensity"
+                    }
+                }
             },
             "MAU": {
-                "units": {
-                    "y": "clients"
-                },
-                "labels": {
-                    "y": "clients"
-                },
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa.",
+                "axes": {
+                    "y": {
+                        "unit": "clients",
+                        "label": "clients"
+                    }
+                }
             },
             "Operating System": {
-                "units": {
-                    "y": "%"
-                },
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa.",
+                "axes": {
+                    "y": {
+                        "unit": "%"
+                    }
+                }
             },
             "YAU": {
-                "units": {
-                    "y": "clients"
-                },
-                "labels": {
-                    "y": "clients"
-                },
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa."
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel odio eu odio malesuada tristique. Aliquam semper, dolor ultricies suscipit semper, nisi elit accumsan ante, quis cursus lacus massa id metus. Nullam et malesuada sem. Sed maximus viverra cursus. Proin nisl ex, sollicitudin pulvinar tristique et, finibus et massa.",
+                "axes": {
+                    "y": {
+                        "unit": "clients",
+                        "label": "clients"
+                    }
+                }
             }
         }
     }
