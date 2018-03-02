@@ -43,7 +43,8 @@
                 "axes": {
                     "y": {
                         "unit": "clients",
-                        "label": "clients"
+                        "label": "clients",
+                        "suggestedMin": 0
                     }
                 }
             }
