@@ -76,6 +76,9 @@ function processSource(error, body, manifest, callback) {
             // manifest, although object ordering in JavaScript isn't
             // gauranteed.)
             Object.keys(manifest.extraMetadata.charts).forEach(metricName => {
+                // If this metric is not in this entry, do nothing.
+                if (!propertyExists(entry.metric, metricName)) return;
+
                 const chartMeta = manifest.extraMetadata.charts[metricName];
                 const chartTitle = chartMeta.title || metricName;
                 const chartDescription = chartMeta.description;
