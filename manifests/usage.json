@@ -3,6 +3,7 @@
     "extraMetadata": {
         "title": "Usage",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas vitae leo vulputate semper. Phasellus faucibus nulla eu imperdiet finibus. Sed et hendrerit turpis. Aenean tristique rhoncus leo quis congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sed vehicula nulla, porta suscipit augue. Mauris ut scelerisque magna.",
+        "defaultCategory": "US",
         "charts": {
             "os": {
                 "title": "Operating System",
