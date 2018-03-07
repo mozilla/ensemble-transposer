@@ -114,7 +114,7 @@
         "sections": [
             {
                 "title": "Graphics",
-                "charts": ["resolution", "gpuModel", "gpuVendor", "has"]
+                "charts": ["resolution", "gpuModel", "gpuVendor", "hasUnity"]
             },
             {
                 "title": "Processor",
