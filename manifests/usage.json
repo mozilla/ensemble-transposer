@@ -23,8 +23,8 @@
                 }
             },
             "pct_addon": {
-                "title": "Has Addon",
-                "description": "The percentage of clients with a user installed addon.",
+                "title": "Has Add-on",
+                "description": "The percentage of clients with a user installed add-on.",
                 "axes": {
                     "x": {
                         "unit": "time"
