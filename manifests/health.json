@@ -1,7 +1,7 @@
 {
     "source": "data/health.json",
     "extraMetadata": {
-        "title": "Health",
+        "title": "Health of Firefox",
         "defaultCategory": "All",
         "charts": {
             "YAU": {
@@ -37,6 +37,30 @@
                 "axes": {
                     "y": {
                         "label": "intensity"
+                    }
+                }
+            },
+            "pct_new_user": {
+                "title": "New users percentage",
+                "description": "The percentage of clients who were new users.",
+                "axes": {
+                    "x": {
+                        "unit": "time"
+                    },
+                    "y": {
+                        "unit": "%"
+                    }
+                }
+            },
+            "pct_latest_version": {
+                "title": "Latest version",
+                "description": "The percentage of clients running the latest version of Firefox (for that week). Vertical lines represent Firefox release dates. Note, Firefox updates are often throttled at different rates (i.e. 10% of population in week 1, etc.).",
+                "axes": {
+                    "x": {
+                        "unit": "time"
+                    },
+                    "y": {
+                        "unit": "%"
                     }
                 }
             }

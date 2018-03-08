@@ -1,7 +1,7 @@
 {
     "source": "data/usage.json",
     "extraMetadata": {
-        "title": "Usage",
+        "title": "Web Usage",
         "defaultCategory": "All",
         "charts": {
             "os": {
@@ -9,6 +9,30 @@
             },
             "locale": {
                 "title": "Locale"
+            },
+            "pct_TP": {
+                "title": "Tracking Protection",
+                "description": "The percentage of clients with Tracking Protection enabled.",
+                "axes": {
+                    "x": {
+                        "unit": "time"
+                    },
+                    "y": {
+                        "unit": "%"
+                    }
+                }
+            },
+            "pct_addon": {
+                "title": "Has Addon",
+                "description": "The percentage of clients with a user installed addon.",
+                "axes": {
+                    "x": {
+                        "unit": "time"
+                    },
+                    "y": {
+                        "unit": "%"
+                    }
+                }
             }
         }
     }
