@@ -7,21 +7,28 @@
             "os": {
                 "title": "Operating System",
                 "description": "The distribution of Operating Systems.",
-                "type": "line"
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "%"
+                    }
+                }
             },
             "locale": {
                 "title": "Top Languages",
                 "description": "The distribution of the top 5 language settings.",
-                "type": "line"
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "%"
+                    }
+                }
             },
             "pct_TP": {
                 "title": "Tracking Protection",
                 "description": "The percentage of clients with Tracking Protection enabled.",
                 "type": "line",
                 "axes": {
-                    "x": {
-                        "unit": "time"
-                    },
                     "y": {
                         "unit": "%"
                     }
@@ -32,9 +39,6 @@
                 "description": "The percentage of clients with a user installed add-on.",
                 "type": "line",
                 "axes": {
-                    "x": {
-                        "unit": "time"
-                    },
                     "y": {
                         "unit": "%"
                     }
