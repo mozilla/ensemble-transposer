@@ -6,6 +6,7 @@
         "charts": {
             "YAU": {
                 "title": "Yearly Active Users",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "clients",
@@ -16,6 +17,7 @@
             },
             "MAU": {
                 "title": "Monthly Active Users",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "clients",
@@ -25,6 +27,7 @@
             },
             "avg_daily_usage(hours)": {
                 "title": "Average Daily Use",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "hours",
@@ -34,6 +37,7 @@
             },
             "avg_intensity": {
                 "title": "Average Intensity",
+                "type": "line",
                 "axes": {
                     "y": {
                         "label": "intensity"
@@ -43,6 +47,7 @@
             "pct_new_user": {
                 "title": "New Users Percentage",
                 "description": "The percentage of clients who were new users.",
+                "type": "line",
                 "axes": {
                     "x": {
                         "unit": "time"
@@ -55,6 +60,7 @@
             "pct_latest_version": {
                 "title": "Latest Version",
                 "description": "The percentage of clients running the latest version of Firefox (for that week). Vertical lines represent Firefox release dates. Note, Firefox updates are often throttled at different rates (i.e. 10% of population in week 1, etc.).",
+                "type": "line",
                 "axes": {
                     "x": {
                         "unit": "time"

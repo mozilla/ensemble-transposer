@@ -80,13 +80,16 @@ function processSource(error, body, manifest, callback) {
                 if (!propertyExists(entry.metrics, metricName)) return;
 
                 const chartMeta = manifest.extraMetadata.charts[metricName];
-                const chartTitle = chartMeta.title || metricName;
-                const chartDescription = chartMeta.description;
-                const chartSection = getSectionTitle(metricName);
-                const chartAxes = chartMeta.axes;
-                const chartLabels = chartMeta.labels;
 
-                const chart = dataset.getChart(chartTitle, chartDescription, chartSection, chartAxes, chartLabels);
+                const chart = dataset.getChart(
+                    chartMeta.title || metricName,
+                    chartMeta.description,
+                    chartMeta.type,
+                    chartMeta.axes,
+                    chartMeta.labels,
+                    getSectionTitle(metricName),
+                );
+
                 const category = chart.getCategory(categoryName);
 
                 // If the source dataset doesn't specify any populations, create
@@ -168,12 +171,13 @@ class Dataset {
 }
 
 class Chart {
-    constructor(title, description, section, axes, labels) {
+    constructor(title, description, type, axes, labels, section) {
         this.title = title;
         this.description = description;
-        this.section = section;
+        this.type = type;
         this.axes = axes;
         this.labels = labels;
+        this.section = section;
 
         this.categories = {};
     }
@@ -195,9 +199,10 @@ class Chart {
         return {
             title: this.title,
             description: this.description,
-            section: this.section,
+            type: this.type,
             axes: this.axes,
             labels: this.labels,
+            section: this.section,
             categories: renderedCategories,
         };
     }

@@ -7,6 +7,7 @@
             "resolution": {
                 "title": "Display Resolution",
                 "description": "Two display resolutions—1366x768px and 1920x1080px—stand out as the most highly used resolutions, with the latter showing an upward trend.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -15,6 +16,7 @@
             },
             "gpuModel": {
                 "title": "GPU Model",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -24,6 +26,7 @@
             "gpuVendor": {
                 "title": "GPU Vendor",
                 "description": "The share of GPU vendors shows little change over the course of 2016, with Intel chipsets making up nearly two-thirds of all GPUs.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -32,6 +35,7 @@
             },
             "hasUnity": {
                 "title": "Has Unity",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -41,6 +45,7 @@
             "cpuSpeed": {
                 "title": "CPU Speeds",
                 "description": "A quarter of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -50,6 +55,7 @@
             "ram": {
                 "title": "Memory",
                 "description": "A third of users have 4GB of memory, trending up. The number of users with 8GB of memory is also trending up.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -59,6 +65,7 @@
             "cpuCores": {
                 "title": "CPU Cores",
                 "description": "Nearly 70% of users have machines with two physical cores.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -68,6 +75,7 @@
             "cpuVendor": {
                 "title": "CPU Vendor",
                 "description": "The share of CPU vendors shows little change over the course of 2016, with Intel making up nearly 86% of all CPUs.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -77,6 +85,7 @@
             "osName": {
                 "title": "Operating System",
                 "description": "Users on Windows 10 showed a noticeable increase in the first half of 2016. Only Ubuntu and Mozilla builds of Linux are currently being tracked.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -86,6 +95,7 @@
             "browserArch": {
                 "title": "Browsers by Architecture",
                 "description": "In 2017, 64-bit Firefox updates fully unthrottled on Win7+ for 2GB+ users.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -95,6 +105,7 @@
             "osArch": {
                 "title": "Operating Systems by Architecture",
                 "description": "The share of 32-to-64-bit operating systems showed no remarkable change during 2016. Note that this metric likely undercounts non-Windows OSs, seeing as it relies on the environment.system.isWow64 Telemetry field.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"
@@ -104,6 +115,7 @@
             "hasFlash": {
                 "title": "Has Flash",
                 "description": "Flash availability on Firefox shows a downward trend.",
+                "type": "line",
                 "axes": {
                     "y": {
                         "unit": "%"

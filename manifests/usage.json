@@ -5,14 +5,17 @@
         "defaultCategory": "All",
         "charts": {
             "os": {
-                "title": "Operating System"
+                "title": "Operating System",
+                "type": "line"
             },
             "locale": {
-                "title": "Locale"
+                "title": "Locale",
+                "type": "line"
             },
             "pct_TP": {
                 "title": "Tracking Protection",
                 "description": "The percentage of clients with Tracking Protection enabled.",
+                "type": "line",
                 "axes": {
                     "x": {
                         "unit": "time"
@@ -25,6 +28,7 @@
             "pct_addon": {
                 "title": "Has Add-on",
                 "description": "The percentage of clients with a user installed add-on.",
+                "type": "line",
                 "axes": {
                     "x": {
                         "unit": "time"
@@ -33,6 +37,11 @@
                         "unit": "%"
                     }
                 }
+            },
+            "name": {
+                "title": "Top Add-ons",
+                "description": "The top 10 most common add-ons.",
+                "type": "table"
             }
         }
     }
