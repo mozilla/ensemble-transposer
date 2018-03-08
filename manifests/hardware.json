@@ -3,7 +3,7 @@
     "extraMetadata": {
         "title": "Hardware Across the Web",
         "description": "Hardware Across the Web is a public weekly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. This information can be used by developers to improve the Firefox experience for users.",
-        "charts": {
+        "metrics": {
             "resolution": {
                 "title": "Display Resolution",
                 "description": "Two display resolutions—1366x768px and 1920x1080px—stand out as the most highly used resolutions, with the latter showing an upward trend.",
@@ -126,19 +126,19 @@
         "sections": [
             {
                 "title": "Graphics",
-                "charts": ["resolution", "gpuModel", "gpuVendor", "hasUnity"]
+                "metrics": ["resolution", "gpuModel", "gpuVendor", "hasUnity"]
             },
             {
                 "title": "Processor",
-                "charts": ["cpuSpeed", "ram", "cpuCores", "cpuVendor"]
+                "metrics": ["cpuSpeed", "ram", "cpuCores", "cpuVendor"]
             },
             {
                 "title": "Operating System",
-                "charts": ["osName", "browserArch", "osArch"]
+                "metrics": ["osName", "browserArch", "osArch"]
             },
             {
                 "title": "Flash",
-                "charts": ["hasFlash"]
+                "metrics": ["hasFlash"]
             }
         ]
     }

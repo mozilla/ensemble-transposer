@@ -29,7 +29,7 @@ function processSource(error, body, manifest, callback) {
     function getSectionTitle(metricName) {
         if (manifest.extraMetadata.sections) {
             const sectionMeta = manifest.extraMetadata.sections.find(sectionMeta => {
-                return sectionMeta.charts.includes(metricName);
+                return sectionMeta.metrics.includes(metricName);
             });
 
             if (sectionMeta) {
@@ -75,22 +75,22 @@ function processSource(error, body, manifest, callback) {
             // final output should mirror the ordering of metrics in the
             // manifest, although object ordering in JavaScript isn't
             // gauranteed.)
-            Object.keys(manifest.extraMetadata.charts).forEach(metricName => {
+            Object.keys(manifest.extraMetadata.metrics).forEach(metricName => {
                 // If this metric is not in this entry, do nothing.
                 if (!propertyExists(entry.metrics, metricName)) return;
 
-                const chartMeta = manifest.extraMetadata.charts[metricName];
+                const metricMeta = manifest.extraMetadata.metrics[metricName];
 
-                const chart = dataset.getChart(
-                    chartMeta.title || metricName,
-                    chartMeta.description,
-                    chartMeta.type,
-                    chartMeta.axes,
-                    chartMeta.labels,
+                const metric = dataset.getMetric(
+                    metricMeta.title || metricName,
+                    metricMeta.description,
+                    metricMeta.type,
+                    metricMeta.axes,
+                    metricMeta.labels,
                     getSectionTitle(metricName),
                 );
 
-                const category = chart.getCategory(categoryName);
+                const category = metric.getCategory(categoryName);
 
                 // If the source dataset doesn't specify any populations, create
                 // one "default" population.
@@ -126,16 +126,16 @@ class Dataset {
         this.defaultCategory = defaultCategory;
 
         this.version = '0.0.2';
-        this.charts = {};
+        this.metrics = {};
         this.sections = [];
         this.categoryNames = [];
     }
 
-    getChart(title, description, section, axes, labels) {
-        if (!propertyExists(this.charts, title)) {
-            this.charts[title] = new Chart(title, description, section, axes, labels);
+    getMetric(title, description, section, axes, labels) {
+        if (!propertyExists(this.metrics, title)) {
+            this.metrics[title] = new Metric(title, description, section, axes, labels);
         }
-        return this.charts[title];
+        return this.metrics[title];
     }
 
     addSection(section) {
@@ -147,17 +147,17 @@ class Dataset {
     }
 
     render() {
-        let renderedCharts = [];
+        let renderedMetrics = [];
 
-        Object.keys(this.charts).forEach(chartTitle => {
-            renderedCharts.push(this.charts[chartTitle].render());
+        Object.keys(this.metrics).forEach(metricTitle => {
+            renderedMetrics.push(this.metrics[metricTitle].render());
         });
 
         const output = {
             title: this.title,
             version: this.version,
             description: this.description,
-            charts: renderedCharts,
+            metrics: renderedMetrics,
             categories: this.categoryNames,
             defaultCategory: this.defaultCategory,
         };
@@ -170,7 +170,7 @@ class Dataset {
     }
 }
 
-class Chart {
+class Metric {
     constructor(title, description, type, axes, labels, section) {
         this.title = title;
         this.description = description;

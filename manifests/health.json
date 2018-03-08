@@ -3,7 +3,7 @@
     "extraMetadata": {
         "title": "Health of Firefox",
         "defaultCategory": "All",
-        "charts": {
+        "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
                 "type": "line",

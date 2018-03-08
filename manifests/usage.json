@@ -3,7 +3,7 @@
     "extraMetadata": {
         "title": "Web Usage",
         "defaultCategory": "All",
-        "charts": {
+        "metrics": {
             "os": {
                 "title": "Operating System",
                 "type": "line"
