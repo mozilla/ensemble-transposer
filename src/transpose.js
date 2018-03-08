@@ -86,7 +86,6 @@ function processSource(error, body, manifest, callback) {
                     metricMeta.description,
                     metricMeta.type,
                     metricMeta.axes,
-                    metricMeta.labels,
                     getSectionTitle(metricName),
                 );
 
@@ -131,9 +130,9 @@ class Dataset {
         this.categoryNames = [];
     }
 
-    getMetric(title, description, section, axes, labels) {
+    getMetric(title, description, type, axes, section) {
         if (!propertyExists(this.metrics, title)) {
-            this.metrics[title] = new Metric(title, description, section, axes, labels);
+            this.metrics[title] = new Metric(title, description, type, axes, section);
         }
         return this.metrics[title];
     }
@@ -171,12 +170,11 @@ class Dataset {
 }
 
 class Metric {
-    constructor(title, description, type, axes, labels, section) {
+    constructor(title, description, type, axes, section) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.axes = axes;
-        this.labels = labels;
         this.section = section;
 
         this.categories = {};
@@ -201,7 +199,6 @@ class Metric {
             description: this.description,
             type: this.type,
             axes: this.axes,
-            labels: this.labels,
             section: this.section,
             categories: renderedCategories,
         };
