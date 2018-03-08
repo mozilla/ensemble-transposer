@@ -47,7 +47,16 @@
             "name": {
                 "title": "Top Add-ons",
                 "description": "The top 10 most popular add-ons.",
-                "type": "line"
+                "type": "table",
+                "columns": [
+                    {
+                        "name": "Add-on"
+                    },
+                    {
+                        "name": "Usage",
+                        "unit": "%"
+                    }
+                ]
             }
         }
     }

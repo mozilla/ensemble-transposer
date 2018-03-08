@@ -19,6 +19,10 @@ function propertyExists(obj, property) {
     return property in obj;
 }
 
+function objectIsEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}
+
 function processSource(error, body, manifest, callback) {
     if (error) {
         return callback({
@@ -80,34 +84,47 @@ function processSource(error, body, manifest, callback) {
                 if (!propertyExists(entry.metrics, metricName)) return;
 
                 const metricMeta = manifest.extraMetadata.metrics[metricName];
+                const metricType = metricMeta.type;
 
                 const metric = dataset.getMetric(
                     metricMeta.title || metricName,
                     metricMeta.description,
-                    metricMeta.type,
+                    metricType,
                     metricMeta.axes,
+                    metricMeta.columns,
                     getSectionTitle(metricName),
                 );
 
                 const category = metric.getCategory(categoryName);
 
-                // If the source dataset doesn't specify any populations, create
-                // one "default" population.
-                let populations;
-                const multiplePopulations = typeof(entry.metrics[metricName]) === 'object';
-                if (multiplePopulations) {
-                    populations = Object.keys(entry.metrics[metricName]);
-                } else {
-                    populations = ['default'];
-                }
+                if (metricType === 'line') {
 
-                // For each population NAME
-                populations.forEach(populationName => {
-                    const population = category.getPopulation(populationName);
-                    const yValue = multiplePopulations ? entry.metrics[metricName][populationName] : entry.metrics[metricName];
-                    const dataPoint = new DataPoint(entry.date, yValue);
-                    population.addDataPoint(dataPoint);
-                }); // For each population NAME
+                    // If the source dataset doesn't specify any populations, create
+                    // one "default" population.
+                    let populations;
+                    const multiplePopulations = typeof(entry.metrics[metricName]) === 'object';
+                    if (multiplePopulations) {
+                        populations = Object.keys(entry.metrics[metricName]);
+                    } else {
+                        populations = ['default'];
+                    }
+
+                    // For each population NAME
+                    populations.forEach(populationName => {
+                        const population = category.getPopulation(populationName);
+                        const yValue = multiplePopulations ? entry.metrics[metricName][populationName] : entry.metrics[metricName];
+                        const dataPoint = new DataPoint(entry.date, yValue);
+                        population.addDataPoint(dataPoint);
+                    }); // For each population NAME
+
+                } else if (metricType === 'table') {
+                    // For each row NAME
+                    Object.keys(entry.metrics[metricName]).map(rowName => {
+                        const tableSnapshot = category.getTableSnapshot(entry.date);
+                        const row = new Row(rowName, entry.metrics[metricName][rowName]);
+                        tableSnapshot.addRow(row);
+                    }); // For each row NAME
+                }
 
             }); // For each metric NAME
 
@@ -130,9 +147,9 @@ class Dataset {
         this.categoryNames = [];
     }
 
-    getMetric(title, description, type, axes, section) {
+    getMetric(title, description, type, axes, columns, section) {
         if (!propertyExists(this.metrics, title)) {
-            this.metrics[title] = new Metric(title, description, type, axes, section);
+            this.metrics[title] = new Metric(title, description, type, axes, columns, section);
         }
         return this.metrics[title];
     }
@@ -170,11 +187,12 @@ class Dataset {
 }
 
 class Metric {
-    constructor(title, description, type, axes, section) {
+    constructor(title, description, type, axes, columns, section) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.axes = axes;
+        this.columns = columns;
         this.section = section;
 
         this.categories = {};
@@ -189,19 +207,25 @@ class Metric {
 
     render() {
         const renderedCategories = {};
-
         Object.keys(this.categories).forEach(categoryName => {
             renderedCategories[categoryName] = this.categories[categoryName].render();
         });
 
-        return {
+        const output = {
             title: this.title,
             description: this.description,
             type: this.type,
-            axes: this.axes,
             section: this.section,
             categories: renderedCategories,
         };
+
+        if (this.axes && !objectIsEmpty(this.axes)) {
+            output.axes = this.axes;
+        } else if (this.columns && !objectIsEmpty(this.columns)) {
+            output.columns = this.columns;
+        }
+
+        return output;
     }
 }
 
@@ -210,6 +234,7 @@ class Category {
         this.name = name;
 
         this.populations = {};
+        this.tableSnapshots = {};
     }
 
     getPopulation(populationName) {
@@ -219,16 +244,27 @@ class Category {
         return this.populations[populationName];
     }
 
-    render() {
-        const renderedPopulations = {};
-
-        Object.keys(this.populations).forEach(populationName => {
-            renderedPopulations[populationName] = this.populations[populationName].render();
-        });
-
-        return {
-            populations: renderedPopulations,
+    getTableSnapshot(date) {
+        if (!propertyExists(this.tableSnapshots, date)) {
+            this.tableSnapshots[date] = new TableSnapshot();
         }
+        return this.tableSnapshots[date];
+    }
+
+    render() {
+        const output = {};
+
+        if (!objectIsEmpty(this.populations)) {
+            const renderedPopulations = {};
+            Object.keys(this.populations).forEach(populationName => {
+                renderedPopulations[populationName] = this.populations[populationName].render();
+            });
+            output.populations = renderedPopulations;
+        } else if (!objectIsEmpty(this.tableSnapshots)) {
+            output.dates = this.tableSnapshots;
+        }
+
+        return output;
     }
 }
 
@@ -248,6 +284,20 @@ class Population {
     }
 }
 
+class TableSnapshot {
+    constructor() {
+        this.rows = [];
+    }
+
+    addRow(row) {
+        this.rows.push(row);
+    }
+
+    render() {
+        return this.rows.map(row => row.render());
+    }
+}
+
 class DataPoint {
     constructor(x, y) {
         this.x = x;
@@ -258,6 +308,20 @@ class DataPoint {
         return {
             x: this.x,
             y: this.y,
+        };
+    }
+}
+
+class Row {
+    constructor(name, value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    render() {
+        return {
+            name: this.name,
+            value: this.value,
         };
     }
 }
