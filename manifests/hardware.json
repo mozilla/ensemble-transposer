@@ -123,6 +123,12 @@
                 }
             }
         },
+        "summaryMetrics": [
+            "GPU Vendor",
+            "CPU Vendor",
+            "Operating System",
+            "Has Flash"
+        ],
         "sections": [
             {
                 "title": "Graphics",

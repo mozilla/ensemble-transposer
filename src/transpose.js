@@ -47,7 +47,7 @@ function processSource(error, body, manifest, callback) {
     }
 
     const source = JSON.parse(body);
-    const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description, manifest.extraMetadata.defaultCategory);
+    const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description, manifest.extraMetadata.summaryMetrics, manifest.extraMetadata.defaultCategory);
 
     // Add sections to dataset object
     if (manifest.extraMetadata.sections) {
@@ -136,9 +136,10 @@ function processSource(error, body, manifest, callback) {
 }
 
 class Dataset {
-    constructor(title, description, defaultCategory) {
+    constructor(title, description, summaryMetrics, defaultCategory) {
         this.title = title;
         this.description = description;
+        this.summaryMetrics = summaryMetrics;
         this.defaultCategory = defaultCategory;
 
         this.version = '0.0.2';
@@ -180,6 +181,10 @@ class Dataset {
 
         if (this.sections.length > 0) {
             output.sections = this.sections.map(s => s.render());
+        }
+
+        if (this.summaryMetrics) {
+            output.summaryMetrics = this.summaryMetrics;
         }
 
         return output;
