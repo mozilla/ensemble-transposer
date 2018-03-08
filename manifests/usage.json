@@ -41,7 +41,7 @@
             "name": {
                 "title": "Top Add-ons",
                 "description": "The top 10 most common add-ons.",
-                "type": "table"
+                "type": "line"
             }
         }
     }
