@@ -93,7 +93,7 @@
                 }
             },
             "osArch": {
-                "title": "OSs by Architecture",
+                "title": "Operating Systems by Architecture",
                 "description": "The share of 32-to-64-bit operating systems showed no remarkable change during 2016. Note that this metric likely undercounts non-Windows OSs, seeing as it relies on the environment.system.isWow64 Telemetry field.",
                 "axes": {
                     "y": {
