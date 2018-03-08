@@ -6,10 +6,12 @@
         "metrics": {
             "os": {
                 "title": "Operating System",
+                "description": "The distribution of Operating Systems.",
                 "type": "line"
             },
             "locale": {
-                "title": "Locale",
+                "title": "Top Languages",
+                "description": "The distribution of the top 5 language settings.",
                 "type": "line"
             },
             "pct_TP": {
@@ -40,7 +42,7 @@
             },
             "name": {
                 "title": "Top Add-ons",
-                "description": "The top 10 most common add-ons.",
+                "description": "The top 10 most popular add-ons.",
                 "type": "line"
             }
         }

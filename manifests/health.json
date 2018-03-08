@@ -6,6 +6,7 @@
         "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
+                "description": "The number of clients who used Firefox in the past 365 days.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -17,6 +18,7 @@
             },
             "MAU": {
                 "title": "Monthly Active Users",
+                "description": "The number of clients who used Firefox in the past 28 days.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -27,6 +29,7 @@
             },
             "avg_daily_usage(hours)": {
                 "title": "Average Daily Use",
+                "description": "The hours spent using the browser for a typical client.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -37,6 +40,7 @@
             },
             "avg_intensity": {
                 "title": "Average Intensity",
+                "description": "The engagement level of a typical client. Measures the proportion of a client's daily use where they actively engaged with the browser.",
                 "type": "line",
                 "axes": {
                     "y": {
