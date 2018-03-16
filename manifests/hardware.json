@@ -46,6 +46,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
