@@ -11,6 +11,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-03-05",
+                                "note": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
@@ -20,6 +28,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-03-05",
+                                "note": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
@@ -49,6 +65,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-03-05",
+                                "note": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
@@ -59,6 +83,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-03-05",
+                                "note": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
@@ -69,6 +101,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-03-05",
+                                "note": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
@@ -89,6 +129,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-03-05",
+                                "note": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
@@ -99,6 +147,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-10-23",
+                                "note": "64-bit updates unthrottled on Win7+ for 2GB+ users"
+                            }
+                        ]
                     }
                 }
             },
@@ -109,6 +165,14 @@
                 "axes": {
                     "y": {
                         "unit": "%"
+                    },
+                    "x": {
+                        "annotations": [
+                            {
+                                "date": "2017-03-05",
+                                "note": "XP and Vista leave dataset"
+                            }
+                        ]
                     }
                 }
             },
