@@ -1,7 +1,7 @@
 {
-    "source": "data/usage.json",
+    "source": "data/usage-behavior.json",
     "extraMetadata": {
-        "title": "Web Usage",
+        "title": "Usage Behavior",
         "defaultCategory": "All",
         "metrics": {
             "os": {

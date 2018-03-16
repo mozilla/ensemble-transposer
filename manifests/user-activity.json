@@ -1,7 +1,7 @@
 {
-    "source": "data/health.json",
+    "source": "data/user-activity.json",
     "extraMetadata": {
-        "title": "Health of Firefox",
+        "title": "User Activity",
         "defaultCategory": "All",
         "metrics": {
             "YAU": {
