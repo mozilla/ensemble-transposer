@@ -15,8 +15,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-03-05",
-                                "note": "XP and Vista leave dataset"
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
                             }
                         ]
                     }
@@ -32,8 +32,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-03-05",
-                                "note": "XP and Vista leave dataset"
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
                             }
                         ]
                     }
@@ -69,8 +69,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-03-05",
-                                "note": "XP and Vista leave dataset"
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
                             }
                         ]
                     }
@@ -87,8 +87,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-03-05",
-                                "note": "XP and Vista leave dataset"
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
                             }
                         ]
                     }
@@ -105,8 +105,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-03-05",
-                                "note": "XP and Vista leave dataset"
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
                             }
                         ]
                     }
@@ -133,8 +133,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-03-05",
-                                "note": "XP and Vista leave dataset"
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
                             }
                         ]
                     }
@@ -151,8 +151,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-10-23",
-                                "note": "64-bit updates unthrottled on Win7+ for 2GB+ users"
+                                "value": "2017-10-23",
+                                "label": "64-bit updates unthrottled on Win7+ for 2GB+ users"
                             }
                         ]
                     }
@@ -169,8 +169,8 @@
                     "x": {
                         "annotations": [
                             {
-                                "date": "2017-03-05",
-                                "note": "XP and Vista leave dataset"
+                                "value": "2017-03-05",
+                                "label": "XP and Vista leave dataset"
                             }
                         ]
                     }
