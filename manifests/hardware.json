@@ -34,7 +34,7 @@
                 }
             },
             "hasUnity": {
-                "title": "Has Unity",
+                "title": "Unity",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -113,7 +113,7 @@
                 }
             },
             "hasFlash": {
-                "title": "Has Flash",
+                "title": "Flash",
                 "description": "Flash availability on Firefox shows a downward trend.",
                 "type": "line",
                 "axes": {
@@ -123,23 +123,26 @@
                 }
             }
         },
-        "sections": [
-            {
-                "title": "Graphics",
-                "metrics": ["resolution", "gpuModel", "gpuVendor", "hasUnity"]
-            },
-            {
-                "title": "Processor",
-                "metrics": ["cpuSpeed", "ram", "cpuCores", "cpuVendor"]
-            },
-            {
-                "title": "Operating System",
-                "metrics": ["osName", "browserArch", "osArch"]
-            },
-            {
-                "title": "Flash",
-                "metrics": ["hasFlash"]
-            }
-        ]
+        "dashboard": {
+            "sectioned": true,
+            "sections": [
+                {
+                    "title": "Graphics",
+                    "metrics": ["gpuModel", "gpuVendor", "resolution"]
+                },
+                {
+                    "title": "Processor",
+                    "metrics": ["cpuVendor", "cpuCores", "cpuSpeed", "ram"]
+                },
+                {
+                    "title": "Operating System",
+                    "metrics": ["osName", "browserArch", "osArch"]
+                },
+                {
+                    "title": "Plugins",
+                    "metrics": ["hasFlash", "hasUnity"]
+                }
+            ]
+        }
     }
 }

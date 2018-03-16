@@ -65,6 +65,17 @@
                     }
                 }
             }
+        },
+        "dashboard": {
+            "sectioned": false,
+            "metrics": [
+                "YAU",
+                "MAU",
+                "avg_daily_usage(hours)",
+                "avg_intensity",
+                "pct_new_user",
+                "pct_latest_version"
+            ]
         }
     }
 }

@@ -58,6 +58,16 @@
                     }
                 ]
             }
+        },
+        "dashboard": {
+            "sectioned": false,
+            "metrics": [
+                "locale",
+                "os",
+                "pct_TP",
+                "pct_addon",
+                "name"
+            ]
         }
     }
 }

@@ -31,8 +31,8 @@ function processSource(error, body, manifest, callback) {
     }
 
     function getSectionTitle(metricName) {
-        if (manifest.extraMetadata.sections) {
-            const sectionMeta = manifest.extraMetadata.sections.find(sectionMeta => {
+        if (manifest.extraMetadata.dashboard.sections) {
+            const sectionMeta = manifest.extraMetadata.dashboard.sections.find(sectionMeta => {
                 return sectionMeta.metrics.includes(metricName);
             });
 
@@ -49,9 +49,11 @@ function processSource(error, body, manifest, callback) {
     const source = JSON.parse(body);
     const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description, manifest.extraMetadata.defaultCategory);
 
+    const sectioned = manifest.extraMetadata.dashboard.sectioned;
+
     // Add sections to dataset object
-    if (manifest.extraMetadata.sections) {
-        manifest.extraMetadata.sections.forEach(sectionMeta => {
+    if (sectioned) {
+        manifest.extraMetadata.dashboard.sections.forEach(sectionMeta => {
             const title = sectionMeta.title;
             const key = sectionTitleToKey(title);
             dataset.addSection(new Section(key, title));
@@ -72,17 +74,22 @@ function processSource(error, body, manifest, callback) {
         // }
         source[categoryName].forEach(entry => {
 
-            // For each metric NAME in the manifest:
-            //
-            // (By consequence, anything not named in the manifest will not be
-            // part of the final output. Also, the ordering of metrics in the
-            // final output should mirror the ordering of metrics in the
-            // manifest, although object ordering in JavaScript isn't
-            // gauranteed.)
-            Object.keys(manifest.extraMetadata.metrics).forEach(metricName => {
-                // If this metric is not in this entry, do nothing.
-                if (!propertyExists(entry.metrics, metricName)) return;
+            let metricsToShow;
+            if (sectioned) {
+                metricsToShow = manifest.extraMetadata.dashboard.sections.reduce((acc, sectionMeta) => {
+                    return acc.concat(sectionMeta.metrics);
+                }, []);
+            } else {
+                metricsToShow = manifest.extraMetadata.dashboard.metrics;
+            }
 
+            // For each metric NAME to show:
+            //
+            // (By consequence, anything not named in the "dashboards" portion
+            // of the manifest will not be part of the final output. Also, the
+            // ordering of the final output will match the ordering of metrics
+            // in the manifest.)
+            metricsToShow.forEach(metricName => {
                 const metricMeta = manifest.extraMetadata.metrics[metricName];
                 const metricType = metricMeta.type;
 
@@ -94,6 +101,11 @@ function processSource(error, body, manifest, callback) {
                     metricMeta.columns,
                     getSectionTitle(metricName),
                 );
+
+                // If this metric is not in this entry, do nothing else. We need
+                // to call getMetric() before bailing out here, otherwise the
+                // ordering of metrics would be messed up in the final output.
+                if (!propertyExists(entry.metrics, metricName)) return;
 
                 const category = metric.getCategory(categoryName);
 
