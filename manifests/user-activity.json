@@ -26,8 +26,8 @@
                 }
             },
             "avg_daily_usage(hours)": {
-                "title": "Average Daily Use",
-                "description": "The hours spent using the browser for a typical client.",
+                "title": "Daily Usage",
+                "description": "The hours spent using the browser for a typical client. Globally, the typical user averages slightly over 5 hours of browser use per day, and this figure is crept slightly upward over 2017. Among the top 10 countries, Americans are the heaviest users, averaging over 7 hours of daily use at the beginning of 2018 while Italians come in last, averaging just under 3 hours of daily use.",
                 "type": "line",
                 "axes": {
                     "y": {
