@@ -8,7 +8,7 @@ import transpose from './transpose';
 
 const server = restify.createServer();
 const port = process.env.PORT || 8000;
-const redisClient = redis.createClient({host: process.env.REDIS_URL});
+const redisClient = redis.createClient(process.env.REDIS_URL);
 const cacheSeconds = process.env.CACHE_SECONDS || 1;
 
 // Redis client general error catching.
