@@ -9,6 +9,15 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    links:
+      - redis
+    depends_on:
+      - redis
     command: npm run local
     environment:
       - NODE_ENV=development
+      - REDIS_URL=redis
+      - CACHE_SECONDS=10
+
+  redis:
+    image: redis

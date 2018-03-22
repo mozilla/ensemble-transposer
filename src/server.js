@@ -1,17 +1,41 @@
 import restify from 'restify';
 import fs from 'fs';
 import restifyCORSMiddleware from 'restify-cors-middleware';
+import redis from 'redis';
 
 import transpose from './transpose';
 
 
 const server = restify.createServer();
 const port = process.env.PORT || 8000;
+const redisClient = redis.createClient({host: process.env.REDIS_URL});
+const cacheTTL = process.env.CACHE_SECONDS || 60 * 60 * 24;
+
+
+// Redis client general error catching.
+redisClient.on('error', (err) => {
+    console.log(`Error: ${err}`);
+});
 
 function respond(req, res, next) {
     const dataset = req.params.dataset;
     const manifestFilename = `manifests/${dataset}.json`;
 
+    redisClient.get(dataset, (err, data) => {
+        if (err) console.error(err);
+        if (data === null) {
+            console.log(`Cache miss: ${dataset}`);
+            sendTransposeOutput(res, dataset, manifestFilename);
+        } else {
+            console.log(`Cache hit: ${dataset}`);
+            res.send(JSON.parse(data));
+        }
+    });
+
+    next();
+}
+
+function sendTransposeOutput(res, dataset, manifestFilename) {
     fs.readFile(manifestFilename, 'utf8', (error, contents) => {
         if (error) {
             if (error.code === 'ENOENT') {
@@ -26,12 +50,12 @@ function respond(req, res, next) {
         } else {
             const manifest = JSON.parse(contents);
             transpose(manifest, output => {
+                console.log(`Setting cache for key: ${dataset}`);
+                redisClient.setex(dataset, cacheTTL, JSON.stringify(output));
                 res.send(output);
             });
         }
     });
-
-    next();
 }
 
 const cors = restifyCORSMiddleware({
