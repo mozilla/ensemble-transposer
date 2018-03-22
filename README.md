@@ -7,14 +7,11 @@ out a JSON file with the data and metadata combined in the format that
 
 ### Install
 
-`npm install`
+1. [Install Node and NPM](https://nodejs.org/en/download/)
+2. [Install Docker](https://docs.docker.com/install/)
+3. [Install Docker Compose](https://docs.docker.com/compose/install/)
+1. Run `npm install`
 
 ### Run
 
-#### Locally
-
-`npm run local`
-
-#### In production
-
-`npm run start`
+`docker-compose up`
