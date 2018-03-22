@@ -1,59 +1,59 @@
 {
-    "source": "data/usage-behavior.json",
+    "source": "fake-data/usage-behavior-fake-data.json",
     "extraMetadata": {
-        "title": "Usage Behavior",
+        "title": "Test Dashboard 1",
         "defaultCategory": "All",
         "metrics": {
-            "os": {
-                "title": "Operating System",
-                "description": "The distribution of Operating Systems.",
+            "overrated-brain": {
+                "title": "Test Metric 1",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "%"
+                        "unit": "widgets"
                     }
                 }
             },
-            "locale": {
-                "title": "Top Languages",
-                "description": "The distribution of the top 5 language settings.",
+            "doubtful-mint": {
+                "title": "Test Metric 2",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "%"
+                        "unit": "widgets"
                     }
                 }
             },
-            "pct_TP": {
-                "title": "Tracking Protection",
-                "description": "The percentage of clients with Tracking Protection enabled.",
+            "regular-coal": {
+                "title": "Test Metric 3",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "%"
+                        "unit": "widgets"
                     }
                 }
             },
-            "pct_addon": {
-                "title": "Has Add-on",
-                "description": "The percentage of clients with a user installed add-on.",
+            "busy-treatment": {
+                "title": "Test Metric 4",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "%"
+                        "unit": "widgets"
                     }
                 }
             },
-            "name": {
-                "title": "Top Add-ons",
-                "description": "The top 10 most popular add-ons.",
+            "real-pizzas": {
+                "title": "Test Metric 5",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "table",
                 "columns": [
                     {
-                        "name": "Add-on"
+                        "name": "Col 1"
                     },
                     {
-                        "name": "Usage",
+                        "name": "Col 2",
                         "unit": "%"
                     }
                 ]
@@ -62,11 +62,11 @@
         "dashboard": {
             "sectioned": false,
             "metrics": [
-                "locale",
-                "os",
-                "pct_TP",
-                "pct_addon",
-                "name"
+                "overrated-brain",
+                "doubtful-mint",
+                "regular-coal",
+                "busy-treatment",
+                "real-pizzas"
             ]
         }
     }
