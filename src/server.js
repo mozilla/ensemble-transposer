@@ -13,15 +13,26 @@ const cacheSeconds = process.env.CACHE_SECONDS || 1;
 
 // Redis client general error catching.
 redisClient.on('error', (err) => {
-    console.log(`Error: ${err}`);
+    console.error(`Error: ${err}`);
 });
 
 function respond(req, res, next) {
     const dataset = req.params.dataset;
     const manifestFilename = `manifests/${dataset}.json`;
 
+    if (!fs.existsSync(manifestFilename)) {
+        res.writeHead(404, {"Content-Type": "text/plain"});
+        res.end("Not found");
+        next();
+        return;
+    }
+
     redisClient.get(dataset, (err, data) => {
-        if (err) console.error(err);
+        if (err) {
+            console.error(err);
+            return;
+        }
+
         if (data === null) {
             console.log(`Cache miss: ${dataset}`);
             sendTransposeOutput(res, dataset, manifestFilename);
@@ -37,15 +48,11 @@ function respond(req, res, next) {
 function sendTransposeOutput(res, dataset, manifestFilename) {
     fs.readFile(manifestFilename, 'utf8', (error, contents) => {
         if (error) {
-            if (error.code === 'ENOENT') {
-                res.send({
-                    error: 'No such dataset',
-                });
-            } else {
-                res.send({
-                    error: true,
-                });
-            }
+            res.send({
+                error: true,
+            });
+            console.error(error);
+            return;
         } else {
             const manifest = JSON.parse(contents);
             transpose(manifest, output => {
