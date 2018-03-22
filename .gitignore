@@ -6,3 +6,4 @@ node_modules
 # Data that is currently private, but that will be made available through
 # ensemble-transposer in the future
 data
+fake-data
