@@ -4,8 +4,18 @@
         "title": "Test Dashboard 1",
         "defaultCategory": "All",
         "metrics": {
-            "overrated-brain": {
-                "title": "Test Metric 1",
+            "steep-woman": {
+                "title": "Test Metric B1",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "%"
+                    }
+                }
+            },
+            "smoggy-industry": {
+                "title": "Test Metric B2",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
@@ -14,38 +24,28 @@
                     }
                 }
             },
-            "doubtful-mint": {
-                "title": "Test Metric 2",
+            "ossified-stream": {
+                "title": "Test Metric B3",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "widgets"
+                        "unit": "%"
                     }
                 }
             },
-            "regular-coal": {
-                "title": "Test Metric 3",
+            "elastic-side": {
+                "title": "Test Metric B4",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "widgets"
+                        "unit": "%"
                     }
                 }
             },
-            "busy-treatment": {
-                "title": "Test Metric 4",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "widgets"
-                    }
-                }
-            },
-            "real-pizzas": {
-                "title": "Test Metric 5",
+            "slimy-group": {
+                "title": "Test Metric B5",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "table",
                 "columns": [
@@ -62,11 +62,11 @@
         "dashboard": {
             "sectioned": false,
             "metrics": [
-                "overrated-brain",
-                "doubtful-mint",
-                "regular-coal",
-                "busy-treatment",
-                "real-pizzas"
+                "steep-woman",
+                "smoggy-industry",
+                "ossified-stream",
+                "elastic-side",
+                "slimy-group"
             ]
         }
     }

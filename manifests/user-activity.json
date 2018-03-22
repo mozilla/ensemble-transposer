@@ -4,8 +4,28 @@
         "title": "User Activity",
         "defaultCategory": "All",
         "metrics": {
-            "embarrassed-smoke": {
-                "title": "Test Metric 1",
+            "unruly-stream": {
+                "title": "Test Metric A1",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "%"
+                    }
+                }
+            },
+            "stingy-skirt": {
+                "title": "Test Metric A2",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "widgets"
+                    }
+                }
+            },
+            "fancy-town": {
+                "title": "Test Metric A3",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
@@ -15,53 +35,33 @@
                     }
                 }
             },
-            "heady-creature": {
-                "title": "Test Metric 2",
+            "harmonious-daughter": {
+                "title": "Test Metric A4",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "widgets"
+                        "unit": "%"
                     }
                 }
             },
-            "numberless-boot": {
-                "title": "Test Metric 3",
+            "actually-egg": {
+                "title": "Test Metric A5",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "widgets"
+                        "unit": "%"
                     }
                 }
             },
-            "automatic-game": {
-                "title": "Test Metric 4",
+            "large-soup": {
+                "title": "Test Metric A6",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
-                        "unit": "widgets"
-                    }
-                }
-            },
-            "ill-form": {
-                "title": "Test Metric 5",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "widgets"
-                    }
-                }
-            },
-            "quizzical-amount": {
-                "title": "Test Metric 6",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "widgets"
+                        "unit": "%"
                     }
                 }
             }
@@ -69,12 +69,12 @@
         "dashboard": {
             "sectioned": false,
             "metrics": [
-                "embarrassed-smoke",
-                "heady-creature",
-                "numberless-boot",
-                "automatic-game",
-                "ill-form",
-                "quizzical-amount"
+                "unruly-stream",
+                "stingy-skirt",
+                "fancy-town",
+                "harmonious-daughter",
+                "actually-egg",
+                "large-soup"
             ]
         }
     }
