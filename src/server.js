@@ -9,8 +9,7 @@ import transpose from './transpose';
 const server = restify.createServer();
 const port = process.env.PORT || 8000;
 const redisClient = redis.createClient({host: process.env.REDIS_URL});
-const cacheTTL = process.env.CACHE_SECONDS || 60 * 60 * 24;
-
+const cacheSeconds = process.env.CACHE_SECONDS || 1;
 
 // Redis client general error catching.
 redisClient.on('error', (err) => {
@@ -51,7 +50,7 @@ function sendTransposeOutput(res, dataset, manifestFilename) {
             const manifest = JSON.parse(contents);
             transpose(manifest, output => {
                 console.log(`Setting cache for key: ${dataset}`);
-                redisClient.setex(dataset, cacheTTL, JSON.stringify(output));
+                redisClient.setex(dataset, cacheSeconds, JSON.stringify(output));
                 res.send(output);
             });
         }

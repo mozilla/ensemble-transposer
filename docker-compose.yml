@@ -17,7 +17,7 @@ services:
     environment:
       - NODE_ENV=development
       - REDIS_URL=redis
-      - CACHE_SECONDS=10
+      - CACHE_SECONDS=1
 
   redis:
     image: redis
