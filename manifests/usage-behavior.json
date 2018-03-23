@@ -1,5 +1,5 @@
 {
-    "source": "fake-data/usage-behavior-fake-data.json",
+    "source": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/usage-behavior-fake-data.json",
     "extraMetadata": {
         "title": "Test Dashboard 1",
         "defaultCategory": "All",
