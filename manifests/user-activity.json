@@ -1,53 +1,12 @@
 {
-    "source": "data/user-activity.json",
+    "source": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/user-activity-fake-data.json",
     "extraMetadata": {
         "title": "User Activity",
         "defaultCategory": "All",
         "metrics": {
-            "YAU": {
-                "title": "Yearly Active Users",
-                "description": "The number of clients who used Firefox in the past 365 days.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "clients",
-                        "suggestedMin": 0
-                    }
-                }
-            },
-            "MAU": {
-                "title": "Monthly Active Users",
-                "description": "The number of clients who used Firefox in the past 28 days.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "clients"
-                    }
-                }
-            },
-            "avg_daily_usage(hours)": {
-                "title": "Daily Usage",
-                "description": "The hours spent using the browser for a typical client. Globally, the typical user averages slightly over 5 hours of browser use per day, and this figure is crept slightly upward over 2017. Among the top 10 countries, Americans are the heaviest users, averaging over 7 hours of daily use at the beginning of 2018 while Italians come in last, averaging just under 3 hours of daily use.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "hours per day"
-                    }
-                }
-            },
-            "avg_intensity": {
-                "title": "Average Intensity",
-                "description": "The engagement level of a typical client. Measures the proportion of a client's daily use where they actively engaged with the browser.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "intensity"
-                    }
-                }
-            },
-            "pct_new_user": {
-                "title": "New Users Percentage",
-                "description": "The percentage of clients who were new users.",
+            "unruly-stream": {
+                "title": "Test Metric A1",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -55,9 +14,50 @@
                     }
                 }
             },
-            "pct_latest_version": {
-                "title": "Latest Version",
-                "description": "The percentage of clients running the latest version of Firefox (for that week). Vertical lines represent Firefox release dates. Note, Firefox updates are often throttled at different rates (i.e. 10% of population in week 1, etc.).",
+            "stingy-skirt": {
+                "title": "Test Metric A2",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "widgets"
+                    }
+                }
+            },
+            "fancy-town": {
+                "title": "Test Metric A3",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "widgets",
+                        "suggestedMin": 0
+                    }
+                }
+            },
+            "harmonious-daughter": {
+                "title": "Test Metric A4",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "%"
+                    }
+                }
+            },
+            "actually-egg": {
+                "title": "Test Metric A5",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "%"
+                    }
+                }
+            },
+            "large-soup": {
+                "title": "Test Metric A6",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -69,12 +69,12 @@
         "dashboard": {
             "sectioned": false,
             "metrics": [
-                "YAU",
-                "MAU",
-                "avg_daily_usage(hours)",
-                "avg_intensity",
-                "pct_new_user",
-                "pct_latest_version"
+                "unruly-stream",
+                "stingy-skirt",
+                "fancy-town",
+                "harmonious-daughter",
+                "actually-egg",
+                "large-soup"
             ]
         }
     }

@@ -1,12 +1,12 @@
 {
-    "source": "data/usage-behavior.json",
+    "source": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/usage-behavior-fake-data.json",
     "extraMetadata": {
         "title": "Usage Behavior",
         "defaultCategory": "All",
         "metrics": {
-            "os": {
-                "title": "Operating System",
-                "description": "The distribution of Operating Systems.",
+            "steep-woman": {
+                "title": "Test Metric B1",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -14,9 +14,19 @@
                     }
                 }
             },
-            "locale": {
-                "title": "Top Languages",
-                "description": "The distribution of the top 5 language settings.",
+            "smoggy-industry": {
+                "title": "Test Metric B2",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
+                "type": "line",
+                "axes": {
+                    "y": {
+                        "unit": "widgets"
+                    }
+                }
+            },
+            "ossified-stream": {
+                "title": "Test Metric B3",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -24,9 +34,9 @@
                     }
                 }
             },
-            "pct_TP": {
-                "title": "Tracking Protection",
-                "description": "The percentage of clients with Tracking Protection enabled.",
+            "elastic-side": {
+                "title": "Test Metric B4",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -34,26 +44,16 @@
                     }
                 }
             },
-            "pct_addon": {
-                "title": "Has Add-on",
-                "description": "The percentage of clients with a user installed add-on.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "%"
-                    }
-                }
-            },
-            "name": {
-                "title": "Top Add-ons",
-                "description": "The top 10 most popular add-ons.",
+            "slimy-group": {
+                "title": "Test Metric B5",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "table",
                 "columns": [
                     {
-                        "name": "Add-on"
+                        "name": "Col 1"
                     },
                     {
-                        "name": "Usage",
+                        "name": "Col 2",
                         "unit": "%"
                     }
                 ]
@@ -62,11 +62,11 @@
         "dashboard": {
             "sectioned": false,
             "metrics": [
-                "locale",
-                "os",
-                "pct_TP",
-                "pct_addon",
-                "name"
+                "steep-woman",
+                "smoggy-industry",
+                "ossified-stream",
+                "elastic-side",
+                "slimy-group"
             ]
         }
     }
