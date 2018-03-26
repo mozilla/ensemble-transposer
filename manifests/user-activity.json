@@ -2,7 +2,7 @@
     "source": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data_2/v1/master/fxhealth.json",
     "extraMetadata": {
         "title": "User Activity",
-        "defaultCategory": "All",
+        "defaultCategory": "Worldwide",
         "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
