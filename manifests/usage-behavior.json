@@ -1,19 +1,9 @@
 {
-    "source": "data/usage-behavior.json",
+    "source": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data_2/v1/master/webusage.json",
     "extraMetadata": {
         "title": "Usage Behavior",
-        "defaultCategory": "All",
+        "defaultCategory": "Worldwide",
         "metrics": {
-            "os": {
-                "title": "Operating System",
-                "description": "The distribution of Operating Systems.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "%"
-                    }
-                }
-            },
             "locale": {
                 "title": "Top Languages",
                 "description": "The distribution of the top 5 language settings.",
@@ -44,7 +34,7 @@
                     }
                 }
             },
-            "name": {
+            "top10addons": {
                 "title": "Top Add-ons",
                 "description": "The top 10 most popular add-ons.",
                 "type": "table",
