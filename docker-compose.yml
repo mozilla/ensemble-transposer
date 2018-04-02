@@ -20,4 +20,4 @@ services:
       - CACHE_SECONDS=1
 
   redis:
-    image: redis
+    image: redis:latest@sha256:6b9f935e89af002225c0dcdadf1fd74245b4cc1e3e91222f7e4769c236cf80d4
