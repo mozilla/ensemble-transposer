@@ -21,8 +21,8 @@ function respond(req, res, next) {
     const manifestFilename = `manifests/${dataset}.json`;
 
     if (!fs.existsSync(manifestFilename)) {
-        res.writeHead(404, {"Content-Type": "text/plain"});
-        res.end("Not found");
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end('Not found');
         next();
         return;
     }

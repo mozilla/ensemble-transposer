@@ -1,26 +1,45 @@
 {
-    "name": "ensemble-transposer",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node build/server",
-        "build": "babel src --source-maps --minified --out-dir build",
-        "postinstall": "npm run build",
-        "local": "npm-run-all --parallel local:*",
-        "local:build-and-watch": "babel src --watch --source-maps --out-dir build",
-        "local:start-and-watch": "nodemon build/server"
-    },
-    "dependencies": {
-        "babel-cli": "6.26.0",
-        "babel-preset-env": "1.6.1",
-        "decimal": "0.0.2",
-        "redis": "2.8.0",
-        "request": "2.85.0",
-        "restify": "6.3.4",
-        "restify-cors-middleware": "1.1.0"
-    },
-    "devDependencies": {
-        "nodemon": "1.17.2",
-        "npm-run-all": "4.1.2"
-    }
+  "name": "ensemble-transposer",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node build/server",
+    "build": "babel src --source-maps --minified --out-dir build",
+    "postinstall": "npm run build",
+    "local": "npm-run-all --parallel local:*",
+    "local:build-and-watch": "babel src --watch --source-maps --out-dir build",
+    "local:start-and-watch": "nodemon build/server",
+    "lint": "npm-run-all lint:*",
+    "lint:deps": "nsp check",
+    "lint:js": "eslint --ext=.js,.json ."
+  },
+  "dependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "redis": "2.8.0",
+    "request": "2.85.0",
+    "restify": "6.3.4",
+    "restify-cors-middleware": "1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "4.19.1",
+    "eslint-plugin-json": "1.2.0",
+    "eslint-plugin-node": "6.0.1",
+    "nodemon": "1.17.2",
+    "npm-run-all": "4.1.2",
+    "nsp": "3.2.1"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "description": "ensemble-transposer ingests JSON data that follows a standard format, adds metadata, and spits out a JSON file with the data and metadata combined in the format that Ensemble expects.",
+  "main": "build/server",
+  "repository": "mozilla/ensemble-transposer",
+  "keywords": [],
+  "author": "Mozilla",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mozilla/ensemble-transposer/issues"
+  },
+  "homepage": "https://github.com/mozilla/ensemble-transposer#readme"
 }
