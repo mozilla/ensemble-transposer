@@ -23,5 +23,5 @@ module.exports = {
         'indent': ['error', 4],
         'no-console': 'warn',
         'quotes': ['error', 'single'],
-    }
+    },
 };

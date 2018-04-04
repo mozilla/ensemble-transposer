@@ -1,44 +1,36 @@
 {
-  "name": "ensemble-transposer",
-  "description": "ensemble-transposer ingests JSON data that follows a standard format, adds metadata, and spits out a JSON file with the data and metadata combined in the format that Ensemble expects.",
-  "version": "0.0.1",
-  "author": "Mozilla",
-  "bugs": {
-    "url": "https://github.com/mozilla/ensemble-transposer/issues"
-  },
-  "dependencies": {
-    "babel-cli": "6.26.0",
-    "babel-preset-env": "1.6.1",
-    "redis": "2.8.0",
-    "request": "2.85.0",
-    "restify": "6.3.4",
-    "restify-cors-middleware": "1.1.0"
-  },
-  "devDependencies": {
-    "eslint": "4.19.1",
-    "eslint-plugin-json": "1.2.0",
-    "eslint-plugin-node": "6.0.1",
-    "nodemon": "1.17.2",
-    "npm-run-all": "4.1.2",
-    "nsp": "3.2.1"
-  },
-  "engines": {
-    "node": ">=8"
-  },
-  "homepage": "https://github.com/mozilla/ensemble-transposer#readme",
-  "keywords": [],
-  "license": "MPL-2.0",
-  "private": true,
-  "repository": "mozilla/ensemble-transposer",
-  "scripts": {
-    "build": "babel src --source-maps --minified --out-dir build",
-    "lint": "npm-run-all lint:*",
-    "lint:deps": "nsp check",
-    "lint:js": "eslint --ext=.js,.json .",
-    "local": "npm-run-all --parallel local:*",
-    "local:build-and-watch": "babel src --watch --source-maps --out-dir build",
-    "local:start-and-watch": "nodemon build/server",
-    "postinstall": "npm run build",
-    "start": "node build/server"
-  }
+    "name": "ensemble-transposer",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "babel-cli": "6.26.0",
+        "babel-preset-env": "1.6.1",
+        "redis": "2.8.0",
+        "request": "2.85.0",
+        "restify": "6.3.4",
+        "restify-cors-middleware": "1.1.0"
+    },
+    "devDependencies": {
+        "eslint": "4.19.1",
+        "eslint-plugin-json": "1.2.0",
+        "eslint-plugin-node": "6.0.1",
+        "nodemon": "1.17.2",
+        "npm-run-all": "4.1.2",
+        "nsp": "3.2.1"
+    },
+    "engines": {
+        "node": ">=8"
+    },
+    "scripts": {
+        "start": "node build/server",
+        "build": "babel src --source-maps --minified --out-dir build",
+        "postinstall": "npm run build",
+        "local": "npm-run-all --parallel local:*",
+        "local:build-and-watch": "babel src --watch --source-maps --out-dir build",
+        "local:start-and-watch": "nodemon build/server",
+        "test": "npm run lint",
+        "lint": "npm-run-all lint:*",
+        "lint:deps": "nsp check",
+        "lint:js": "eslint --ext=.js,.json ."
+    }
 }

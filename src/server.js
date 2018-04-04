@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 import restify from 'restify';
 import fs from 'fs';
 import restifyCORSMiddleware from 'restify-cors-middleware';
