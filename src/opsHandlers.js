@@ -2,21 +2,10 @@ import childProcess from 'child_process';
 
 
 export function version(req, res, next) {
-    try {
-        const version = childProcess.execSync('git tag').toString().trim();
-        const commit = childProcess.execSync('git rev-parse HEAD').toString().trim();
-
-        res.send({
-            source: "https://github.com/mozilla/ensemble-transposer",
-            version,
-            commit,
-        });
-    }
-    catch (e) {
-        res.send({
-            error: true,
-        });
-    }
+    res.send({
+        source: "https://github.com/mozilla/ensemble-transposer",
+        commit: process.env.SOURCE_VERSION || childProcess.execSync('git rev-parse HEAD').toString().trim();
+    });
 
     return next();
 }
