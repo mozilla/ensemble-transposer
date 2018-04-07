@@ -4,7 +4,7 @@ import childProcess from 'child_process';
 export function version(req, res, next) {
     res.send({
         source: "https://github.com/mozilla/ensemble-transposer",
-        commit: process.env.SOURCE_VERSION || childProcess.execSync('git rev-parse HEAD').toString().trim();
+        commit: process.env.SOURCE_VERSION || childProcess.execSync('git rev-parse HEAD').toString().trim(),
     });
 
     return next();
