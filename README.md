@@ -14,4 +14,8 @@ out a JSON file with the data and metadata combined in the format that
 
 ### Run
 
-Run `docker-compose up`
+`docker-compose up`
+
+### Test
+
+`npm run verify`

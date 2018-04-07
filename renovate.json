@@ -2,5 +2,8 @@
     "extends": [
         "config:base"
     ],
-    "schedule": ["before 5am on monday"]
+    "schedule": ["before 5am on monday"],
+    "docker": {
+        "enabled": false
+    }
 }

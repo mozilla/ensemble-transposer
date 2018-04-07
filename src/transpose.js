@@ -1,6 +1,5 @@
 import fs from 'fs';
 import request from 'request';
-import decimal from 'decimal';
 
 
 export default (manifest, callback) => {

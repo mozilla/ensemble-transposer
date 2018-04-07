@@ -1,9 +1,12 @@
+/* eslint no-console: 0 */
+
 import restify from 'restify';
 import fs from 'fs';
 import restifyCORSMiddleware from 'restify-cors-middleware';
 import redis from 'redis';
 
 import transpose from './transpose';
+import * as opsHandlers from './opsHandlers';
 
 
 const server = restify.createServer();
@@ -21,8 +24,8 @@ function respond(req, res, next) {
     const manifestFilename = `manifests/${dataset}.json`;
 
     if (!fs.existsSync(manifestFilename)) {
-        res.writeHead(404, {"Content-Type": "text/plain"});
-        res.end("Not found");
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end('Not found');
         next();
         return;
     }
@@ -70,6 +73,11 @@ const cors = restifyCORSMiddleware({
 
 server.pre(cors.preflight);
 server.pre(cors.actual);
+
+// OPs routes
+server.get('__version__', opsHandlers.version);
+server.get('__heartbeat__', (req, res, next) => opsHandlers.heartbeat(req, res, next, redisClient));
+server.get('__lbheartbeat__', opsHandlers.lbheartbeat);
 
 server.get('/:dataset', respond);
 
