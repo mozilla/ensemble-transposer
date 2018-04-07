@@ -32,7 +32,7 @@
         "local:start-and-watch": "nodemon build/server",
         "verify": "npm run lint",
         "lint": "npm-run-all lint:*",
-        "lint:deps": "nsp check",
+        "lint:deps": "nsp check --warn-only",
         "lint:js": "eslint --ext=.js,.json ."
     }
 }
