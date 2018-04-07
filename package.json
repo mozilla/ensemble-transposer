@@ -23,7 +23,9 @@
     },
     "scripts": {
         "start": "node build/server",
-        "build": "babel src --source-maps --minified --out-dir build",
+        "build": "npm-run-all build:*",
+        "build:app": "babel src --source-maps --minified --out-dir build",
+        "build:version.json": "node scripts/generateVersionJSON",
         "postinstall": "npm run build",
         "local": "npm-run-all --parallel local:*",
         "local:build-and-watch": "babel src --watch --source-maps --out-dir build",
