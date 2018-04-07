@@ -1,13 +1,16 @@
-import childProcess from 'child_process';
+import fs from 'fs';
 
 
 export function version(req, res, next) {
-    res.send({
-        source: "https://github.com/mozilla/ensemble-transposer",
-        commit: process.env.SOURCE_VERSION || childProcess.execSync('git rev-parse HEAD').toString().trim(),
-    });
+    fs.readFile('./build/version.json', 'utf8', (error, contents) => {
+        if (error) {
+            res.send({ error: true });
+        } else {
+            res.send(JSON.parse(contents));
+        }
 
-    return next();
+        return next();
+    });
 }
 
 export function heartbeat(req, res, next, redisClient) {
