@@ -6,7 +6,10 @@
         "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
-                "description": "The number of clients who used Firefox in the past 365 days.",
+                "description": [
+                    "Yearly Active User (YAU) measures the number of Firefox clients active in the past 365 days. This metric provides a long term view of our userbase without being skewed by the seasonal effects which influence browser use.",
+                    "Globally, YAU has remained relatively stable over the past year (around 900 million), with most countries in the top 10 showing the same trend. A notable exception is India, where YAU showed steady growth (over 15%) over the last year."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -17,7 +20,10 @@
             },
             "MAU": {
                 "title": "Monthly Active Users",
-                "description": "The number of clients who used Firefox in the past 28 days.",
+                "description": [
+                    "Monthly Active Users (MAU) measures the number of Firefox clients active in the past 28 days. Unlike YAU, MAU provides a shorter term view of the userbase and is much more influenced by seasonal factors.",
+                    "Generally, MAU is around 300 million, but fluxuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Years holidays), while China's holiday dip occurs in mid/late February (corresponding with Spring Festival)."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -27,7 +33,10 @@
             },
             "avg_daily_usage(hours)": {
                 "title": "Daily Usage",
-                "description": "The hours spent using the browser for a typical client. Globally, the typical user averages slightly over 5 hours of browser use per day, and this figure is crept slightly upward over 2017. Among the top 10 countries, Americans are the heaviest users, averaging over 7 hours of daily use at the beginning of 2018 while Italians come in last, averaging just under 3 hours of daily use.",
+                "description": [
+                    "Daily Usage shows the hours spent browsing for a typical Firefox client in a typical day of use.",
+                    "Globally, the typical Firefox client averages over 4.5 hours of use a day. Among the top 10 countries, Americans and Russians were the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India showed the lowest daily use, between 3.5 and 4.0 hours daily."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -37,7 +46,10 @@
             },
             "avg_intensity": {
                 "title": "Average Intensity",
-                "description": "The engagement level of a typical client. Measures the proportion of a client's daily use where they actively engaged with the browser.",
+                "description": [
+                    "Average Intensity measures the engagement level of a typical Firefox client. It is the proportion of time that a client actively engaged with the browser.",
+                    "Overall, the typical Firefox client engaged with the browser about a third of the time when the browser was open. European countries seem to have the highest levels of engagement, with France, Poland, and Italy all showing Average Intensity over 0.35 and Germany approaching 0.40. Most other countries in the top 10 have an Average Intensity around 0.30."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -47,7 +59,7 @@
             },
             "pct_new_user": {
                 "title": "New Users Percentage",
-                "description": "The percentage of clients who were new users.",
+                "description": "The percentage of Firefox clients with new users.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -57,7 +69,11 @@
             },
             "pct_latest_version": {
                 "title": "Latest Version",
-                "description": "The percentage of clients running the latest version of Firefox (for that week). Vertical lines represent Firefox release dates. Note, Firefox updates are often throttled at different rates (i.e. 10% of population in week 1, etc.).",
+                "description": [
+                    "Latest Version shows the percentage of Firefox clients running the latest version of Firefox, or greater (for that week).",
+                    "Firefox typically releases major updates roughly every 50 days or so (although there are exceptions, such as between FF57 to FF58, which lasted 70 days), and generally release on Tuesdays (though there are, again, exceptions, such as FF56, which released on a Thursday).",
+                    "Since Mozilla throttles the rollout of a new version (incrementally upgrading the % of the population getting upgrades), it takes about four weeks for about 70% of clients to upgrade, before stabilizing."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {

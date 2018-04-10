@@ -6,7 +6,11 @@
         "metrics": {
             "locale": {
                 "title": "Top Languages",
-                "description": "The distribution of the top 5 language settings.",
+                "description": [
+                    "Top Languages shows the distribution of the top 5 language settings.",
+                    "Worldwide, en-US remains the most common, about 40% of the population, with German (11%), French (8%) coming 2nd and 3rd. Russian and es-ES bring up 4th and 5th with around 5% each.",
+                    "For most countries in the top 10, the majority (>90%) of users have their language set to the local language, with the notable exception of Indonesia, which has about 80% en-US and 20% Indonesian."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -15,8 +19,12 @@
                 }
             },
             "pct_TP": {
-                "title": "Tracking Protection",
-                "description": "The percentage of clients with Tracking Protection enabled.",
+                "title": "Always On Tracking Protection",
+                "description": [
+                    "Always On Tracking Protection shows the percentage of Firefox clients with Tracking Protection enabled for all browsing sessions.",
+                    "Tracking Protection is a feature which blocks sites from tracking users across multiple websites, adding a layer of privacy to browsing. This feature is on by default in Private Browsing sessions, but starting in FF57, we gave users the option to enable this feature for all browsing sessions.",
+                    "Note: this is only the percentage of users Always On Tracking Protection. The percentage of users using Tracking Protection in Private Browsing is much higher, but they are not included here."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -26,7 +34,11 @@
             },
             "pct_addon": {
                 "title": "Has Add-on",
-                "description": "The percentage of clients with a user installed add-on.",
+                "description": [
+                    "Has Add-on shows the percentage of Firefox clients with user installed add-ons.",
+                    "One of the best things about Firefox is the robust add-on community which gives users the option to customize and control their browsing experience. Our users agree, with over a third of Firefox users having at least 1 installed add-on.",
+                    "Globally this metric varies, with China and Brazil showing only about 20% of users with add-ons, while Russia on the other extreme, having about 60% with add-ons."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -36,7 +48,10 @@
             },
             "top10addons": {
                 "title": "Top Add-ons",
-                "description": "The top 10 most popular add-ons.",
+                "description": [
+                    "Top Add-ons shows the top 10 most popular Firefox add-ons for a week.",
+                    "Overall, the most popular add-ons are ad-blockers, coming in first in almost all of the top 10 countries. Ad-blocking seems particularly popular in Germany and France, with 4 of the top 10 add-ons being ad-blockers in France."
+                ],
                 "type": "table",
                 "columns": [
                     {
