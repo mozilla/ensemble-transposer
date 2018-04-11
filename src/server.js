@@ -71,13 +71,14 @@ const cors = restifyCORSMiddleware({
     origins: ['*'],
 });
 
+server.pre(restify.pre.sanitizePath());
 server.pre(cors.preflight);
 server.pre(cors.actual);
 
 // OPs routes
-server.get('__version__', opsHandlers.version);
-server.get('__heartbeat__', (req, res, next) => opsHandlers.heartbeat(req, res, next, redisClient));
-server.get('__lbheartbeat__', opsHandlers.lbheartbeat);
+server.get('/__version__', opsHandlers.version);
+server.get('/__heartbeat__', (req, res, next) => opsHandlers.heartbeat(req, res, next, redisClient));
+server.get('/__lbheartbeat__', opsHandlers.lbheartbeat);
 
 server.get('/:dataset', respond);
 

@@ -3,10 +3,10 @@ import request from 'request';
 
 
 export default (manifest, callback) => {
-    if (isURL(manifest.source)) {
-        request(manifest.source, (error, response, body) => processSource(error, body, manifest, callback));
+    if (isURL(manifest.sources.data)) {
+        request(manifest.sources.data, (error, response, body) => processData(error, body, manifest, callback));
     } else {
-        fs.readFile(manifest.source, 'utf8', (error, body) => processSource(error, body, manifest, callback));
+        fs.readFile(manifest.sources.data, 'utf8', (error, body) => processData(error, body, manifest, callback));
     }
 }
 
@@ -22,11 +22,30 @@ function objectIsEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-function processSource(error, body, manifest, callback) {
+function processData(error, dataBody, manifest, callback) {
     if (error) {
         return callback({
-            error: `Error getting ${manifest.source}`,
+            error: `Error getting ${manifest.sources.data}`,
         });
+    }
+
+    const sourceData = JSON.parse(dataBody);
+    const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description, manifest.extraMetadata.defaultCategory);
+
+    // Add sections to dataset object if they have been defined
+    const sectioned = manifest.extraMetadata.dashboard.sectioned;
+    if (sectioned) {
+        manifest.extraMetadata.dashboard.sections.forEach(sectionMeta => {
+            const title = sectionMeta.title;
+            const key = sectionTitleToKey(title);
+            dataset.addSection(new Section(key, title));
+        });
+    }
+
+    if (manifest.sources.annotations) {
+        request(manifest.sources.annotations, (error, response, body) => processCategories(body));
+    } else {
+        processCategories();
     }
 
     function getSectionTitle(metricName) {
@@ -45,105 +64,110 @@ function processSource(error, body, manifest, callback) {
         return sectionTitle.replace(' ', '').toLowerCase();
     }
 
-    const source = JSON.parse(body);
-    const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description, manifest.extraMetadata.defaultCategory);
+    function processCategories(annotationsBody) {
+        let sourceAnnotations;
 
-    const sectioned = manifest.extraMetadata.dashboard.sectioned;
+        if (annotationsBody) {
+            sourceAnnotations = JSON.parse(annotationsBody);
+        }
 
-    // Add sections to dataset object
-    if (sectioned) {
-        manifest.extraMetadata.dashboard.sections.forEach(sectionMeta => {
-            const title = sectionMeta.title;
-            const key = sectionTitleToKey(title);
-            dataset.addSection(new Section(key, title));
-        });
-    }
-
-    // For each category NAME, where a category looks like:
-    //
-    // "US": {...}
-    Object.keys(source).forEach(categoryName => {
-        dataset.addCategoryName(categoryName);
-
-        // For each entry OBJECT in that category, where an entry looks like:
+        // For each category NAME, where a category looks like:
         //
-        // {
-        //     "date": "2018-01-01",
-        //     "metrics": {...}
-        // }
-        source[categoryName].forEach(entry => {
+        // "US": {...}
+        Object.keys(sourceData).forEach(categoryName => {
+            dataset.addCategoryName(categoryName);
 
-            let metricsToShow;
-            if (sectioned) {
-                metricsToShow = manifest.extraMetadata.dashboard.sections.reduce((acc, sectionMeta) => {
-                    return acc.concat(sectionMeta.metrics);
-                }, []);
-            } else {
-                metricsToShow = manifest.extraMetadata.dashboard.metrics;
-            }
-
-            // For each metric NAME to show:
+            // For each entry OBJECT in that category, where an entry looks like:
             //
-            // (By consequence, anything not named in the "dashboards" portion
-            // of the manifest will not be part of the final output. Also, the
-            // ordering of the final output will match the ordering of metrics
-            // in the manifest.)
-            metricsToShow.forEach(metricName => {
-                const metricMeta = manifest.extraMetadata.metrics[metricName];
-                const metricType = metricMeta.type;
+            // {
+            //     "date": "2018-01-01",
+            //     "metrics": {...}
+            // }
+            sourceData[categoryName].forEach(entry => {
 
-                const metric = dataset.getMetric(
-                    metricMeta.title || metricName,
-                    metricMeta.description,
-                    metricType,
-                    metricMeta.axes,
-                    metricMeta.columns,
-                    getSectionTitle(metricName),
-                );
-
-                // If this metric is not in this entry, do nothing else. We need
-                // to call getMetric() before bailing out here, otherwise the
-                // ordering of metrics would be messed up in the final output.
-                if (!propertyExists(entry.metrics, metricName)) return;
-
-                const category = metric.getCategory(categoryName);
-
-                if (metricType === 'line') {
-
-                    // If the source dataset doesn't specify any populations, create
-                    // one "default" population.
-                    let populations;
-                    const multiplePopulations = typeof(entry.metrics[metricName]) === 'object';
-                    if (multiplePopulations) {
-                        populations = Object.keys(entry.metrics[metricName]);
-                    } else {
-                        populations = ['default'];
-                    }
-
-                    // For each population NAME
-                    populations.forEach(populationName => {
-                        const population = category.getPopulation(populationName);
-                        const yValue = multiplePopulations ? entry.metrics[metricName][populationName] : entry.metrics[metricName];
-                        const dataPoint = new DataPoint(entry.date, yValue);
-                        population.addDataPoint(dataPoint);
-                    }); // For each population NAME
-
-                } else if (metricType === 'table') {
-                    // For each row NAME
-                    Object.keys(entry.metrics[metricName]).map(rowName => {
-                        const tableSnapshot = category.getTableSnapshot(entry.date);
-                        const row = new Row(rowName, entry.metrics[metricName][rowName]);
-                        tableSnapshot.addRow(row);
-                    }); // For each row NAME
+                let metricsToShow;
+                if (sectioned) {
+                    metricsToShow = manifest.extraMetadata.dashboard.sections.reduce((acc, sectionMeta) => {
+                        return acc.concat(sectionMeta.metrics);
+                    }, []);
+                } else {
+                    metricsToShow = manifest.extraMetadata.dashboard.metrics;
                 }
 
-            }); // For each metric NAME
+                // For each metric NAME to show:
+                //
+                // (By consequence, anything not named in the "dashboards" portion
+                // of the manifest will not be part of the final output. Also, the
+                // ordering of the final output will match the ordering of metrics
+                // in the manifest.)
+                metricsToShow.forEach(metricName => {
+                    const metricMeta = manifest.extraMetadata.metrics[metricName];
+                    const metricType = metricMeta.type;
 
-        }); // For each entry OBJECT
+                    const metric = dataset.getMetric(
+                        metricMeta.title || metricName,
+                        metricMeta.description,
+                        metricType,
+                        metricMeta.axes,
+                        metricMeta.columns,
+                        getSectionTitle(metricName),
+                    );
 
-    }); // For each category NAME
+                    // If this metric is not in this entry, do nothing else. We need
+                    // to call getMetric() before bailing out here, otherwise the
+                    // ordering of metrics would be messed up in the final output.
+                    if (!propertyExists(entry.metrics, metricName)) return;
 
-    callback(dataset.render());
+                    const categoryData = metric.getCategoryData(categoryName);
+
+                    // Add annotations if any
+                    if (sourceAnnotations) {
+                        const annotationsForThisDate = sourceAnnotations[categoryName].find(sa => sa.date === entry.date);
+
+                        if (annotationsForThisDate && propertyExists(annotationsForThisDate.annotation, metricName)) {
+                            const annotations = metric.getCategoryAnnotations(categoryName);
+                            annotations.addAnnotation(entry.date, annotationsForThisDate.annotation[metricName]);
+                        }
+                    }
+
+                    if (metricType === 'line') {
+
+                        // If the source dataset doesn't specify any populations, create
+                        // one "default" population.
+                        let populations;
+                        const multiplePopulations = typeof(entry.metrics[metricName]) === 'object';
+                        if (multiplePopulations) {
+                            populations = Object.keys(entry.metrics[metricName]);
+                        } else {
+                            populations = ['default'];
+                        }
+
+                        // For each population NAME
+                        populations.forEach(populationName => {
+                            const population = categoryData.getPopulation(populationName);
+                            const yValue = multiplePopulations ? entry.metrics[metricName][populationName] : entry.metrics[metricName];
+                            const dataPoint = new DataPoint(entry.date, yValue);
+                            population.addDataPoint(dataPoint);
+                        }); // For each population NAME
+
+                    } else if (metricType === 'table') {
+                        // For each row NAME
+                        Object.keys(entry.metrics[metricName]).map(rowName => {
+                            const tableSnapshot = categoryData.getTableSnapshot(entry.date);
+                            const row = new Row(rowName, entry.metrics[metricName][rowName]);
+                            tableSnapshot.addRow(row);
+                        }); // For each row NAME
+                    }
+
+                }); // For each metric NAME
+
+            }); // For each entry OBJECT
+
+        }); // For each category NAME
+
+        callback(dataset.render());
+
+    } // processCategories
 }
 
 class Dataset {
@@ -206,29 +230,46 @@ class Metric {
         this.columns = columns;
         this.section = section;
 
-        this.categories = {};
+        this.dataByCategory = {};
+        this.annotationsByCategory = {};
     }
 
-    getCategory(categoryName) {
-        if (!propertyExists(this.categories, categoryName)) {
-            this.categories[categoryName] = new Category(categoryName);
+    getCategoryData(categoryName) {
+        if (!propertyExists(this.dataByCategory, categoryName)) {
+            this.dataByCategory[categoryName] = new CategoryData();
         }
-        return this.categories[categoryName];
+        return this.dataByCategory[categoryName];
+    }
+
+    getCategoryAnnotations(categoryName) {
+        if (!propertyExists(this.annotationsByCategory, categoryName)) {
+            this.annotationsByCategory[categoryName] = new CategoryAnnotations();
+        }
+        return this.annotationsByCategory[categoryName];
     }
 
     render() {
-        const renderedCategories = {};
-        Object.keys(this.categories).forEach(categoryName => {
-            renderedCategories[categoryName] = this.categories[categoryName].render();
+        const renderedDataByCategory = {};
+        Object.keys(this.dataByCategory).forEach(categoryName => {
+            renderedDataByCategory[categoryName] = this.dataByCategory[categoryName].render();
         });
+
 
         const output = {
             title: this.title,
             description: this.description,
             type: this.type,
             section: this.section,
-            categories: renderedCategories,
+            data: renderedDataByCategory,
         };
+
+        if (!objectIsEmpty(this.annotationsByCategory)) {
+            const renderedAnnotationsByCategory = {};
+            Object.keys(this.annotationsByCategory).forEach(categoryName => {
+                renderedAnnotationsByCategory[categoryName] = this.annotationsByCategory[categoryName].render();
+            });
+            output.annotations = renderedAnnotationsByCategory;
+        }
 
         if (this.axes && !objectIsEmpty(this.axes)) {
             output.axes = this.axes;
@@ -240,10 +281,8 @@ class Metric {
     }
 }
 
-class Category {
-    constructor(name) {
-        this.name = name;
-
+class CategoryData {
+    constructor() {
         this.populations = {};
         this.tableSnapshots = {};
     }
@@ -278,6 +317,21 @@ class Category {
         return output;
     }
 }
+
+class CategoryAnnotations {
+    constructor() {
+        this.annotations = [];
+    }
+
+    addAnnotation(date, annotation) {
+        this.annotations.push({ date, annotation });
+    }
+
+    render() {
+        return this.annotations;
+    }
+}
+
 
 class Population {
     constructor(name) {

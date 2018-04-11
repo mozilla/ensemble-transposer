@@ -7,14 +7,14 @@
         "babel-preset-env": "1.6.1",
         "redis": "2.8.0",
         "request": "2.85.0",
-        "restify": "6.3.4",
+        "restify": "7.1.0",
         "restify-cors-middleware": "1.1.0"
     },
     "devDependencies": {
         "eslint": "4.19.1",
         "eslint-plugin-json": "1.2.0",
         "eslint-plugin-node": "6.0.1",
-        "nodemon": "1.17.2",
+        "nodemon": "1.17.3",
         "npm-run-all": "4.1.2",
         "nsp": "3.2.1"
     },
@@ -30,7 +30,7 @@
         "local": "npm-run-all --parallel local:*",
         "local:build-and-watch": "babel src --watch --source-maps --out-dir build",
         "local:start-and-watch": "nodemon build/server",
-        "verify": "npm run lint",
+        "validate": "npm run lint",
         "lint": "npm-run-all lint:*",
         "lint:deps": "nsp check --warn-only",
         "lint:js": "eslint --ext=.js,.json ."

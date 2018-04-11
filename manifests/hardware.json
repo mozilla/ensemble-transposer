@@ -1,5 +1,7 @@
 {
-    "source": "https://fhwr-unflattener.herokuapp.com/",
+    "sources": {
+        "data": "https://fhwr-unflattener.herokuapp.com/"
+    },
     "extraMetadata": {
         "title": "Hardware Across the Web",
         "description": "Hardware Across the Web is a public weekly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. This information can be used by developers to improve the Firefox experience for users.",
@@ -59,6 +61,7 @@
             },
             "hasUnity": {
                 "title": "Unity",
+                "description": "As of March 2016, Unity dropped support for the Unity Web Player in favor of WebGL export.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -186,7 +189,7 @@
             },
             "hasFlash": {
                 "title": "Flash",
-                "description": "Flash availability on Firefox shows a downward trend.",
+                "description": "Flash availability on Firefox shows a downward trend; Adobe will be ending support in 2020.",
                 "type": "line",
                 "axes": {
                     "y": {
