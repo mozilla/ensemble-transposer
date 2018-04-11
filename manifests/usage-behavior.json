@@ -1,7 +1,6 @@
 {
     "sources": {
-        "data": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/usage-behavior-fake-data.json",
-        "annotations": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data_2/v1/master/annotations_webusage.json"
+        "data": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/usage-behavior-fake-data.json"
     },
     "extraMetadata": {
         "title": "Usage Behavior",
