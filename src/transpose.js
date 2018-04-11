@@ -122,12 +122,12 @@ function processData(error, dataBody, manifest, callback) {
 
                     // Add annotations if any
                     if (sourceAnnotations) {
-                        const annotationsForThisDate = sourceAnnotations[categoryName].find(sa => sa.date === entry.date);
-
-                        if (annotationsForThisDate && propertyExists(annotationsForThisDate.annotation, metricName)) {
-                            const annotations = metric.getCategoryAnnotations(categoryName);
-                            annotations.addAnnotation(entry.date, annotationsForThisDate.annotation[metricName]);
-                        }
+                        sourceAnnotations[categoryName].forEach(sa => {
+                            if (propertyExists(sa.annotation, metricName)) {
+                                const annotations = metric.getCategoryAnnotations(categoryName);
+                                annotations.addAnnotation(sa.date, sa.annotation[metricName]);
+                            }
+                        });
                     }
 
                     if (metricType === 'line') {
@@ -254,7 +254,6 @@ class Metric {
             renderedDataByCategory[categoryName] = this.dataByCategory[categoryName].render();
         });
 
-
         const output = {
             title: this.title,
             description: this.description,
@@ -320,15 +319,17 @@ class CategoryData {
 
 class CategoryAnnotations {
     constructor() {
-        this.annotations = [];
+        this.annotations = {};
     }
 
-    addAnnotation(date, annotation) {
-        this.annotations.push({ date, annotation });
+    addAnnotation(date, label) {
+        this.annotations[date] = label;
     }
 
     render() {
-        return this.annotations;
+        return Object.keys(this.annotations).map(date => {
+            return { date, label: this.annotations[date] };
+        });
     }
 }
 
