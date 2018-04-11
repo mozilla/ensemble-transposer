@@ -323,8 +323,8 @@ class CategoryAnnotations {
         this.annotations = [];
     }
 
-    addAnnotation(date, annotation) {
-        this.annotations.push({ date, annotation });
+    addAnnotation(date, label) {
+        this.annotations.push({ date, label });
     }
 
     render() {
