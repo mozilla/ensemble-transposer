@@ -122,7 +122,7 @@ function processData(error, dataBody, manifest, callback) {
 
                     // Add annotations if any
                     if (sourceAnnotations) {
-                       sourceAnnotations[categoryName].forEach(sa => {
+                        sourceAnnotations[categoryName].forEach(sa => {
                             if (propertyExists(sa.annotation, metricName)) {
                                 const annotations = metric.getCategoryAnnotations(categoryName);
                                 annotations.addAnnotation(sa.date, sa.annotation[metricName]);
