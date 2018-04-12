@@ -1,6 +1,7 @@
 {
     "sources": {
-        "data": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/user-activity-fake-data.json"
+        "data": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/user-activity-fake-data.json",
+        "annotations": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/annotations_fxhealth-FAKE.json"
     },
     "extraMetadata": {
         "title": "User Activity",
