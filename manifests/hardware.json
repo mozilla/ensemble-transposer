@@ -127,6 +127,12 @@
                 }
             }
         },
+        "summaryMetrics": [
+            "gpuVendor",
+            "cpuVendor",
+            "osName",
+            "hasFlash"
+        ],
         "dashboard": {
             "sectioned": true,
             "sections": [
