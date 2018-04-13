@@ -37,7 +37,7 @@
                 }
             },
             "hasUnity": {
-                "title": "Unity",
+                "title": "Has Unity",
                 "description": "As of March 2016, Unity dropped support for the Unity Web Player in favor of WebGL export.",
                 "type": "line",
                 "axes": {
@@ -117,7 +117,7 @@
                 }
             },
             "hasFlash": {
-                "title": "Flash",
+                "title": "Has Flash",
                 "description": "Flash availability on Firefox shows a downward trend; Adobe will be ending support in 2020.",
                 "type": "line",
                 "axes": {
