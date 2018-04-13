@@ -18,4 +18,4 @@ out a JSON file with the data and metadata combined in the format that
 
 ### Test
 
-`npm run verify`
+`npm run validate`
