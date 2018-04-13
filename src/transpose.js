@@ -41,9 +41,14 @@ function processData(error, dataBody, manifest, callback) {
     const dataset = new Dataset(
         manifest.extraMetadata.title,
         manifest.extraMetadata.description,
-        metricNamesToTitles(manifest.extraMetadata.summaryMetrics, manifest.extraMetadata),
         manifest.extraMetadata.defaultCategory,
     );
+
+    if (manifest.extraMetadata.summaryMetrics) {
+        dataset.addSummaryMetrics(
+            metricNamesToTitles(manifest.extraMetadata.summaryMetrics, manifest.extraMetadata),
+        );
+    }
 
     // Add sections to dataset object if they have been defined
     const sectioned = manifest.extraMetadata.dashboard.sectioned;
@@ -184,16 +189,19 @@ function processData(error, dataBody, manifest, callback) {
 }
 
 class Dataset {
-    constructor(title, description, summaryMetrics, defaultCategory) {
+    constructor(title, description, defaultCategory) {
         this.title = title;
         this.description = description;
-        this.summaryMetrics = summaryMetrics;
         this.defaultCategory = defaultCategory;
 
         this.version = '0.0.2';
         this.metrics = {};
         this.sections = [];
         this.categoryNames = [];
+    }
+
+    addSummaryMetrics(summaryMetrics) {
+        this.summaryMetrics = summaryMetrics;
     }
 
     getMetric(title, description, type, axes, columns, section) {
