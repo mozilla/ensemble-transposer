@@ -22,6 +22,14 @@ function objectIsEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
+function metricNameToTitle(metricName, extraMetadata) {
+    return extraMetadata.metrics[metricName].title || metricName;
+}
+
+function metricNamesToTitles(metricNames, extraMetadata) {
+    return metricNames.map(mn => metricNameToTitle(mn, extraMetadata));
+}
+
 function processData(error, dataBody, manifest, callback) {
     if (error) {
         return callback({
@@ -30,7 +38,12 @@ function processData(error, dataBody, manifest, callback) {
     }
 
     const sourceData = JSON.parse(dataBody);
-    const dataset = new Dataset(manifest.extraMetadata.title, manifest.extraMetadata.description, manifest.extraMetadata.defaultCategory);
+    const dataset = new Dataset(
+        manifest.extraMetadata.title,
+        manifest.extraMetadata.description,
+        metricNamesToTitles(manifest.extraMetadata.summaryMetrics, manifest.extraMetadata),
+        manifest.extraMetadata.defaultCategory,
+    );
 
     // Add sections to dataset object if they have been defined
     const sectioned = manifest.extraMetadata.dashboard.sectioned;
@@ -105,7 +118,7 @@ function processData(error, dataBody, manifest, callback) {
                     const metricType = metricMeta.type;
 
                     const metric = dataset.getMetric(
-                        metricMeta.title || metricName,
+                        metricNameToTitle(metricName, manifest.extraMetadata),
                         metricMeta.description,
                         metricType,
                         metricMeta.axes,
@@ -171,9 +184,10 @@ function processData(error, dataBody, manifest, callback) {
 }
 
 class Dataset {
-    constructor(title, description, defaultCategory) {
+    constructor(title, description, summaryMetrics, defaultCategory) {
         this.title = title;
         this.description = description;
+        this.summaryMetrics = summaryMetrics;
         this.defaultCategory = defaultCategory;
 
         this.version = '0.0.2';
@@ -215,6 +229,10 @@ class Dataset {
 
         if (this.sections.length > 0) {
             output.sections = this.sections.map(s => s.render());
+        }
+
+        if (this.summaryMetrics) {
+            output.summaryMetrics = this.summaryMetrics;
         }
 
         return output;
