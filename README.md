@@ -8,7 +8,7 @@ The JSON that ensemble-transposer ingests follows a standard format
 ensemble-transposer generates and serves also follows a standard format
 ([example](http://ensemble-transposer.herokuapp.com/hardware/)). Because of
 this, we can easily generate an Ensemble dashboard for any dataset that has been
-formatted properly.
+[formatted properly](http://fhwr-unflattener.herokuapp.com/).
 
 ## Development
 
