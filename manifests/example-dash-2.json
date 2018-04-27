@@ -1,14 +1,14 @@
 {
     "sources": {
-        "data": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/user-activity-fake-data.json",
-        "annotations": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/annotations_fxhealth-FAKE.json"
+        "data": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/usage-behavior-fake-data.json",
+        "annotations": "https://s3-us-west-2.amazonaws.com/telemetry-public-analysis-2/usage_report_data/master/annotations_webusage-FAKE.json"
     },
     "extraMetadata": {
-        "title": "User Activity",
+        "title": "Example Dash 2",
         "defaultCategory": "All",
         "metrics": {
-            "unruly-stream": {
-                "title": "Test Metric A1",
+            "steep-woman": {
+                "title": "Test Metric B1",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
@@ -17,8 +17,8 @@
                     }
                 }
             },
-            "stingy-skirt": {
-                "title": "Test Metric A2",
+            "smoggy-industry": {
+                "title": "Test Metric B2",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
@@ -27,19 +27,8 @@
                     }
                 }
             },
-            "fancy-town": {
-                "title": "Test Metric A3",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "widgets",
-                        "suggestedMin": 0
-                    }
-                }
-            },
-            "harmonious-daughter": {
-                "title": "Test Metric A4",
+            "ossified-stream": {
+                "title": "Test Metric B3",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
@@ -48,8 +37,8 @@
                     }
                 }
             },
-            "actually-egg": {
-                "title": "Test Metric A5",
+            "elastic-side": {
+                "title": "Test Metric B4",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
                 "type": "line",
                 "axes": {
@@ -58,26 +47,29 @@
                     }
                 }
             },
-            "large-soup": {
-                "title": "Test Metric A6",
+            "slimy-group": {
+                "title": "Test Metric B5",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros orci, varius id interdum ut, ornare quis massa. Fusce cursus, ligula vel efficitur dapibus, nibh odio facilisis felis, at tristique tellus eros sit amet felis.",
-                "type": "line",
-                "axes": {
-                    "y": {
+                "type": "table",
+                "columns": [
+                    {
+                        "name": "Col 1"
+                    },
+                    {
+                        "name": "Col 2",
                         "unit": "%"
                     }
-                }
+                ]
             }
         },
         "dashboard": {
             "sectioned": false,
             "metrics": [
-                "unruly-stream",
-                "stingy-skirt",
-                "fancy-town",
-                "harmonious-daughter",
-                "actually-egg",
-                "large-soup"
+                "steep-woman",
+                "smoggy-industry",
+                "ossified-stream",
+                "elastic-side",
+                "slimy-group"
             ]
         }
     }
