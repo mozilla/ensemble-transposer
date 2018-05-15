@@ -62,14 +62,9 @@
                 }
             },
             "pct_new_user": {
-                "title": "New Users Percentage",
-                "description": "The percentage of Firefox clients with new users.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "%"
-                    }
-                }
+                "title": "New User Rate",
+                "description": "The rate at which new users are starting on Firefox.",
+                "type": "line"
             },
             "pct_latest_version": {
                 "title": "Latest Version",
