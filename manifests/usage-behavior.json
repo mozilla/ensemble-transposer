@@ -26,8 +26,8 @@
                 "title": "Always On Tracking Protection",
                 "description": [
                     "Always On Tracking Protection shows the percentage of Firefox clients with Tracking Protection enabled for all browsing sessions.",
-                    "Tracking Protection is a feature which blocks sites from tracking users across multiple websites, adding a layer of privacy to browsing. This feature is on by default in Private Browsing sessions, but starting in FF57, we gave users the option to enable this feature for all browsing sessions.",
-                    "Note: this is only the percentage of users Always On Tracking Protection. The percentage of users using Tracking Protection in Private Browsing is much higher, but they are not included here."
+                    "Tracking Protection is a feature which blocks sites from tracking users across multiple websites, adding a layer of privacy to browsing. This feature is on by default in Private Browsing sessions, but starting in FF57, we gave users the option to [enable this feature for all browsing sessions](https://support.mozilla.org/kb/tracking-protection).",
+                    "Note: this is only the percentage of users Always On Tracking Protection and does not include Tracking Protection use in Private Browsing."
                 ],
                 "type": "line",
                 "axes": {
