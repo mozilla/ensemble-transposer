@@ -5,6 +5,7 @@
     },
     "extraMetadata": {
         "title": "User Activity",
+        "description": "User Activity is a weekly report describing web consumption and the state of the Firefox userbase.",
         "defaultCategory": "Worldwide",
         "metrics": {
             "YAU": {
