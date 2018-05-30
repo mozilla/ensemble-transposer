@@ -25,4 +25,4 @@ Run `docker-compose up`
 
 ### Test
 
-Run `yarn test`
+Run `npm test`
