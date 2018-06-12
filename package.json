@@ -33,6 +33,6 @@
         "test": "npm run lint",
         "lint": "npm-run-all lint:*",
         "lint:js": "eslint --ext=.js,.json .",
-        "posttest": "npm audit"
+        "posttest": "npm audit || true"
     }
 }
