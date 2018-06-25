@@ -5,7 +5,7 @@
     },
     "extraMetadata": {
         "title": "Hardware Across the Web",
-        "description": "Hardware Across the Web is a public weekly report of the hardware used by a representative sample of the population from Firefox's desktop release channel on desktop. This information can be used by developers to improve the Firefox experience for users.",
+        "description": "Hardware Across the Web is a public weekly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. This information can be used by developers to improve the Firefox experience for users.",
         "metrics": {
             "resolution": {
                 "title": "Display Resolution",
