@@ -5,13 +5,13 @@
     },
     "extraMetadata": {
         "title": "User Activity",
-        "description": "User Activity is a weekly report describing web consumption and the state of the Firefox userbase.",
+        "description": "User Activity is a weekly report describing web consumption and the state of the Firefox desktop userbase.",
         "defaultCategory": "Worldwide",
         "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
                 "description": [
-                    "Yearly Active User (YAU) measures the number of Firefox clients active in the past 365 days. This metric provides a long term view of our userbase without being skewed by the seasonal effects which influence browser use.",
+                    "Yearly Active User (YAU) measures the number of Firefox desktop clients active in the past 365 days. This metric provides a long term view of our userbase without being skewed by the seasonal effects which influence browser use.",
                     "Globally, YAU has remained relatively stable over the past year (around 900 million), with most countries in the top 10 showing the same trend. A notable exception is India, where YAU showed steady growth (over 15%) over the last year."
                 ],
                 "type": "line",
@@ -25,7 +25,7 @@
             "MAU": {
                 "title": "Monthly Active Users",
                 "description": [
-                    "Monthly Active Users (MAU) measures the number of Firefox clients active in the past 28 days. Unlike YAU, MAU provides a shorter term view of the userbase and is much more influenced by seasonal factors.",
+                    "Monthly Active Users (MAU) measures the number of Firefox desktop clients active in the past 28 days. Unlike YAU, MAU provides a shorter term view of the userbase and is much more influenced by seasonal factors.",
                     "Generally, MAU is around 300 million, but fluxuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Years holidays), while China's holiday dip occurs in mid/late February (corresponding with Spring Festival)."
                 ],
                 "type": "line",
@@ -38,8 +38,8 @@
             "avg_daily_usage(hours)": {
                 "title": "Daily Usage",
                 "description": [
-                    "Daily Usage shows the hours spent browsing for a typical Firefox client in a typical day of use.",
-                    "Globally, the typical Firefox client averages over 4.5 hours of use a day. Among the top 10 countries, Americans and Russians were the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India showed the lowest daily use, between 3.5 and 4.0 hours daily."
+                    "Daily Usage shows the hours spent browsing for a typical Firefox desktop client in a typical day of use.",
+                    "Globally, the typical Firefox client averages a bit under 5 hours of use a day. Among the top 10 countries, Americans and Russians were the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India showed the lowest daily use, between 3.5 and 4.0 hours daily."
                 ],
                 "type": "line",
                 "axes": {
@@ -51,7 +51,7 @@
             "avg_intensity": {
                 "title": "Average Intensity",
                 "description": [
-                    "Average Intensity measures the engagement level of a typical Firefox client. It is the proportion of time that a client actively engaged with the browser.",
+                    "Average Intensity measures the engagement level of a typical Firefox desktop client. It is the proportion of time that a client actively engaged with the browser.",
                     "Overall, the typical Firefox client engaged with the browser about a third of the time when the browser was open. European countries seem to have the highest levels of engagement, with France, Poland, and Italy all showing Average Intensity over 0.35 and Germany approaching 0.40. Most other countries in the top 10 have an Average Intensity around 0.30."
                 ],
                 "type": "line",
@@ -63,13 +63,17 @@
             },
             "pct_new_user": {
                 "title": "New User Rate",
-                "description": "The rate at which new users are starting on Firefox.",
+                "description": [
+                    "New User Rate shows the rate at which new users are starting on Firefox desktop.",
+                    "Typically, this metric tracks similar to overall usage, with new users dipping during holidays and rising during normal work and school periods.",
+                    "This effect is most pronounced in France, were we can clearly see new users plummet during national holidays and recover immediately after."
+                ],
                 "type": "line"
             },
             "pct_latest_version": {
                 "title": "Latest Version",
                 "description": [
-                    "Latest Version shows the percentage of Firefox clients running the latest version of Firefox, or greater (for that week).",
+                    "Latest Version shows the percentage of Firefox desktop clients running the latest version of Firefox, or greater (for that week).",
                     "Firefox typically releases major updates roughly every 50 days or so (although there are exceptions, such as between FF57 to FF58, which lasted 70 days), and generally release on Tuesdays (though there are, again, exceptions, such as FF56, which released on a Thursday).",
                     "Since Mozilla throttles the rollout of a new version (incrementally upgrading the % of the population getting upgrades), it takes about four weeks for about 70% of clients to upgrade, before stabilizing."
                 ],
