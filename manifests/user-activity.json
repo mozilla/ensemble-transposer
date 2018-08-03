@@ -62,11 +62,10 @@
                 }
             },
             "pct_new_user": {
-                "title": "New User Rate",
+                "title": "New Profile Rate",
                 "description": [
-                    "New User Rate shows the rate at which new users are starting on Firefox desktop.",
-                    "Typically, this metric tracks similar to overall usage, with new users dipping during holidays and rising during normal work and school periods.",
-                    "This effect is most pronounced in France, were we can clearly see new users plummet during national holidays and recover immediately after."
+                    "New Profile Rate measures the rate at which new profiles are being created. A profile is a folder in your computer that Firefox uses to store all the addons and customizations that make keep track of all the addons and customizations that make your browser unique. Think of it as your browser's identity.",
+                    "But why profiles, why not just measure a new user rate? Because we don't track users. We think you should be able to walk away from their computer without the internet following you. Profiles let us keep track of how the browser is being used without digging into who you are. It make our job harder but we think it's worth it. After all, freedom isn't free, but we're happy to pay."
                 ],
                 "type": "line"
             },
