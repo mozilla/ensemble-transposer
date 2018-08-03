@@ -5,13 +5,13 @@
     },
     "extraMetadata": {
         "title": "User Activity",
-        "description": "User Activity is a weekly report describing web consumption and the state of the Firefox desktop userbase.",
+        "description": "User Activity is a weekly report describing web consumption and the state of the Firefox Desktop userbase.",
         "defaultCategory": "Worldwide",
         "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
                 "description": [
-                    "Yearly Active User (YAU) measures the number of Firefox desktop clients active in the past 365 days. This metric provides a long term view of our userbase without being skewed by the seasonal effects which influence browser use.",
+                    "Yearly Active User (YAU) measures the number of Firefox Desktop clients active in the past 365 days. This metric provides a long-term view of our userbase without being skewed by the seasonal effects which influence browser use.",
                     "Globally, YAU has remained relatively stable over the past year (around 900 million), with most countries in the top 10 showing the same trend. A notable exception is India, where YAU showed steady growth (over 15%) over the last year."
                 ],
                 "type": "line",
@@ -25,8 +25,8 @@
             "MAU": {
                 "title": "Monthly Active Users",
                 "description": [
-                    "Monthly Active Users (MAU) measures the number of Firefox desktop clients active in the past 28 days. Unlike YAU, MAU provides a shorter term view of the userbase and is much more influenced by seasonal factors.",
-                    "Generally, MAU is around 300 million, but fluxuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Years holidays), while China's holiday dip occurs in mid/late February (corresponding with Spring Festival)."
+                    "Monthly Active Users (MAU) measures the number of Firefox Desktop clients active in the past 28 days. Unlike YAU, MAU provides a shorter-term view of the userbase and is much more influenced by seasonal factors.",
+                    "Generally, MAU is around 300 million, but fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while China's holiday dip occurs in mid-to-late February (corresponding with Spring Festival)."
                 ],
                 "type": "line",
                 "axes": {
@@ -38,8 +38,8 @@
             "avg_daily_usage(hours)": {
                 "title": "Daily Usage",
                 "description": [
-                    "Daily Usage shows the hours spent browsing for a typical Firefox desktop client in a typical day of use.",
-                    "Globally, the typical Firefox client averages a bit under 5 hours of use a day. Among the top 10 countries, Americans and Russians were the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India showed the lowest daily use, between 3.5 and 4.0 hours daily."
+                    "Daily Usage shows the hours spent browsing for a typical Firefox Desktop client in a typical day of use.",
+                    "Globally, the typical Firefox client averages a bit under 5 hours of use per day. Among the top 10 countries, Americans and Russians are the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India show the lowest daily use, between 3.5 and 4.0 hours daily."
                 ],
                 "type": "line",
                 "axes": {
@@ -51,8 +51,8 @@
             "avg_intensity": {
                 "title": "Average Intensity",
                 "description": [
-                    "Average Intensity measures the engagement level of a typical Firefox desktop client. It is the proportion of time that a client actively engaged with the browser.",
-                    "Overall, the typical Firefox client engaged with the browser about a third of the time when the browser was open. European countries seem to have the highest levels of engagement, with France, Poland, and Italy all showing Average Intensity over 0.35 and Germany approaching 0.40. Most other countries in the top 10 have an Average Intensity around 0.30."
+                    "Average Intensity measures the engagement level of a typical Firefox Desktop client. It is the proportion of time that a client actively engaged with the browser.",
+                    "Overall, the typical Firefox client engages with the browser about a third of the time when the browser is open. European countries seem to have the highest levels of engagement, with France, Poland, and Italy all showing Average Intensity over 0.35 and Germany approaching 0.40. Most other countries in the top 10 have an Average Intensity around 0.30."
                 ],
                 "type": "line",
                 "axes": {
@@ -64,17 +64,17 @@
             "pct_new_user": {
                 "title": "New Profile Rate",
                 "description": [
-                    "New Profile Rate measures the rate at which new profiles are being created. A profile is a folder on your computer that Firefox uses to store all of the add-ons and customizations that keep track of all of the add-ons and customizations that make your browser unique. Think of it as your browser's identity.",
-                    "But why profiles? Why not just measure a new user rate? Because we don't track users. We think you should be able to walk away from your computer without the internet following you. Profiles let us keep track of how the browser is being used without digging into who you are. It makes our job harder but we think it's worth it. After all, freedom isn't free, but we're happy to pay."
+                    "New Profile Rate measures the rate at which new profiles are being created. A profile is a folder on your computer that Firefox uses to store all of the add-ons and customizations that make your browser unique. Think of it as your browser's identity.",
+                    "But why profiles? Why not just measure new user rate? Because we don't track users. We think you should be able to walk away from your computer without the internet following you. Profiles let us keep track of how the browser is being used without digging into who you are. It makes our job harder but we think it's worth it. After all, freedom isn't free, but we're happy to pay."
                 ],
                 "type": "line"
             },
             "pct_latest_version": {
                 "title": "Latest Version",
                 "description": [
-                    "Latest Version shows the percentage of Firefox desktop clients running the latest version of Firefox, or greater (for that week).",
-                    "Firefox typically releases major updates roughly every 50 days or so (although there are exceptions, such as between FF57 to FF58, which lasted 70 days), and generally release on Tuesdays (though there are, again, exceptions, such as FF56, which released on a Thursday).",
-                    "Since Mozilla throttles the rollout of a new version (incrementally upgrading the % of the population getting upgrades), it takes about four weeks for about 70% of clients to upgrade, before stabilizing."
+                    "Latest Version shows the percentage of Firefox Desktop clients running the latest version of Firefox or greater (for that week).",
+                    "Firefox typically releases major updates roughly every 50 days (although there are exceptions, such as between FF57 and FF58, which lasted 70 days), and generally release on Tuesdays (though there are, again, exceptions, such as FF56, which released on a Thursday).",
+                    "Since Mozilla throttles the rollout of a new version (incrementally upgrading the percentage of the population getting upgrades), it takes about four weeks for about 70% of clients to upgrade before stabilizing."
                 ],
                 "type": "line",
                 "axes": {

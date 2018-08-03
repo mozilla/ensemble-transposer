@@ -9,7 +9,7 @@
         "metrics": {
             "resolution": {
                 "title": "Display Resolution",
-                "description": "Two display resolutions—1366x768px and 1920x1080px—stand out as the most highly used resolutions, with the latter showing an upward trend.",
+                "description": "Two display resolutions&mdash;1366x768px and 1920x1080px&mdash;stand out as the most highly-used, with the latter showing an upward trend.",
                 "type": "line",
                 "axes": {
                     "y": {
