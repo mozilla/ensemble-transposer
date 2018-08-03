@@ -64,8 +64,8 @@
             "pct_new_user": {
                 "title": "New Profile Rate",
                 "description": [
-                    "New Profile Rate measures the rate at which new profiles are being created. A profile is a folder in your computer that Firefox uses to store all the addons and customizations that make keep track of all the addons and customizations that make your browser unique. Think of it as your browser's identity.",
-                    "But why profiles, why not just measure a new user rate? Because we don't track users. We think you should be able to walk away from their computer without the internet following you. Profiles let us keep track of how the browser is being used without digging into who you are. It make our job harder but we think it's worth it. After all, freedom isn't free, but we're happy to pay."
+                    "New Profile Rate measures the rate at which new profiles are being created. A profile is a folder on your computer that Firefox uses to store all of the add-ons and customizations that keep track of all of the add-ons and customizations that make your browser unique. Think of it as your browser's identity.",
+                    "But why profiles? Why not just measure a new user rate? Because we don't track users. We think you should be able to walk away from your computer without the internet following you. Profiles let us keep track of how the browser is being used without digging into who you are. It makes our job harder but we think it's worth it. After all, freedom isn't free, but we're happy to pay."
                 ],
                 "type": "line"
             },
