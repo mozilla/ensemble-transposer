@@ -9,7 +9,7 @@
         "metrics": {
             "resolution": {
                 "title": "Display Resolution",
-                "description": "Two display resolutions&mdash;1366x768px and 1920x1080px&mdash;stand out as the most highly-used, with the latter showing an upward trend.",
+                "description": "Two display resolutions, 1366x768px and 1920x1080px, stand out as the most highly-used, with the latter showing an upward trend.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -28,7 +28,10 @@
             },
             "gpuVendor": {
                 "title": "GPU Vendor",
-                "description": "The share of GPU vendors shows little change over the course of 2016, with Intel chipsets making up nearly two-thirds of all GPUs.",
+                "description": [
+                    "Intel makes up the largest part of the desktop GPU market, accounting for over 60% of our release Desktop population. AMD and NVIDA come in at 2nd and 3rd.",
+                    "Over the past year, we see Intel increased their share are well, going from about 60% to 66% while AMD and NVIDIA dropped from around 18% to around 14% each."
+                        ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -58,7 +61,7 @@
             },
             "ram": {
                 "title": "Memory",
-                "description": "A third of users have 4GB of memory, trending up. The number of users with 8GB of memory is also trending up.",
+                "description": "The most popular memory size is 4GB and 8GB, with almost and third and a quarter of our Release users, respectively. The number of users with 2GB of memory is trending down.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -78,7 +81,7 @@
             },
             "cpuVendor": {
                 "title": "CPU Vendor",
-                "description": "The share of CPU vendors shows little change over the course of 2016, with Intel making up nearly 86% of all CPUs.",
+                "description": "Intel leads the share of CPUs found in our Release users, with over 88% of all profiles, while AMD follows behind with about 11%.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -88,7 +91,7 @@
             },
             "osName": {
                 "title": "Operating System",
-                "description": "Users on Windows 10 showed a noticeable increase in the first half of 2016. Only Ubuntu and Mozilla builds of Linux are currently being tracked.",
+                "description": "Windows 7 and Windows 10 are the most popular operating systems, accounting for almost 80% of the users between them. Although Windows 7 is trending down, and Windows 10 is trending up, the older version still stubbornly hangs on to the top spot.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -108,7 +111,7 @@
             },
             "osArch": {
                 "title": "Operating Systems by Architecture",
-                "description": "The share of 32-to-64-bit operating systems showed no remarkable change during 2016. Note that this metric likely undercounts non-Windows OSs, seeing as it relies on the environment.system.isWow64 Telemetry field.",
+                "description": "We see the share of 32 to 64 bit operating systems diverging over the last year, with 64 bit systems accounting for over 80% of our users. Note that this metric likely undercounts non-Windows OSs, seeing as it relies on the environment.system.isWow64 Telemetry field.",
                 "type": "line",
                 "axes": {
                     "y": {
