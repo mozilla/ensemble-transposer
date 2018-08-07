@@ -29,7 +29,7 @@
             "gpuVendor": {
                 "title": "GPU Vendor",
                 "description": [
-                    "Intel makes up the largest part of the desktop GPU market, accounting for over 60% of our release Desktop population. AMD and NVIDA come in at 2nd and 3rd.",
+                    "Intel makes up the largest part of the desktop GPU market, accounting for over 60% of our release Desktop population. AMD and NVIDA come in at 2^nd^ and 3^rd^.",
                     "Over the past year, we see Intel increased their share are well, going from about 60% to 66% while AMD and NVIDIA dropped from around 18% to around 14% each."
                         ],
                 "type": "line",
