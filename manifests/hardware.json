@@ -29,9 +29,9 @@
             "gpuVendor": {
                 "title": "GPU Vendor",
                 "description": [
-                    "Intel makes up the largest part of the desktop GPU market, accounting for over 60% of our release Desktop population. AMD and NVIDA come in at 2^nd^ and 3^rd^.",
-                    "Over the past year, we see Intel increased their share are well, going from about 60% to 66% while AMD and NVIDIA dropped from around 18% to around 14% each."
-                        ],
+                    "Intel makes up the largest part of the desktop GPU market, accounting for over 60% of our release Desktop population. AMD and Nvidia come in at 2^nd^ and 3^rd^.",
+                    "Over the past year, we see that Intel increased their share as well, going from about 60% to 66% while AMD and Nvidia both dropped from around 18% to around 14%."
+                ],
                 "type": "line",
                 "axes": {
                     "y": {
@@ -61,7 +61,7 @@
             },
             "ram": {
                 "title": "Memory",
-                "description": "The most popular memory size is 4GB and 8GB, with almost and third and a quarter of our Release users, respectively. The number of users with 2GB of memory is trending down.",
+                "description": "The most popular memory sizes are 4GB and 8GB, with almost one-third and one-quarter of our Release users, respectively. The number of users with 2GB of memory is trending down.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -81,7 +81,7 @@
             },
             "cpuVendor": {
                 "title": "CPU Vendor",
-                "description": "Intel leads the share of CPUs found in our Release users, with over 88% of all profiles, while AMD follows behind with about 11%.",
+                "description": "Intel leads the share of CPUs found in our Release users, with over 88% of profiles, while AMD follows behind with about 11%.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -91,7 +91,7 @@
             },
             "osName": {
                 "title": "Operating System",
-                "description": "Windows 7 and Windows 10 are the most popular operating systems, accounting for almost 80% of the users between them. Although Windows 7 is trending down, and Windows 10 is trending up, the older version still stubbornly hangs on to the top spot.",
+                "description": "Windows 7 and Windows 10 are the most popular operating systems, accounting for almost 80% of our users. Although Windows 7 is trending down and Windows 10 is trending up, the older version still hangs on to the top spot.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -111,7 +111,7 @@
             },
             "osArch": {
                 "title": "Operating Systems by Architecture",
-                "description": "We see the share of 32 to 64 bit operating systems diverging over the last year, with 64 bit systems accounting for over 80% of our users. Note that this metric likely undercounts non-Windows OSs, seeing as it relies on the environment.system.isWow64 Telemetry field.",
+                "description": "We see the share of 32-bit to 64-bit operating systems diverging over the last year, with 64-bit systems accounting for over 80% of our users. Note that this metric likely undercounts non-Windows OSs, as it relies on the environment.system.isWow64 Telemetry field.",
                 "type": "line",
                 "axes": {
                     "y": {
