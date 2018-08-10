@@ -24,9 +24,9 @@ Any of the environment variables in *.env* can be overridden. For example: `PORT
 
 ### In production
 
-Run `NODE_ENV=production npm run prod`
+Run `npm run prod`
 
-Any of the environment variables in *.env* can be overridden. For example: `PORT=1234 NODE_ENV=production npm run prod`
+Any of the environment variables in *.env* can be overridden. For example: `PORT=1234 npm run prod`
 
 ## Test
 
