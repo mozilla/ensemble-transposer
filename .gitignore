@@ -1,10 +1,16 @@
-build
-
 # Node
 node_modules
 yarn-error.log
 
-# Data that is currently private, but that will be made available through
-# ensemble-transposer in the future
+# Docker
+.config
+.ash_history
+
+# Generated files
+version.json
+
+# Directories and files that are no longer used, but which may be present in the
+# working directories of some developers
+build
 data
 fake-data

@@ -1,8 +1,8 @@
-import fs from 'fs';
-import request from 'request';
+const fs = require('fs');
+const request = require('request');
 
 
-export default (manifest, callback) => {
+module.exports = (manifest, callback) => {
     if (isURL(manifest.sources.data)) {
         request(manifest.sources.data, (error, response, body) => processData(error, body, manifest, callback));
     } else {

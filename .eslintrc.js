@@ -17,7 +17,7 @@ module.exports = {
     ],
     root: true,
     rules: {
-        'node/no-unsupported-features': ['error', {ignores: ['modules']}],
+        'node/no-unsupported-features/es-syntax': 'off', // Because we use Babel
 
         'eqeqeq': 'error',
         'indent': ['error', 4],

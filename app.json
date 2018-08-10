@@ -1,7 +1,0 @@
-{
-    "name": "ensemble-transposer",
-    "repository": "https://github.com/mozilla/ensemble-transposer",
-    "addons": [
-        "heroku-redis"
-    ]
-}

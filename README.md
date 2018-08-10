@@ -10,19 +10,24 @@ ensemble-transposer generates and serves also follows a standard format
 this, we can easily generate an Ensemble dashboard for any dataset that has been
 [formatted properly](http://fhwr-unflattener.herokuapp.com/).
 
-## Development
+## Setup
 
-### Install
+Install [Docker CE](https://docs.docker.com/install/)
 
-1. [Install Node and NPM](https://nodejs.org/en/download/)
-2. [Install Docker](https://docs.docker.com/install/)
-3. [Install Docker Compose](https://docs.docker.com/compose/install/)
-1. Run `npm install`
+## Run
 
-### Run
+### For development
 
-Run `docker-compose up`
+Run `npm run dev`
 
-### Test
+Any of the environment variables in *.env* can be overridden. For example: `PORT=1234 npm run dev`
+
+### In production
+
+Run `NODE_ENV=production npm run prod`
+
+Any of the environment variables in *.env* can be overridden. For example: `PORT=1234 NODE_ENV=production npm run prod`
+
+## Test
 
 Run `npm test`
