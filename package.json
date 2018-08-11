@@ -8,7 +8,7 @@
     "scripts": {
         "start": "echo 'Run \"npm run dev\" or \"npm run prod\"'",
         "dev": "docker-compose -f docker-compose.base.yml -f docker-compose.dev.yml up",
-        "prod": "docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml up",
+        "prod": "docker-compose -f docker-compose.base.yml up",
         "build": "node scripts/generateVersionJSON",
         "validate": "npm run test",
         "test": "npm run lint",

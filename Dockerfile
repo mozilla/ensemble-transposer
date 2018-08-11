@@ -35,3 +35,5 @@ RUN npm run build
 # Clear the NPM cache to keep the Docker image small. (We don't need to clear
 # the apk cache because we use apk's --no-cache flag above.)
 RUN npm cache clean --force
+
+CMD ["node", "server"]
