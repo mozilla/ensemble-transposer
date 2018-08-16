@@ -20,13 +20,17 @@ Install [Docker CE](https://docs.docker.com/install/)
 
 Run `npm run dev`
 
-Any of the environment variables in *.env* can be overridden. For example: `PORT=1234 npm run dev`
+Any of the environment variables in *.env* can be overridden. For example:
+`PORT=1234 npm run dev`
+
+If docker-compose did not shut down properly the last time it was used, the
+development server may not work. To resolve this, run `npm run stopdev` and then
+run `npm run dev` again.
 
 ### In production
 
-Run `NODE_ENV=production npm run prod`
-
-Any of the environment variables in *.env* can be overridden. For example: `NODE_ENV=production PORT=1234 npm run prod`
+Run the Docker container and a Redis server side-by-side. Any of the environment
+variables in *.env* can be overridden and most should be.
 
 ## Test
 
