@@ -1,27 +1,25 @@
 module.exports = {
     env: {
-        es6: true,
         node: true,
     },
     extends: [
         'eslint:recommended',
         'plugin:node/recommended',
     ],
-    parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-    },
     plugins: [
         'json',
         'node',
     ],
     root: true,
     rules: {
-        'node/no-unsupported-features/es-syntax': 'off', // Because we use Babel
-
+        // Errors
         'eqeqeq': 'error',
-        'indent': ['error', 4],
+
+        // Warnings
         'no-console': 'warn',
-        'quotes': ['error', 'single'],
+
+        // Stylistic warnings
+        'quotes': ['warn', 'single'],
+        'indent': ['warn', 4],
     },
 };
