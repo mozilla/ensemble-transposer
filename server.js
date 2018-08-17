@@ -26,8 +26,83 @@ redisClient.on('error', err => {
     console.error('Redis error:', err);
 });
 
-function handleDataset(req, res) {
+// Provide a summary of this dataset, picking and choosing data from the big,
+// transposed JSON blob as needed
+function handleDatasetSummary(req, res) {
     const dataset = req.params.dataset;
+    const datasetSummary = {};
+    const propsToCopy = [
+        'title',
+        'version',
+        'description',
+        'dates',
+        'categories',
+        'sections',
+        'summaryMetrics',
+        'defaultCategory',
+    ];
+
+    withTransposedData(res, dataset, transposedData => {
+        propsToCopy.forEach(prop => {
+            if (prop in transposedData) {
+                datasetSummary[prop] = transposedData[prop];
+            }
+        });
+
+        datasetSummary.metrics = Object.keys(transposedData.metrics);
+
+        res.send(datasetSummary);
+    });
+}
+
+// Provide the data for a given metric in the given category, picking and
+// choosing data from the big, transposed JSON blob as needed
+function handleMetric(req, res) {
+    const dataset = req.params.dataset;
+    const category = req.params.category;
+    const metricSlug = req.params.metricSlug;
+    const metricData = {};
+
+    const propsToCopy = [
+        'title',
+        'description',
+        'type',
+        'axes',
+        'columns',
+    ];
+
+    withTransposedData(res, dataset, transposedData => {
+        let thisMetric;
+
+        if (metricSlug in transposedData.metrics) {
+            thisMetric = transposedData.metrics[metricSlug];
+        } else {
+            // This metric does not exist
+            return res.sendStatus(404);
+        }
+
+        propsToCopy.forEach(prop => {
+            if (prop in thisMetric) {
+                metricData[prop] = thisMetric[prop];
+            }
+        });
+
+        if ('data' in thisMetric && category in thisMetric.data) {
+            metricData.data = thisMetric.data[category];
+        } else {
+            // There is no data for this category
+            return res.sendStatus(404);
+        }
+
+        if ('annotations' in thisMetric && category in thisMetric.annotations) {
+            metricData.annotations = thisMetric.annotations[category];
+        }
+
+        res.send(metricData);
+    });
+}
+
+function withTransposedData(res, dataset, cb) {
     const manifestFilename = `manifests/${dataset}.json`;
 
     if (!fs.existsSync(manifestFilename)) {
@@ -35,45 +110,44 @@ function handleDataset(req, res) {
         console.error(`Manifest doesn't exist: ${manifestFilename}`);
         res.status(500).send('Manifest does not exist');
     } else {
-        redisClient.get(dataset, (err, data) => {
+        redisClient.get(dataset, (err, transposedData) => {
             if (err) {
                 // eslint-disable-next-line no-console
                 console.error('Redis error:', err);
                 res.status(500).send('Redis error');
             } else {
-                if (data === null) {
+                if (transposedData === null) {
                     // eslint-disable-next-line no-console
                     console.log(`Cache miss: ${dataset}`);
-                    sendTransposeOutput(res, dataset, manifestFilename);
+
+                    fs.readFile(manifestFilename, 'utf8', (err, contents) => {
+                        if (err) {
+                            // eslint-disable-next-line no-console
+                            console.error('Error retrieving manifest:', err);
+                            res.status(500).send('Error retrieving manifest');
+                        } else {
+                            const manifest = JSON.parse(contents);
+                            transpose(manifest, transposedData => {
+                                // eslint-disable-next-line no-console
+                                console.log(`Setting cache for key: ${dataset}`);
+                                redisClient.setex(dataset, process.env.CACHE_SECONDS, JSON.stringify(transposedData));
+                                cb(transposedData);
+                            });
+                        }
+                    });
                 } else {
                     // eslint-disable-next-line no-console
                     console.log(`Cache hit: ${dataset}`);
-                    res.send(JSON.parse(data));
+                    cb(JSON.parse(transposedData));
                 }
             }
         });
     }
 }
 
-function sendTransposeOutput(res, dataset, manifestFilename) {
-    fs.readFile(manifestFilename, 'utf8', (err, contents) => {
-        if (err) {
-            // eslint-disable-next-line no-console
-            console.error('Error retrieving manifest:', err);
-            res.status(500).send('Error retrieving manifest');
-        } else {
-            const manifest = JSON.parse(contents);
-            transpose(manifest, output => {
-                // eslint-disable-next-line no-console
-                console.log(`Setting cache for key: ${dataset}`);
-                redisClient.setex(dataset, process.env.CACHE_SECONDS, JSON.stringify(output));
-                res.send(output);
-            });
-        }
-    });
-}
+app.get('/datasets/:dataset/:category/:metricSlug', handleMetric);
 
-app.get('/datasets/:dataset', handleDataset);
+app.get('/datasets/:dataset', handleDatasetSummary);
 
 app.get('/__version__', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
