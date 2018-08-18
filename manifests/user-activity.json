@@ -10,10 +10,7 @@
         "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
-                "description": [
-                    "Yearly Active User (YAU) measures the number of Firefox Desktop clients active in the past 365 days. This metric provides a long-term view of our userbase without being skewed by the seasonal effects which influence browser use.",
-                    "Globally, YAU has remained relatively stable over the past year (around 900 million), with most countries in the top 10 showing the same trend. A notable exception is India, where YAU showed steady growth (over 15%) over the last year."
-                ],
+                "description": "Yearly Active User (YAU) measures the number of Firefox Desktop clients active in the past 365 days. This metric provides a long-term view of our userbase without being skewed by the seasonal effects which influence browser use.",
                 "type": "line",
                 "axes": {
                     "y": {
@@ -26,7 +23,7 @@
                 "title": "Monthly Active Users",
                 "description": [
                     "Monthly Active Users (MAU) measures the number of Firefox Desktop clients active in the past 28 days. Unlike YAU, MAU provides a shorter-term view of the userbase and is much more influenced by seasonal factors.",
-                    "Generally, MAU is around 300 million, but fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while China's holiday dip occurs in mid-to-late February (corresponding with Spring Festival)."
+                    "Generally, MAU fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while China's holiday dip occurs in mid-to-late February (corresponding with Spring Festival)."
                 ],
                 "type": "line",
                 "axes": {
@@ -39,7 +36,7 @@
                 "title": "Daily Usage",
                 "description": [
                     "Daily Usage shows the hours spent browsing for a typical Firefox Desktop client in a typical day of use.",
-                    "Globally, the typical Firefox client averages a bit under 5 hours of use per day. Among the top 10 countries, Americans and Russians are the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India show the lowest daily use, between 3.5 and 4.0 hours daily."
+                    "Globally, the typical Firefox client averages around 5 hours of use per day. Among the top 10 countries, Americans and Russians are the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India show the lowest daily use, about 3.7 hours."
                 ],
                 "type": "line",
                 "axes": {
