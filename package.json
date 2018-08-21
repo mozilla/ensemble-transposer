@@ -6,9 +6,9 @@
         "node": ">=8"
     },
     "scripts": {
-        "start": "echo 'Run \"npm run dev\" or \"npm run prod\"'",
-        "dev": "docker-compose -f docker-compose.base.yml -f docker-compose.dev.yml up",
-        "prod": "docker-compose -f docker-compose.base.yml up",
+        "start": "node server",
+        "dev": "docker-compose --file docker-compose.dev.yml up",
+        "stopdev": "docker-compose --file docker-compose.dev.yml stop",
         "build": "node scripts/generateVersionJSON",
         "validate": "npm run test",
         "test": "npm run lint",
@@ -21,10 +21,10 @@
         "helmet": "3.13.0",
         "morgan": "1.9.0",
         "redis": "2.8.0",
-        "request": "2.87.0"
+        "request": "2.88.0"
     },
     "devDependencies": {
-        "eslint": "5.3.0",
+        "eslint": "5.4.0",
         "eslint-plugin-json": "1.2.1",
         "eslint-plugin-node": "7.0.1",
         "nodemon": "1.18.3"

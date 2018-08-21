@@ -36,4 +36,4 @@ RUN npm run build
 # the apk cache because we use apk's --no-cache flag above.)
 RUN npm cache clean --force
 
-CMD ["node", "server"]
+CMD ["npm", "start"]

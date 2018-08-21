@@ -2,8 +2,22 @@ version: '3.2'
 
 services:
     web:
-        environment:
-            - NODE_ENV=development
+        build: .
         volumes:
             - .:/app
+        environment:
+            - PORT
+            - NODE_ENV
+            - REDIS_URL
+            - CACHE_SECONDS
+        ports:
+            - target: ${PORT}
+              published: ${PORT}
+        links:
+            - redis
+        depends_on:
+            - redis
         command: npx nodemon server
+
+    redis:
+        image: redis
