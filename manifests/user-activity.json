@@ -10,7 +10,7 @@
         "metrics": {
             "YAU": {
                 "title": "Yearly Active Users",
-                "description": "Yearly Active User (YAU) measures the number of Firefox Desktop clients active in the past 365 days. This metric provides a long-term view of our userbase without being skewed by the seasonal effects which influence browser use.",
+                "description": "Yearly Active Users (YAU) measures the number of Firefox Desktop clients active in the past 365 days. This metric provides a long-term view of our userbase without being skewed by the seasonal effects which influence browser use.",
                 "type": "line",
                 "axes": {
                     "y": {
