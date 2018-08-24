@@ -41,7 +41,7 @@
                 "description": [
                     "Has Add-on shows the percentage of Firefox Desktop clients with user installed add-ons.",
                     "One of the best things about Firefox is the robust add-on community which gives users the option to customize and control their browsing experience. Our users agree, with over a third of Firefox users having at least 1 installed add-on.",
-                    "Globally, this metric varies, with only about 20% and 18% of users in China and Brazil having add-ons, respectively, while Russia is on the other extreme, with almost 60% of users having add-ons."
+                    "This metric varies globally. On one end is China and Brazil, where 20% and 18% have add-ons, respectively. On the other is Russia, where almost 60% of users have add-ons."
                 ],
                 "type": "line",
                 "axes": {
