@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const redis = require('redis');
 const fs = require('fs');
 const path = require('path');
+const forceSSL = require('express-force-ssl');
 
 const transpose = require('./transpose');
 
