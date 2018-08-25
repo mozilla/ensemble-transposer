@@ -12,8 +12,29 @@ const transpose = require('./transpose');
 const app = express();
 const redisClient = redis.createClient(process.env.REDIS_URL);
 
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'none'"],
+        },
+    },
+    frameguard: {
+        action: 'deny',
+    },
+    referrerPolicy: {
+        policy: 'no-referrer',
+    },
+}));
+
+if (process.env.NODE_ENV === 'production') {
+    app.set('forceSSLOptions', {
+        trustXFPHeader: true,
+    });
+    app.use(forceSSL);
+}
+
 app.use(cors());
+
 app.use(morgan('combined'));
 
 const send200 = (req, res) => {
