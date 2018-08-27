@@ -55,13 +55,13 @@ function handleDatasetSummary(req, res) {
     const datasetSummary = {};
     const propsToCopy = [
         'title',
-        'version',
         'description',
         'dates',
-        'categories',
         'sections',
         'summaryMetrics',
+        'categories',
         'defaultCategory',
+        'apiVersion',
     ];
 
     withTransposedData(res, dataset, transposedData => {
@@ -119,6 +119,8 @@ function handleMetric(req, res) {
         if ('annotations' in thisMetric && category in thisMetric.annotations) {
             metricData.annotations = thisMetric.annotations[category];
         }
+
+        metricData.apiVersion = transposedData.apiVersion;
 
         res.send(metricData);
     });

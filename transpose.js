@@ -177,7 +177,7 @@ class Dataset {
         this.defaultCategory = defaultCategory;
         this.dates = new Set();
 
-        this.version = '0.0.2';
+        this.apiVersion = '1.0.0';
         this.metrics = {};
         this.sections = [];
         this.categoryNames = [];
@@ -215,12 +215,12 @@ class Dataset {
 
         const output = {
             title: this.title,
-            version: this.version,
             description: this.description,
             dates: Array.from(this.dates).sort(),
             metrics: renderedMetrics,
             categories: this.categoryNames,
             defaultCategory: this.defaultCategory,
+            apiVersion: this.apiVersion,
         };
 
         if (this.sections.length > 0) {
