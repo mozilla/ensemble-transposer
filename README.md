@@ -49,6 +49,18 @@ Run `npm test`
 
 ### Notes
 
+#### Versioning
+
+To adhere to [Dockerflow](https://github.com/mozilla-services/Dockerflow), we
+maintain a version number for this project. We try to update it when we deploy
+new code. The version number is specified in package.json.
+
+The number looks like a semantic version number, but [semver isn't suitable for
+applications](https://softwareengineering.stackexchange.com/a/255201). We
+instead follow this basic guideline: the first number is incremented for major
+changes, the second number is incremented for medium changes, and the third
+number is incremented for small changes.
+
 #### How this works
 
 A little more about how this works:
