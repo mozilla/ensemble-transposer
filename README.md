@@ -49,6 +49,10 @@ Run `npm test`
 
 ### Notes
 
+#### Running redis-cli
+
+To connect to the redis server of the Docker container, run `npm run redis-cli`.
+
 #### Versioning
 
 To adhere to [Dockerflow](https://github.com/mozilla-services/Dockerflow), we
