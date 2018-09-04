@@ -131,14 +131,14 @@ function withTransposedData(res, dataset, cb) {
 
     if (!fs.existsSync(manifestFilename)) {
         // eslint-disable-next-line no-console
-        console.error(`Manifest doesn't exist: ${manifestFilename}`);
-        res.status(500).send('Manifest does not exist');
+        console.error(`Error: Manifest doesn't exist: ${manifestFilename}`);
+        res.status(500).send('Error: Manifest does not exist');
     } else {
         redisClient.get(dataset, (err, transposedData) => {
             if (err) {
                 // eslint-disable-next-line no-console
-                console.error('Redis error:', err);
-                res.status(500).send('Redis error');
+                console.error('Error: Redis error:', err);
+                res.status(500).send('Error: Redis error');
             } else {
                 if (transposedData === null) {
                     // eslint-disable-next-line no-console
@@ -147,8 +147,8 @@ function withTransposedData(res, dataset, cb) {
                     fs.readFile(manifestFilename, 'utf8', (err, contents) => {
                         if (err) {
                             // eslint-disable-next-line no-console
-                            console.error('Error retrieving manifest:', err);
-                            res.status(500).send('Error retrieving manifest');
+                            console.error('Error: Error retrieving manifest:', err);
+                            res.status(500).send('Error: Error retrieving manifest');
                         } else {
                             const manifest = JSON.parse(contents);
                             transpose(manifest, transposedData => {
@@ -183,8 +183,8 @@ app.get('/__heartbeat__', (req, res) => {
         send200(req, res);
     } else {
         // eslint-disable-next-line no-console
-        console.error('Redis client not connected');
-        res.status(500).send('Redis client not connected');
+        console.error('Error: Redis client not connected');
+        res.status(500).send('Error: Redis client not connected');
     }
 });
 
