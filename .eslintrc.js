@@ -19,7 +19,7 @@ module.exports = {
         'no-console': 'warn',
 
         // Stylistic warnings
-        'quotes': ['warn', 'single'],
+        'quotes': ['warn', 'single', { avoidEscape: true }],
         'indent': ['warn', 4],
     },
 };
