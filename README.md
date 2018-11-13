@@ -1,5 +1,5 @@
 ensemble-transposer re-formats existing data so that it can be used by the
-[Firefox Public Data Report](https://github.com/mozilla/ensemble).
+[Firefox Public Data Report](https://data.firefox.com).
 
 Mozilla already publishes raw data: numbers and identifiers. That's great, but
 it can be difficult to work with. ensemble-transposer takes that raw data,
