@@ -1,4 +1,4 @@
-const childProcess = require('child_process');
+const { execSync } = require('child_process');
 const fs = require('fs');
 
 const packageJSON = require('../package.json');
@@ -9,13 +9,13 @@ const outFilename = './version.json';
 const versionJSON = {
     source: 'https://github.com/mozilla/ensemble-transposer',
     version: packageJSON.version,
-    commit: childProcess.execSync('git rev-parse HEAD').toString().trim(),
+    commit: execSync('git rev-parse HEAD').toString().trim(),
 };
 
-fs.writeFile(outFilename, JSON.stringify(versionJSON, null, 4), error => {
-    if (error) {
+fs.writeFile(outFilename, JSON.stringify(versionJSON, null, 4), err => {
+    if (err) {
         // eslint-disable-next-line no-console
-        console.error(error);
+        console.error(err);
     } else {
         // eslint-disable-next-line no-console
         console.log('Wrote ' + outFilename);

@@ -1,10 +1,19 @@
-ensemble-transposer fetches raw data from Mozilla's data engineers, adds
-metadata to it, and makes it available over various API endpoints.
-[Ensemble](https://github.com/mozilla/ensemble) fetches the data from these
-endpoints to generate data dashboards.
+ensemble-transposer re-formats existing data so that it can be used by the
+[Firefox Public Data Report](https://github.com/mozilla/ensemble).
 
-ensemble-transposer can easily ingest and process data that follows ([this
-format](http://fhwr-unflattener.herokuapp.com/)).
+Mozilla already publishes raw data: numbers and identifiers. That's great, but
+it can be difficult to work with. ensemble-transposer takes that raw data,
+organizes it, adds useful information like explanations, and generates a series
+of files that are much easier for developers to work with.
+[Ensemble](https://github.com/mozilla/ensemble), the platform that powers the
+Firefox Public Data Report, uses this improved and re-formatted data to build
+dashboards. Other applications are also welcome to use the data that
+ensemble-transposer outputs.
+
+ensemble-transposer can easily enhance any data that adheres to [this
+format](https://fhwr-unflattener.herokuapp.com/). Let us know if you have any
+questions about this format or if you have a dataset that you would like us to
+spruce up.
 
 ## API
 
@@ -12,77 +21,56 @@ format](http://fhwr-unflattener.herokuapp.com/)).
 
 For example: */datasets/user-activity*
 
-A summary of the given dataset, including a list of all metric names, a list of
-all categories, and more.
+A summary of the given dataset. For example, this includes a description of the
+dataset and a list of all metrics within it.
 
 ### /dataset/[datasetName]/[categoryName]/[metricName]
 
 For example: */datasets/user-activity/Italy/YAU*
 
-The data and metadata for the given metric in the given category. Includes a
-title, a description, chart configuration options, and more.
+Everything you need to know about a given metric in a given category. For
+example, this includes a title, a description, and a set of suggested axis
+labels.
 
-## Development
+## Running
 
-### Running
-
-#### For development
+### Development
 
 1. Install [Docker CE](https://docs.docker.com/install/)
-2. Run `npm run dev`
+2. Install [Node and NPM](https://nodejs.org/en/download/)
+3. Run `npm run dev`
 
 Any of the environment variables in *.env* can be overridden. For example:
+
 `PORT=1234 npm run dev`
 
-If docker-compose did not shut down properly the last time it was used, the
-development server may not work. To resolve this, run `npm run stopdev` and then
-run `npm run dev` again.
+If docker-compose does not shut down properly, it may not work later. To remedy
+this situation, run `npm run stopdev` (setting the `PORT` environment variable
+to match the value passed in to `npm run dev` earlier) and then run `npm run
+dev` again.
 
-#### In production
+### Production
 
-Run the Docker container and a Redis server side-by-side. Any of the environment
-variables in *.env* can be overridden and most should be.
+Run the Docker container. Any of the environment variables in *.env* can be
+overridden. Most should be.
 
-### Testing
+## Testing
 
 Run `npm test`
 
-### Notes
+To compare the local API and the production API, run `npm run compare`. This can
+be useful when upgrading packages or refactoring code, for example.
 
-#### Running redis-cli
+## Notes
 
-To connect to the redis server of the Docker container, run `npm run redis-cli`.
-
-#### Versioning
+### Versioning
 
 To adhere to [Dockerflow](https://github.com/mozilla-services/Dockerflow), we
-maintain a version number for this project. We try to update it when we deploy
-new code. The version number is specified in package.json.
+maintain a version number for this project in *package.json*. It should be
+incremented whenever new code is pushed.
 
-The number looks like a semantic version number, but [semver isn't suitable for
+The number looks like a semantic version number, but [semver isn't meant for
 applications](https://softwareengineering.stackexchange.com/a/255201). We
-instead follow this basic guideline: the first number is incremented for major
-changes, the second number is incremented for medium changes, and the third
-number is incremented for small changes.
-
-#### How this works
-
-A little more about how this works:
-
-ensemble-transposer ingests raw data from Mozilla's data engineers. It then uses
-the transpose script to reformat the data (so that it is keyed by metric rather
-than keyed by date) and add metadata like chart descriptions. The result is a
-single big JSON file which includes all data for all metrics in all categories.
-We call this the "transposed data."
-
-The transposed data is cached locally using Redis. The various endpoints then
-pick and choose from that file, serving up only the content that is relevant.
-
-We don't strictly need to generate and store one big transposed file for each
-dataset. They aren't even served. They function only as intermediate data stores
-from which the actual endpoints can pick and choose. Each endpoint could very
-well process and format its own data directly. Perhaps that will be done some
-day. But this approach was easiest to implement for now given that Ensemble
-*did* at one point ingest the big, transposed data file wholesale. (Plus, it
-allows us to serve the single, big transposed file down the road if we ever want
-to.)
+instead follow these basic guidelines: the first number is incremented for major
+changes, the second number is incremented for medium-sized changes, and the
+third number is incremented for small changes.

@@ -1,17 +1,18 @@
 {
     "name": "ensemble-transposer",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "private": true,
     "engines": {
-        "node": ">=8"
+        "node": ">=10.7.0"
     },
     "scripts": {
         "start": "node server",
         "dev": "docker-compose --file docker-compose.dev.yml up",
         "stopdev": "docker-compose --file docker-compose.dev.yml stop",
-        "redis-cli": "docker-compose --file docker-compose.dev.yml run redis-cli",
-        "build": "node scripts/generateVersionJSON",
-        "validate": "npm run test",
+        "build": "npm-run-all build:*",
+        "build:data": "node transpose",
+        "build:versionJSON": "node scripts/generateVersionJSON",
+        "compare": "mocha tests",
         "test": "npm run lint",
         "lint": "eslint --ext=.js,.json .",
         "posttest": "npm audit || true"
@@ -20,15 +21,19 @@
         "cors": "2.8.5",
         "express": "4.16.4",
         "express-force-ssl": "0.3.2",
-        "helmet": "3.14.0",
+        "helmet": "3.15.0",
+        "mkdirp": "0.5.1",
         "morgan": "1.9.1",
-        "redis": "2.8.0",
+        "npm-run-all": "4.1.3",
         "request": "2.88.0"
     },
     "devDependencies": {
+        "chai": "4.2.0",
+        "deep-equal-in-any-order": "1.0.10",
         "eslint": "5.8.0",
         "eslint-plugin-json": "1.2.1",
         "eslint-plugin-node": "8.0.0",
-        "nodemon": "1.18.5"
+        "mocha": "5.2.0",
+        "nodemon": "1.18.6"
     }
 }

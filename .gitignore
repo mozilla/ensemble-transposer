@@ -1,6 +1,8 @@
 # Node
 node_modules
-yarn-error.log
+
+# Transposed output
+transposed
 
 # Docker
 .config

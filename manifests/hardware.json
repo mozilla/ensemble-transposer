@@ -1,7 +1,12 @@
 {
     "sources": {
-        "data": "https://fhwr-unflattener.herokuapp.com/",
-        "annotations": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_hardware.json"
+        "data": {
+            "url": "https://fhwr-unflattener.herokuapp.com/",
+            "format": "quantum"
+        },
+        "annotations": {
+            "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_hardware.json"
+        }
     },
     "extraMetadata": {
         "title": "Hardware Across the Web",
@@ -145,18 +150,22 @@
             "sectioned": true,
             "sections": [
                 {
+                    "key": "graphics",
                     "title": "Graphics",
                     "metrics": ["gpuModel", "gpuVendor", "resolution"]
                 },
                 {
+                    "key": "processor",
                     "title": "Processor",
                     "metrics": ["cpuVendor", "cpuCores", "cpuSpeed", "ram"]
                 },
                 {
+                    "key": "operatingsystem",
                     "title": "Operating System",
                     "metrics": ["osName", "browserArch", "osArch"]
                 },
                 {
+                    "key": "plugins",
                     "title": "Plugins",
                     "metrics": ["hasFlash", "hasUnity"]
                 }

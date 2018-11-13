@@ -1,7 +1,12 @@
 {
     "sources": {
-        "data": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/webusage.json",
-        "annotations": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_webusage.json"
+        "data": {
+            "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/webusage.json",
+            "format": "quantum"
+        },
+        "annotations": {
+            "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_webusage.json"
+        }
     },
     "extraMetadata": {
         "title": "Usage Behavior",

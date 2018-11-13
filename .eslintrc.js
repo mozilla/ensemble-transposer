@@ -1,6 +1,7 @@
 module.exports = {
     env: {
         node: true,
+        mocha: true,
     },
     extends: [
         'eslint:recommended',
@@ -20,6 +21,12 @@ module.exports = {
 
         // Stylistic warnings
         'quotes': ['warn', 'single', { avoidEscape: true }],
-        'indent': ['warn', 4],
+        'indent': ['warn', 4, { SwitchCase: 1 }],
     },
+    overrides: [{
+        files: 'tests/*',
+        rules: {
+            "node/no-unpublished-require": 0,
+        },
+    }],
 };
