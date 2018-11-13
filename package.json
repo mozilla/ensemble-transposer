@@ -2,6 +2,16 @@
     "name": "ensemble-transposer",
     "version": "2.0.0",
     "private": true,
+    "description": "ensemble-transposer re-formats existing data so that it can be used by the Firefox Public Data Report.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mozilla/ensemble-transposer.git"
+    },
+    "license": "MPL-2.0",
+    "bugs": {
+        "url": "https://github.com/mozilla/ensemble-transposer/issues"
+    },
+    "homepage": "https://github.com/mozilla/ensemble-transposer#readme",
     "engines": {
         "node": ">=10.7.0"
     },
