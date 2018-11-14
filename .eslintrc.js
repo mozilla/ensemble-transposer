@@ -10,6 +10,7 @@ module.exports = {
     plugins: [
         'json',
         'node',
+        'mocha',
     ],
     root: true,
     rules: {
