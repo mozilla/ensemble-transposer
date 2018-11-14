@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "cors": "2.8.5",
+        "decimal": "0.0.2",
         "express": "4.16.4",
         "express-force-ssl": "0.3.2",
         "helmet": "3.15.0",

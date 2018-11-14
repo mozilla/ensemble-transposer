@@ -1,8 +1,8 @@
 {
     "sources": {
         "data": {
-            "url": "https://fhwr-unflattener.herokuapp.com/",
-            "format": "quantum"
+            "url": "https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json",
+            "format": "babbage"
         },
         "annotations": {
             "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_hardware.json"
@@ -170,6 +170,460 @@
                     "metrics": ["hasFlash", "hasUnity"]
                 }
             ]
+        }
+    },
+    "babbage": {
+        "fieldNameModifications": [
+            {
+                "from": "has_unity_True",
+                "to": "hasUnity_True"
+            },
+            {
+                "from": "has_unity_False",
+                "to": "hasUnity_False"
+            }
+        ],
+        "ignoredFields": [
+            "inactive",
+            "broken"
+        ],
+        "ignoredFieldGroups": [
+            "cpuCoresSpeed"
+        ],
+        "populationModifications": {
+            "cpuSpeed": {
+                "replacementGroups": [
+                    {
+                        "name": "Less than 1.4 GHz",
+                        "members": [
+                            "1.3"
+                        ]
+                    },
+                    {
+                        "name": "1.4 GHz to 1.49 GHz",
+                        "members": [
+                            "1.4"
+                        ]
+                    },
+                    {
+                        "name": "1.5 GHz to 1.69 GHz",
+                        "members": [
+                            "1.5",
+                            "1.6"
+                        ]
+                    },
+                    {
+                        "name": "1.7 GHz to 1.99 GHz",
+                        "members": [
+                            "1.7",
+                            "1.8",
+                            "1.9"
+                        ]
+                    },
+                    {
+                        "name": "2.0 GHz to 2.29 GHz",
+                        "members": [
+                            "2.0",
+                            "2.1",
+                            "2.2"
+                        ]
+                    },
+                    {
+                        "name": "2.3 GHz to 2.69 GHz",
+                        "members": [
+                            "2.3",
+                            "2.4",
+                            "2.5",
+                            "2.6"
+                        ]
+                    },
+                    {
+                        "name": "2.7 GHz to 2.99 GHz",
+                        "members": [
+                            "2.7",
+                            "2.8",
+                            "2.9"
+                        ]
+                    },
+                    {
+                        "name": "3.0 GHz to 3.29 GHz",
+                        "members": [
+                            "3.0",
+                            "3.1",
+                            "3.2"
+                        ]
+                    },
+                    {
+                        "name": "3.3 GHz to 3.69 GHz",
+                        "members": [
+                            "3.3",
+                            "3.4",
+                            "3.5",
+                            "3.6"
+                        ]
+                    },
+                    {
+                        "name": "3.7 GHz to 3.99 GHz",
+                        "members": [
+                            "3.7"
+                        ]
+                    }
+                ]
+            },
+            "osName": {
+                "renames": [
+                    {
+                        "from": "Windows_NT-5.1",
+                        "to": "Windows XP"
+                    },
+                    {
+                        "from": "Windows_NT-6.0",
+                        "to": "Windows Vista"
+                    },
+                    {
+                        "from": "Windows_NT-6.1",
+                        "to": "Windows 7"
+                    },
+                    {
+                        "from": "Windows_NT-6.2",
+                        "to": "Windows 8"
+                    },
+                    {
+                        "from": "Windows_NT-6.3",
+                        "to": "Windows 8.1"
+                    },
+                    {
+                        "from": "Windows_NT-10.0",
+                        "to": "Windows 10"
+                    },
+                    {
+                        "from": "Windows_NT-Other",
+                        "to": "Windows Other"
+                    },
+                    {
+                        "from": "Darwin-14.5.0",
+                        "to": "macOS Yosemite"
+                    },
+                    {
+                        "from": "Darwin-Other",
+                        "to": "macOS Other"
+                    },
+                    {
+                        "from": "Linux-Other",
+                        "to": "Linux"
+                    }
+                ],
+                "replacementGroups": [
+                    {
+                        "name": "macOS El Capitan",
+                        "members": [
+                            "Darwin-15.0.0",
+                            "Darwin-15.1.0",
+                            "Darwin-15.2.0",
+                            "Darwin-15.3.0",
+                            "Darwin-15.4.0",
+                            "Darwin-15.5.0",
+                            "Darwin-15.6.0",
+                            "Darwin-15.7.0",
+                            "Darwin-15.8.0",
+                            "Darwin-15.9.0"
+                        ]
+                    },
+                    {
+                        "name": "macOS Sierra",
+                        "members": [
+                            "Darwin-16.0.0",
+                            "Darwin-16.1.0",
+                            "Darwin-16.2.0",
+                            "Darwin-16.3.0",
+                            "Darwin-16.4.0",
+                            "Darwin-16.5.0",
+                            "Darwin-16.6.0",
+                            "Darwin-16.7.0",
+                            "Darwin-16.8.0",
+                            "Darwin-16.9.0"
+                        ]
+                    },
+                    {
+                        "name": "macOS High Sierra",
+                        "members": [
+                            "Darwin-17.0.0",
+                            "Darwin-17.1.0",
+                            "Darwin-17.2.0",
+                            "Darwin-17.3.0",
+                            "Darwin-17.4.0",
+                            "Darwin-17.5.0",
+                            "Darwin-17.6.0",
+                            "Darwin-17.7.0",
+                            "Darwin-17.8.0",
+                            "Darwin-17.9.0"
+                        ]
+                    },
+                    {
+                        "name": "macOS Mojave",
+                        "members": [
+                            "Darwin-18.0.0",
+                            "Darwin-18.1.0",
+                            "Darwin-18.2.0",
+                            "Darwin-18.3.0",
+                            "Darwin-18.4.0",
+                            "Darwin-18.5.0",
+                            "Darwin-18.6.0",
+                            "Darwin-18.7.0",
+                            "Darwin-18.8.0",
+                            "Darwin-18.9.0"
+                        ]
+                    }
+                ]
+            },
+            "gpuModel": {
+                "renames": [
+                    {
+                        "from": "gen7.5-haswell-gt2",
+                        "to": "Haswell (GT2)"
+                    },
+                    {
+                        "from": "gen7-ivybridge-gt2",
+                        "to": "Ivy Bridge (GT2)"
+                    },
+                    {
+                        "from": "gen6-sandybridge-gt2",
+                        "to": "Sandy Bridge (GT2)"
+                    },
+                    {
+                        "from": "gen6-sandybridge-gt1",
+                        "to": "Sandy Bridge (GT1)"
+                    },
+                    {
+                        "from": "gen7-ivybridge-gt1",
+                        "to": "Ivy Bridge (GT1)"
+                    },
+                    {
+                        "from": "gen4.5-gma4500hd",
+                        "to": "GMA 4500HD"
+                    },
+                    {
+                        "from": "gen5-ironlake",
+                        "to": "Ironlake"
+                    },
+                    {
+                        "from": "gen7-baytrail",
+                        "to": "Bay Trail"
+                    },
+                    {
+                        "from": "gen4.5-gma4500",
+                        "to": "GMA 4500"
+                    },
+                    {
+                        "from": "gen8-broadwell-gt2",
+                        "to": "Broadwell (GT2)"
+                    },
+                    {
+                        "from": "gen3-gma3100",
+                        "to": "GMA 3100"
+                    },
+                    {
+                        "from": "gen3-gma950",
+                        "to": "GMA 950"
+                    },
+                    {
+                        "from": "gen7.5-haswell-gt21",
+                        "to": "Haswell (GT21)"
+                    },
+                    {
+                        "from": "gen7-ivybridge-gt22",
+                        "to": "Ivy Bridge (GT22)"
+                    },
+                    {
+                        "from": "gen6-sandybridge-gt23",
+                        "to": "Sandy Bridge (GT23)"
+                    },
+                    {
+                        "from": "gen6-sandybridge-gt14",
+                        "to": "Sandy Bridge (GT14)"
+                    },
+                    {
+                        "from": "gen7-ivybridge-gt15",
+                        "to": "Sandy Bridge (GT15)"
+                    },
+                    {
+                        "from": "gen4.5-gma4500hd6",
+                        "to": "GMA 4500HD 6"
+                    },
+                    {
+                        "from": "gen5-ironlake7",
+                        "to": "Ironlake"
+                    },
+                    {
+                        "from": "gen7-baytrail8",
+                        "to": "Bay Trail 8"
+                    },
+                    {
+                        "from": "gen4.5-gma45009",
+                        "to": "GMA 4500 9"
+                    },
+                    {
+                        "from": "gen8-broadwell-gt210",
+                        "to": "Broadwell (GT 210)"
+                    },
+                    {
+                        "from": "gen3-gma310011",
+                        "to": "GMA 310011"
+                    },
+                    {
+                        "from": "EVERGREEN-PALM",
+                        "to": "Evergreen (Palm)"
+                    },
+                    {
+                        "from": "gen9-skylake-gt2",
+                        "to": "Skylake (GT2)"
+                    },
+                    {
+                        "from": "EVERGREEN-CEDAR",
+                        "to": "Evergreen (Cedar)"
+                    },
+                    {
+                        "from": "CAYMAN-ARUBA",
+                        "to": "Cayman (Aruba)"
+                    },
+                    {
+                        "from": "gen4-gma3500",
+                        "to": "GMA 3500"
+                    },
+                    {
+                        "from": "Tesla-GT218",
+                        "to": "GeForce GT218"
+                    },
+                    {
+                        "from": "NV40-C61",
+                        "to": "GeForce NV40"
+                    },
+                    {
+                        "from": "gen7.5-haswell-gt3",
+                        "to": "Haswell (GT3)"
+                    },
+                    {
+                        "from": "gen7.5-haswell-gt1",
+                        "to": "Haswell (GT1)"
+                    },
+                    {
+                        "from": "EVERGREEN-TURKS",
+                        "to": "Evergreen (Turks)"
+                    },
+                    {
+                        "from": "gen8-cherryview",
+                        "to": "Cherry View"
+                    },
+                    {
+                        "from": "gen9-kabylake-gt2",
+                        "to": "Kabylake (GT2)"
+                    },
+                    {
+                        "from": "gen8-broadwell-gt3",
+                        "to": "Broadwell (GT3)"
+                    },
+                    {
+                        "from": "gen5-ironlake",
+                        "to": "Ironlake"
+                    }
+                ],
+                "removals": [
+                    "Other",
+                    "Unknown",
+                    "CIK-MULLINS",
+                    "R600-RS880"
+                ]
+            },
+            "ram": {
+                "renames": [
+                    {
+                        "from": "0",
+                        "to": "0GB"
+                    },
+                    {
+                        "from": "1",
+                        "to": "1GB"
+                    },
+                    {
+                        "from": "2",
+                        "to": "2GB"
+                    },
+                    {
+                        "from": "3",
+                        "to": "3GB"
+                    },
+                    {
+                        "from": "4",
+                        "to": "4GB"
+                    },
+                    {
+                        "from": "6",
+                        "to": "6GB"
+                    },
+                    {
+                        "from": "7",
+                        "to": "7GB"
+                    },
+                    {
+                        "from": "8",
+                        "to": "8GB"
+                    },
+                    {
+                        "from": "12",
+                        "to": "12GB"
+                    },
+                    {
+                        "from": "16",
+                        "to": "16GB"
+                    }
+                ]
+            },
+            "cpuVendor": {
+                "renames": [
+                    {
+                        "from": "GenuineIntel",
+                        "to": "Intel"
+                    },
+                    {
+                        "from": "AuthenticAMD",
+                        "to": "AMD"
+                    }
+                ]
+            },
+            "browserArch": {
+                "renames": [
+                    {
+                        "from": "x86",
+                        "to": "32-bit"
+                    },
+                    {
+                        "from": "x86-64",
+                        "to": "64-bit"
+                    }
+                ]
+            },
+            "osArch": {
+                "renames": [
+                    {
+                        "from": "x86",
+                        "to": "32-bit"
+                    },
+                    {
+                        "from": "x86-64",
+                        "to": "64-bit"
+                    }
+                ]
+            },
+            "hasFlash": {
+                "removals": [
+                    "False"
+                ]
+            },
+            "hasUnity": {
+                "removals": [
+                    "False"
+                ]
+            }
         }
     }
 }

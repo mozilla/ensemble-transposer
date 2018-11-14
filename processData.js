@@ -3,6 +3,7 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 
 const QuantumFormatter = require('./formatters/QuantumFormatter');
+const BabbageFormatter = require('./formatters/BabbageFormatter');
 
 
 function processData(datasetName, manifest, cb) {
@@ -29,9 +30,12 @@ function processData(datasetName, manifest, cb) {
             case 'quantum':
                 formatter = new QuantumFormatter(manifest, data, annotations);
                 break;
+            case 'babbage':
+                formatter = new BabbageFormatter(manifest, data, annotations);
+                break;
             default:
                 // eslint-disable-next-line no-console
-                return console.error(`Data format not supported: ${dataFormat}`);
+                return console.error(`Error: Format ${dataFormat} not supported`);
         }
 
         const summary = formatter.getSummary();
