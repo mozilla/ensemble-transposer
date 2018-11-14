@@ -22,7 +22,7 @@
         "build": "npm-run-all build:*",
         "build:data": "node transpose",
         "build:versionJSON": "node scripts/generateVersionJSON",
-        "compare": "mocha tests",
+        "compare": "mocha tests/api-equivalence.test.js",
         "test": "npm run lint",
         "lint": "eslint --ext=.js,.json .",
         "posttest": "npm audit || true"
