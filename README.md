@@ -11,9 +11,9 @@ dashboards. Other applications are also welcome to use the data that
 ensemble-transposer outputs.
 
 ensemble-transposer can easily enhance any data that adheres to [this
-format](https://fhwr-unflattener.herokuapp.com/). Let us know if you have any
-questions about this format or if you have a dataset that you would like us to
-spruce up.
+format](https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/fxhealth.json").
+Let us know if you have any questions about this format or if you have a dataset
+that you would like us to spruce up.
 
 ## API
 
