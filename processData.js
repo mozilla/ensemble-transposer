@@ -15,7 +15,7 @@ function processData(datasetName, datasetConfig, cb) {
         get(datasetConfig.sources.data.url, resolve, reject);
     }));
 
-    // Annotation promise (if this dashboard has annotations at all)
+    // Annotation promise (if this dataset has annotations at all)
     if (datasetConfig.sources.annotations && datasetConfig.sources.annotations.url) {
         fetchPromises.push(new Promise((resolve, reject) => {
             get(datasetConfig.sources.annotations.url, resolve, reject);
