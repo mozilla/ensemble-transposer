@@ -8,7 +8,7 @@
             "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_fxhealth.json"
         }
     },
-    "extraMetadata": {
+    "options": {
         "title": "User Activity",
         "description": "User Activity is a weekly report describing web consumption and the state of the Firefox Desktop userbase.",
         "defaultCategory": "Worldwide",

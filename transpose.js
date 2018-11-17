@@ -5,22 +5,23 @@ const path = require('path');
 const processData = require('./processData');
 
 
-const manifestDirectory = './manifests';
+const datasetConfigDirectory = './config/datasets';
+
 new Promise((resolveTranspose, rejectTranspose) => {
-    fs.readdir(manifestDirectory, (err, filenames) => {
+    fs.readdir(datasetConfigDirectory, (err, filenames) => {
         if (err) return rejectTranspose(err);
 
         const processingPromises = [];
 
         filenames.forEach(filename => {
             processingPromises.push(new Promise((resolveProcessing, rejectProcessing) => {
-                fs.readFile(path.join(manifestDirectory, filename), 'utf8', (err, contents) => {
+                fs.readFile(path.join(datasetConfigDirectory, filename), 'utf8', (err, contents) => {
                     if (err) return rejectProcessing(err);
 
-                    const manifest = JSON.parse(contents);
                     const datasetName = filename.replace('.json', '');
+                    const datasetConfig = JSON.parse(contents);
 
-                    processData(datasetName, manifest, resolveProcessing)
+                    processData(datasetName, datasetConfig, resolveProcessing)
                 });
             }));
         });

@@ -19,11 +19,11 @@ module.exports = class extends Formatter {
         super(...args);
 
         this.quantumData = this.modifyPopulations(this.babbageToQuantum(this.rawData));
-        if (this.manifest.babbage.populationModifications) {
+        if (this.config.options.populationModifications) {
             this.quantumData = this.modifyPopulations(this.quantumData);
         }
 
-        this.quantumFormatter = new QuantumFormatter(this.manifest, this.quantumData, this.rawAnnotations);
+        this.quantumFormatter = new QuantumFormatter(this.config, this.quantumData, this.rawAnnotations);
     }
 
     getSummary() {
@@ -44,8 +44,8 @@ module.exports = class extends Formatter {
             fieldNames.forEach(fieldName => {
                 const value = rawData[index][fieldName];
 
-                if (this.manifest.babbage.fieldNameModifications) {
-                    const fnm = this.manifest.babbage.fieldNameModifications.find(e => {
+                if (this.config.options.fieldNameModifications) {
+                    const fnm = this.config.options.fieldNameModifications.find(e => {
                         return e.from === fieldName;
                     });
 
@@ -63,11 +63,11 @@ module.exports = class extends Formatter {
                     entry.date = value;
 
                 // Ignore fields which we don't use
-                } else if (this.manifest.babbage.ignoredFields.includes(fieldName)) {
+                } else if (this.config.options.ignoredFields.includes(fieldName)) {
                     return;
 
                 // Ignore field groups which we don't use
-                } else if (this.manifest.babbage.ignoredFieldGroups.includes(metricName)) {
+                } else if (this.config.options.ignoredFieldGroups.includes(metricName)) {
                     return;
 
                 // Use everything else
@@ -86,7 +86,7 @@ module.exports = class extends Formatter {
     }
 
     modifyPopulations(quantumRawData) {
-        const populationModifications = this.manifest.babbage.populationModifications;
+        const populationModifications = this.config.options.populationModifications;
 
         // For each entry in the quantum-formatted data
         quantumRawData.default.forEach(entry => {

@@ -10,18 +10,18 @@ module.exports = class extends Formatter {
     getSummary() {
         const summary = {};
 
-        summary.title = this.manifest.extraMetadata.title;
-        summary.description = this.manifest.extraMetadata.description;
+        summary.title = this.config.options.title;
+        summary.description = this.config.options.description;
         summary.categories = Object.keys(this.rawData);
 
-        if (this.manifest.extraMetadata.defaultCategory) {
-            summary.defaultCategory = this.manifest.extraMetadata.defaultCategory;
+        if (this.config.options.defaultCategory) {
+            summary.defaultCategory = this.config.options.defaultCategory;
         }
 
-        summary.metrics = Object.keys(this.manifest.extraMetadata.metrics);
+        summary.metrics = Object.keys(this.config.options.metrics);
 
-        if (this.manifest.extraMetadata.summaryMetrics) {
-            summary.summaryMetrics = this.manifest.extraMetadata.summaryMetrics;
+        if (this.config.options.summaryMetrics) {
+            summary.summaryMetrics = this.config.options.summaryMetrics;
         }
 
         summary.dates = Array.from(new Set(
@@ -30,8 +30,8 @@ module.exports = class extends Formatter {
             }, [])
         ));
 
-        if (this.manifest.extraMetadata.dashboard.sectioned) {
-            summary.sections = this.manifest.extraMetadata.dashboard.sections;
+        if (this.config.options.dashboard.sectioned) {
+            summary.sections = this.config.options.dashboard.sections;
         }
 
         summary.apiVersion = this.apiVersion;
@@ -40,7 +40,7 @@ module.exports = class extends Formatter {
     }
 
     getMetric(categoryName, metricName) {
-        const metricMeta = this.manifest.extraMetadata.metrics[metricName];
+        const metricMeta = this.config.options.metrics[metricName];
         const metric = {};
 
         let data;

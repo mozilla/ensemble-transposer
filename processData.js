@@ -6,19 +6,19 @@ const QuantumFormatter = require('./formatters/QuantumFormatter');
 const BabbageFormatter = require('./formatters/BabbageFormatter');
 
 
-function processData(datasetName, manifest, cb) {
-    const dataFormat = manifest.sources.data.format;
+function processData(datasetName, datasetConfig, cb) {
+    const dataFormat = datasetConfig.sources.data.format;
     const fetchPromises = [];
 
     // Data promise
     fetchPromises.push(new Promise((resolve, reject) => {
-        get(manifest.sources.data.url, resolve, reject);
+        get(datasetConfig.sources.data.url, resolve, reject);
     }));
 
     // Annotation promise (if this dashboard has annotations at all)
-    if (manifest.sources.annotations && manifest.sources.annotations.url) {
+    if (datasetConfig.sources.annotations && datasetConfig.sources.annotations.url) {
         fetchPromises.push(new Promise((resolve, reject) => {
-            get(manifest.sources.annotations.url, resolve, reject);
+            get(datasetConfig.sources.annotations.url, resolve, reject);
         }));
     }
 
@@ -28,10 +28,10 @@ function processData(datasetName, manifest, cb) {
         let formatter;
         switch(dataFormat) {
             case 'quantum':
-                formatter = new QuantumFormatter(manifest, data, annotations);
+                formatter = new QuantumFormatter(datasetConfig, data, annotations);
                 break;
             case 'babbage':
-                formatter = new BabbageFormatter(manifest, data, annotations);
+                formatter = new BabbageFormatter(datasetConfig, data, annotations);
                 break;
             default:
                 // eslint-disable-next-line no-console
