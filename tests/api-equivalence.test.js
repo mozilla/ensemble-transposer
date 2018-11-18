@@ -30,32 +30,38 @@ it('Local API output is equivalent to production API output', function(done) {
         'usage-behavior',
     ];
 
+    const dashboardPromises = [];
+
     dashboards.forEach(dashboardName => {
-        getLocalJSON(dashboardName, localSummary => {
-            const promises = [];
+        dashboardPromises.push(new Promise(resolveDashboard => {
+            getLocalJSON(dashboardName, localSummary => {
+                const metricPromises = [];
 
-            promises.push(new Promise(resolve => {
-                getProductionJSON(dashboardName, productionSummary => {
-                    chai.expect(productionSummary).to.deep.equalInAnyOrder(localSummary);
-                    return resolve();
-                });
-            }));
+                metricPromises.push(new Promise(resolveSummary => {
+                    getProductionJSON(dashboardName, productionSummary => {
+                        chai.expect(productionSummary).to.deep.equalInAnyOrder(localSummary);
+                        return resolveSummary();
+                    });
+                }));
 
-            localSummary.categories.forEach(categoryName => {
-                localSummary.metrics.forEach(metricName => {
-                    promises.push(new Promise(resolve => {
-                        const metricPath = `${dashboardName}/${categoryName}/${metricName}`;
-                        getLocalJSON(metricPath, localMetric => {
-                            getProductionJSON(metricPath, productionMetric => {
-                                chai.expect(productionMetric).to.deep.equalInAnyOrder(localMetric);
-                                return resolve();
+                localSummary.categories.forEach(categoryName => {
+                    localSummary.metrics.forEach(metricName => {
+                        metricPromises.push(new Promise(resolveMetric => {
+                            const metricPath = `${dashboardName}/${categoryName}/${metricName}`;
+                            getLocalJSON(metricPath, localMetric => {
+                                getProductionJSON(metricPath, productionMetric => {
+                                    chai.expect(productionMetric).to.deep.equalInAnyOrder(localMetric);
+                                    return resolveMetric();
+                                });
                             });
-                        });
-                    }));
+                        }));
+                    });
                 });
-            });
 
-            Promise.all(promises).then(() => done());
-        });
+                Promise.all(metricPromises).then(() => resolveDashboard());
+            });
+        }));
     });
+
+    Promise.all(dashboardPromises).then(() => done());
 });
