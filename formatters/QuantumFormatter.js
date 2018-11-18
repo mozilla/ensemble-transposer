@@ -40,11 +40,11 @@ module.exports = class extends Formatter {
     }
 
     getMetric(categoryName, metricName) {
-        const metricMeta = this.config.options.metrics[metricName];
+        const metricConfig = this.config.options.metrics[metricName];
         const metric = {};
 
         let data;
-        switch (metricMeta.type) {
+        switch (metricConfig.type) {
             case 'line':
                 data = this.formatLineData(categoryName, metricName);
                 break;
@@ -53,36 +53,26 @@ module.exports = class extends Formatter {
                 break;
             default:
                 // eslint-disable-next-line no-console
-                return console.error(`Unsupported type: ${metricMeta.type}`);
+                return console.error(`Unsupported type: ${metricConfig.type}`);
         }
 
-        const annotations = [];
-        if (this.rawAnnotations) {
-            this.rawAnnotations[categoryName].forEach(annotation => {
-                if (metricName in annotation.annotation) {
-                    annotations.push({
-                        date: annotation.date,
-                        label: annotation.annotation[metricName],
-                    });
-                }
-            });
+        const annotations = this.getAnnotations(categoryName, metricName);
+
+        metric.title = metricConfig.title;
+        metric.description = metricConfig.description;
+        metric.type = metricConfig.type;
+
+        if (metricConfig.type === 'line' && metricConfig.axes) {
+            metric.axes = metricConfig.axes;
         }
 
-        metric.title = metricMeta.title;
-        metric.description = metricMeta.description;
-        metric.type = metricMeta.type;
-
-        if (metricMeta.type === 'line' && metricMeta.axes) {
-            metric.axes = metricMeta.axes;
-        }
-
-        if (metricMeta.type === 'table') {
-            metric.columns = metricMeta.columns;
+        if (metricConfig.type === 'table') {
+            metric.columns = metricConfig.columns;
         }
 
         metric.data = data;
 
-        if (annotations.length) {
+        if (annotations) {
             metric.annotations = annotations;
         }
 

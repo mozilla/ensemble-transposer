@@ -1,151 +1,212 @@
 const decimal = require('decimal');
 const Formatter = require('./Formatter');
-const QuantumFormatter = require('./QuantumFormatter');
 
 /**
- * Format data which is similar to the data that the old Firefox Hardware Report
- * used. This formatting was previously done by a project called workshop a.k.a.
- * fhwr-unflattener.
+ * Format data which is structured like the old Firefox Hardware Report data.
  *
+ * This was previously done by a project named workshop a.k.a. fhwr-unflattener.
  * https://github.com/mozilla/workshop
  *
- * Although we can format Hardware Report-style data, we may not want to
- * advertise this fact. It would be easier for us if people made their data
- * available to ensemble-transposer in the quantum format.
-
+ * Although we can format this type of data, we may not want to advertise this
+ * fact. The configuration file is much more complex. The Quantum format is much
+ * easier to work with.
  */
 module.exports = class extends Formatter {
-    constructor(...args) {
-        super(...args);
+    getSummary() {
+        this.apiVersion = '1.0.0';
+        this.defaultCategory = 'default';
+        this.defaultPopulation = 'default';
+        this.valueMultiplier = 100;
 
-        this.quantumData = this.modifyPopulations(this.babbageToQuantum(this.rawData));
-        if (this.config.options.populationModifications) {
-            this.quantumData = this.modifyPopulations(this.quantumData);
+        const summary = {};
+        const dates = Array.from(new Set(this.rawData.map(entry => {
+            return entry.date
+        })));
+
+        summary.title = this.config.options.title;
+        summary.description = this.config.options.description;
+        summary.categories = [this.defaultCategory];
+        summary.metrics = Object.keys(this.config.options.metrics);
+        summary.summaryMetrics = this.config.options.summaryMetrics;
+        summary.dates = dates;
+
+        if (this.config.options.dashboard.sectioned) {
+            summary.sections = this.config.options.dashboard.sections;
         }
 
-        this.quantumFormatter = new QuantumFormatter(this.config, this.quantumData, this.rawAnnotations);
-    }
+        summary.apiVersion = this.apiVersion;
 
-    getSummary() {
-        return this.quantumFormatter.getSummary();
+        return summary;
     }
 
     getMetric(categoryName, metricName) {
-        return this.quantumFormatter.getMetric(categoryName, metricName);
-    }
+        const metric = {};
 
-    babbageToQuantum(rawData) {
-        const quantumRawData = { default: [] };
+        const metricConfig = this.config.options.metrics[metricName];
+        const data = { populations: {} };
 
-        rawData.forEach((day, index) => {
-            const entry = { metrics: {} };
-            const fieldNames = Object.keys(day);
-
-            fieldNames.forEach(fieldName => {
-                const value = rawData[index][fieldName];
-
-                if (this.config.options.fieldNameModifications) {
-                    const fnm = this.config.options.fieldNameModifications.find(e => {
-                        return e.from === fieldName;
-                    });
-
-                    if (fnm) {
-                        fieldName = fnm.to;
-                    }
-                }
-
-                const split = fieldName.split(/_(.+)/);
-                const metricName = split[0];
-                const populationName = split[1];
-
-                // Preserve the date property
-                if (fieldName === 'date') {
-                    entry.date = value;
-
-                // Ignore fields which we don't use
-                } else if (this.config.options.ignoredFields.includes(fieldName)) {
-                    return;
-
-                // Ignore field groups which we don't use
-                } else if (this.config.options.ignoredFieldGroups.includes(metricName)) {
-                    return;
-
-                // Use everything else
-                } else {
-                    entry.metrics[metricName] = entry.metrics[metricName] || {};
-
-                    // Avoid artifacts from floating point arithmetic when multiplying by 100
-                    entry.metrics[metricName][populationName] = decimal(value).mul(100).toNumber();
-                }
+        const fieldsRegex = new RegExp(metricConfig.patterns.fields);
+        this.rawData.forEach(entry => {
+            const matchingFields = Object.keys(entry).filter(fieldName => {
+                return fieldsRegex.test(fieldName);
             });
 
-            quantumRawData.default.push(entry);
+            if (matchingFields.length === 1) {
+                data.populations[this.defaultPopulation] = data.populations[this.defaultPopulation] || [];
+                this.pushSingleDataPoint(
+                    data.populations[this.defaultPopulation],
+                    entry,
+                    matchingFields[0],
+                )
+            } else if (matchingFields.length > 1) {
+                if (!metricConfig.patterns.populations) {
+                    // eslint-disable-next-line no-console
+                    return console.error(`No population pattern specified for ${metricName}`);
+                }
+
+                this.pushMultiplePopulations(
+                    data.populations,
+                    metricConfig,
+                    entry,
+                    matchingFields,
+                    metricConfig.patterns.populations,
+                )
+            }
         });
 
-        return quantumRawData;
+        const annotations = this.getAnnotations(categoryName, metricName);
+
+        metric.title = metricConfig.title;
+        metric.description = metricConfig.description;
+        metric.type = metricConfig.type;
+
+        if (metricConfig.axes) {
+            metric.axes = metricConfig.axes;
+        }
+
+        metric.data = data;
+
+        if (annotations) {
+            metric.annotations = annotations;
+        }
+
+        metric.apiVersion = this.apiVersion;
+
+        return metric;
     }
 
-    modifyPopulations(quantumRawData) {
-        const populationModifications = this.config.options.populationModifications;
+    pushSingleDataPoint(arr, entry, field) {
+        const value = decimal(
+            entry[field]
+        ).mul(this.valueMultiplier).toNumber();
 
-        // For each entry in the quantum-formatted data
-        quantumRawData.default.forEach(entry => {
+        arr.push({
+            x: entry.date,
+            y: value,
+        });
+    }
 
-            // For each metric NAME in that entry
-            Object.keys(entry.metrics).forEach(metricName => {
-                if (metricName in populationModifications) {
+    pushMultiplePopulations(obj, metricConfig, entry, matchingFields, populationsPattern) {
+        let createdAnyGroups = false;
+        let groupTotals = {};
 
-                    // Process removals
-                    if (populationModifications[metricName].removals) {
-                        populationModifications[metricName].removals.forEach(populationToBeRemoved => {
-                            delete entry.metrics[metricName][populationToBeRemoved];
-                        });
-                    }
+        matchingFields.forEach(fieldName => {
+            const fieldValue = entry[fieldName];
+            const populationsRegex = new RegExp(populationsPattern);
 
-                    // Process renames
-                    if (populationModifications[metricName].renames) {
-                        populationModifications[metricName].renames.forEach(renameMeta => {
-                            if (entry.metrics[metricName][renameMeta.from]) {
-                                entry.metrics[metricName][renameMeta.to] = entry.metrics[metricName][renameMeta.from];
-                                delete entry.metrics[metricName][renameMeta.from];
-                            }
-                        });
-                    }
+            // This isn't really documented anywhere (except here I guess) but
+            // the populations regex should always contain exactly one group
+            // which represents the population name.
+            //
+            // In other words, we don't care about the whole match. Just the
+            // first group.
+            const rawPopulationName = fieldName.match(populationsRegex)[1];
 
-                    // Process replacement groups
-                    if (populationModifications[metricName].replacementGroups) {
-                        populationModifications[metricName].replacementGroups.forEach(rg => {
-                            let combinedPopulationsValue = 0;
-                            let processedAtLeastOneMember = false;
+            const populationName = this.getPopulationName(
+                metricConfig,
+                rawPopulationName,
+            );
 
-                            rg.members.forEach(populationToSubsume => {
-                                if (populationToSubsume in entry.metrics[metricName]) {
-                                    processedAtLeastOneMember = true;
-                                    combinedPopulationsValue = decimal(combinedPopulationsValue).add(entry.metrics[metricName][populationToSubsume]).toNumber();
-                                    delete entry.metrics[metricName][populationToSubsume];
-                                }
-                            });
+            const replacementGroup = this.getReplacementGroup(metricConfig, rawPopulationName);
 
-                            if (processedAtLeastOneMember) {
-                                entry.metrics[metricName][rg.name] = combinedPopulationsValue;
-                            }
-                        });
-                    } // if (populationModifications[metricName].replacementGroups) {
+            if (replacementGroup) {
+                createdAnyGroups = true;
 
-                    // If there's only one population, make the value of that
-                    // population the value of the metric.
-                    // https://github.com/mozilla/workshop/issues/10
-                    if (typeof entry.metrics[metricName] === 'object' && Object.keys(entry.metrics[metricName]).length === 1) {
-                        const value = entry.metrics[metricName][Object.keys(entry.metrics[metricName])[0]];
-                        entry.metrics[metricName] = value;
-                    }
+                if (groupTotals[replacementGroup.name]) {
+                    groupTotals[replacementGroup.name] = decimal(
+                        groupTotals[replacementGroup.name]
+                    ).add(fieldValue).toNumber();
+                } else {
+                    groupTotals[replacementGroup.name] = fieldValue;
+                }
+            } else if (!this.populationIsExcluded(metricConfig, rawPopulationName)) {
+                const value = decimal(
+                    fieldValue
+                ).mul(this.valueMultiplier).toNumber();
 
-                } // if (metricName in populationModifications)
+                obj[populationName] = obj[populationName] || [];
+                obj[populationName].push({
+                    x: entry.date,
+                    y: value,
+                });
+            }
+        });
 
-            }); // For each metric NAME in that entry
+        if (createdAnyGroups) {
+            Object.keys(groupTotals).forEach(groupName => {
+                const value = decimal(
+                    groupTotals[groupName]
+                ).mul(this.valueMultiplier).toNumber();
 
-        }); // For each entry
+                obj[groupName] = obj[groupName] || [];
+                obj[groupName].push({
+                    x: entry.date,
+                    y: value,
+                });
+            });
+        }
+    }
 
-        return quantumRawData;
+    getPopulationName(metricConfig, rawPopulationName) {
+        if (!metricConfig.populationModifications) return rawPopulationName;
+
+        let populationName = rawPopulationName;
+
+        if (metricConfig.populationModifications.renames) {
+            const rename = metricConfig.populationModifications.renames.find(r => {
+                return r.from === rawPopulationName;
+            });
+
+            if (rename) {
+                populationName = rename.to;
+            }
+        } else if (metricConfig.populationModifications.append) {
+            const append = metricConfig.populationModifications.append;
+            const appendRegex = new RegExp(append.matchPattern);
+            if (appendRegex.test(rawPopulationName)) {
+                populationName = rawPopulationName + append.value;
+            }
+        }
+
+        return populationName;
+    }
+
+    getReplacementGroup(metricConfig, rawPopulationName) {
+        if (!metricConfig.populationModifications) return;
+        if (!metricConfig.populationModifications.replacementGroups) return;
+
+        return metricConfig.populationModifications.replacementGroups.find(rg => {
+            const memberRegex = new RegExp(rg.memberPattern);
+            return memberRegex.test(rawPopulationName);
+        });
+    }
+
+    populationIsExcluded(metricConfig, rawPopulationName) {
+        if (!metricConfig.populationModifications) return false;
+        if (!metricConfig.populationModifications.exclusions) return false;
+
+        return metricConfig.populationModifications.exclusions.includes(
+            rawPopulationName
+        );
     }
 }

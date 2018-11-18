@@ -15,6 +15,10 @@
             "resolution": {
                 "title": "Display Resolution",
                 "description": "Two display resolutions, 1366x768px and 1920x1080px, stand out as the most highly-used, with the latter showing an upward trend.",
+                "patterns": {
+                    "fields": "^resolution_",
+                    "populations": ".*?_(.*)"
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -28,6 +32,168 @@
                     "Share of primary GPU models",
                     "Note: this report only includes the primary GPU for each machine. Any supplemental GPUs are not included and this report is not representative of accelerated graphics."
                 ],
+                "patterns": {
+                    "fields": "^gpuModel_",
+                    "populations": ".*?_(.*)"
+                },
+                "populationModifications": {
+                    "renames": [
+                        {
+                            "from": "gen7.5-haswell-gt2",
+                            "to": "Haswell (GT2)"
+                        },
+                        {
+                            "from": "gen7-ivybridge-gt2",
+                            "to": "Ivy Bridge (GT2)"
+                        },
+                        {
+                            "from": "gen6-sandybridge-gt2",
+                            "to": "Sandy Bridge (GT2)"
+                        },
+                        {
+                            "from": "gen6-sandybridge-gt1",
+                            "to": "Sandy Bridge (GT1)"
+                        },
+                        {
+                            "from": "gen7-ivybridge-gt1",
+                            "to": "Ivy Bridge (GT1)"
+                        },
+                        {
+                            "from": "gen4.5-gma4500hd",
+                            "to": "GMA 4500HD"
+                        },
+                        {
+                            "from": "gen5-ironlake",
+                            "to": "Ironlake"
+                        },
+                        {
+                            "from": "gen7-baytrail",
+                            "to": "Bay Trail"
+                        },
+                        {
+                            "from": "gen4.5-gma4500",
+                            "to": "GMA 4500"
+                        },
+                        {
+                            "from": "gen8-broadwell-gt2",
+                            "to": "Broadwell (GT2)"
+                        },
+                        {
+                            "from": "gen3-gma3100",
+                            "to": "GMA 3100"
+                        },
+                        {
+                            "from": "gen3-gma950",
+                            "to": "GMA 950"
+                        },
+                        {
+                            "from": "gen7.5-haswell-gt21",
+                            "to": "Haswell (GT21)"
+                        },
+                        {
+                            "from": "gen7-ivybridge-gt22",
+                            "to": "Ivy Bridge (GT22)"
+                        },
+                        {
+                            "from": "gen6-sandybridge-gt23",
+                            "to": "Sandy Bridge (GT23)"
+                        },
+                        {
+                            "from": "gen6-sandybridge-gt14",
+                            "to": "Sandy Bridge (GT14)"
+                        },
+                        {
+                            "from": "gen7-ivybridge-gt15",
+                            "to": "Sandy Bridge (GT15)"
+                        },
+                        {
+                            "from": "gen4.5-gma4500hd6",
+                            "to": "GMA 4500HD 6"
+                        },
+                        {
+                            "from": "gen5-ironlake7",
+                            "to": "Ironlake"
+                        },
+                        {
+                            "from": "gen7-baytrail8",
+                            "to": "Bay Trail 8"
+                        },
+                        {
+                            "from": "gen4.5-gma45009",
+                            "to": "GMA 4500 9"
+                        },
+                        {
+                            "from": "gen8-broadwell-gt210",
+                            "to": "Broadwell (GT 210)"
+                        },
+                        {
+                            "from": "gen3-gma310011",
+                            "to": "GMA 310011"
+                        },
+                        {
+                            "from": "EVERGREEN-PALM",
+                            "to": "Evergreen (Palm)"
+                        },
+                        {
+                            "from": "gen9-skylake-gt2",
+                            "to": "Skylake (GT2)"
+                        },
+                        {
+                            "from": "EVERGREEN-CEDAR",
+                            "to": "Evergreen (Cedar)"
+                        },
+                        {
+                            "from": "CAYMAN-ARUBA",
+                            "to": "Cayman (Aruba)"
+                        },
+                        {
+                            "from": "gen4-gma3500",
+                            "to": "GMA 3500"
+                        },
+                        {
+                            "from": "Tesla-GT218",
+                            "to": "GeForce GT218"
+                        },
+                        {
+                            "from": "NV40-C61",
+                            "to": "GeForce NV40"
+                        },
+                        {
+                            "from": "gen7.5-haswell-gt3",
+                            "to": "Haswell (GT3)"
+                        },
+                        {
+                            "from": "gen7.5-haswell-gt1",
+                            "to": "Haswell (GT1)"
+                        },
+                        {
+                            "from": "EVERGREEN-TURKS",
+                            "to": "Evergreen (Turks)"
+                        },
+                        {
+                            "from": "gen8-cherryview",
+                            "to": "Cherry View"
+                        },
+                        {
+                            "from": "gen9-kabylake-gt2",
+                            "to": "Kabylake (GT2)"
+                        },
+                        {
+                            "from": "gen8-broadwell-gt3",
+                            "to": "Broadwell (GT3)"
+                        },
+                        {
+                            "from": "gen5-ironlake",
+                            "to": "Ironlake"
+                        }
+                    ],
+                    "exclusions": [
+                        "Other",
+                        "Unknown",
+                        "CIK-MULLINS",
+                        "R600-RS880"
+                    ]
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -42,6 +208,10 @@
                     "Since 2016, we see that Intel has increased their share as well, going from about 60% to 66% while AMD and Nvidia both dropped from around 18% to around 14%.",
                     "Note: this report only includes the primary GPU for each machine. Any supplemental GPUs are not included and this report is not representative of accelerated graphics."
                 ],
+                "patterns": {
+                    "fields": "^gpuVendor_",
+                    "populations": ".*?_(.*)"
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -52,6 +222,9 @@
             "hasUnity": {
                 "title": "Has Unity",
                 "description": "As of March 2016, Unity dropped support for the Unity Web Player in favor of WebGL export.",
+                "patterns": {
+                    "fields": "^has_unity_True$"
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -62,6 +235,58 @@
             "cpuSpeed": {
                 "title": "CPU Speeds",
                 "description": "A quarter of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.",
+                "patterns": {
+                    "fields": "^cpuSpeed",
+                    "populations": ".*?_(.*)"
+                },
+                "populationModifications": {
+                    "replacementGroups": [
+                        {
+                            "name": "Less than 1.4 GHz",
+                            "memberPattern": "^(0\\.[0-9]+|1\\.[0-3][0-9]*)$"
+                        },
+                        {
+                            "name": "1.4 GHz to 1.49 GHz",
+                            "memberPattern": "^1\\.4[0-9]*$"
+                        },
+                        {
+                            "name": "1.5 GHz to 1.69 GHz",
+                            "memberPattern": "^1\\.(5[0-9]*|6[0-6]*[0-9]*)$"
+                        },
+                        {
+                            "name": "1.7 GHz to 1.99 GHz",
+                            "memberPattern": "^1\\.[7-9][0-9]*$"
+                        },
+                        {
+                            "name": "2.0 GHz to 2.29 GHz",
+                            "memberPattern": "^2\\.[0-2][0-9]*$"
+                        },
+                        {
+                            "name": "2.3 GHz to 2.69 GHz",
+                            "memberPattern": "^2\\.[3-6][0-9]*$"
+                        },
+                        {
+                            "name": "2.7 GHz to 2.99 GHz",
+                            "memberPattern": "^2\\.[7-9][0-9]*$"
+                        },
+                        {
+                            "name": "3.0 GHz to 3.29 GHz",
+                            "memberPattern": "^3\\.[0-2][0-9]*$"
+                        },
+                        {
+                            "name": "3.3 GHz to 3.69 GHz",
+                            "memberPattern": "^3\\.[3-6][0-9]*$"
+                        },
+                        {
+                            "name": "3.7 GHz to 3.99 GHz",
+                            "memberPattern": "^3\\.[7-9][0-9]*$"
+                        },
+                        {
+                            "name": "More than 4.0 GHz",
+                            "memberPattern": "^([4-9]|[0-9][0-9]+)\\.[0-9]+$"
+                        }
+                    ]
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -72,6 +297,16 @@
             "ram": {
                 "title": "Memory",
                 "description": "The most popular memory sizes are 4GB and 8GB, with almost one-third and one-quarter of our Release users, respectively. The number of users with 2GB of memory is trending down.",
+                "patterns": {
+                    "fields": "^ram_",
+                    "populations": ".*?_(.*)"
+                },
+                "populationModifications": {
+                    "append": {
+                        "matchPattern": "\\d+",
+                        "value": "GB"
+                    }
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -82,6 +317,10 @@
             "cpuCores": {
                 "title": "CPU Cores",
                 "description": "Nearly 70% of users have machines with two physical cores.",
+                "patterns": {
+                    "fields": "^cpuCores_",
+                    "populations": ".*?_(.*)"
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -92,6 +331,22 @@
             "cpuVendor": {
                 "title": "CPU Vendor",
                 "description": "Intel leads the share of CPUs found in our Release users, with over 88% of profiles, while AMD follows behind with about 11%.",
+                "patterns": {
+                    "fields": "^cpuVendor",
+                    "populations": ".*?_(.*)"
+                },
+                "populationModifications": {
+                    "renames": [
+                        {
+                            "from": "GenuineIntel",
+                            "to": "Intel"
+                        },
+                        {
+                            "from": "AuthenticAMD",
+                            "to": "AMD"
+                        }
+                    ]
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -102,6 +357,73 @@
             "osName": {
                 "title": "Operating System",
                 "description": "Windows 7 and Windows 10 are the most popular operating systems, accounting for almost 80% of our users. Although Windows 7 is trending down and Windows 10 is trending up, the older version still hangs on to the top spot.",
+                "patterns": {
+                    "fields": "^osName_",
+                    "populations": ".*?_(.*)"
+                },
+                "populationModifications": {
+                    "renames": [
+                        {
+                            "from": "Windows_NT-5.1",
+                            "to": "Windows XP"
+                        },
+                        {
+                            "from": "Windows_NT-6.0",
+                            "to": "Windows Vista"
+                        },
+                        {
+                            "from": "Windows_NT-6.1",
+                            "to": "Windows 7"
+                        },
+                        {
+                            "from": "Windows_NT-6.2",
+                            "to": "Windows 8"
+                        },
+                        {
+                            "from": "Windows_NT-6.3",
+                            "to": "Windows 8.1"
+                        },
+                        {
+                            "from": "Windows_NT-10.0",
+                            "to": "Windows 10"
+                        },
+                        {
+                            "from": "Windows_NT-Other",
+                            "to": "Windows Other"
+                        },
+                        {
+                            "from": "Linux-Other",
+                            "to": "Linux"
+                        }
+                    ],
+                    "replacementGroups": [
+                        {
+                            "name": "macOS Yosemite",
+                            "memberPattern": "^Darwin-14\\."
+                        },
+                        {
+                            "name": "macOS El Capitan",
+                            "memberPattern": "^Darwin-15\\."
+                        },
+                        {
+                            "name": "macOS Sierra",
+                            "memberPattern": "^Darwin-16\\."
+                        },
+                        {
+                            "name": "macOS High Sierra",
+                            "memberPattern": "^Darwin-17\\."
+                        },
+                        {
+                            "name": "macOS Mojave",
+                            "memberPattern": "^Darwin-18\\."
+                        },
+                        {
+                            "name": "macOS Other",
+                            "__comment__": "This regex matches any Darwin version other than 14-18",
+                            "memberPattern": "^Darwin-(?!1[4-8]).*"
+                        }
+                    ]
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -112,6 +434,22 @@
             "browserArch": {
                 "title": "Browsers by Architecture",
                 "description": "In 2017, 64-bit Firefox updates fully unthrottled on Win7+ for 2GB+ users.",
+                "patterns": {
+                    "fields": "^browserArch_",
+                    "populations": ".*?_(.*)"
+                },
+                "populationModifications": {
+                    "renames": [
+                        {
+                            "from": "x86",
+                            "to": "32-bit"
+                        },
+                        {
+                            "from": "x86-64",
+                            "to": "64-bit"
+                        }
+                    ]
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -122,6 +460,22 @@
             "osArch": {
                 "title": "Operating Systems by Architecture",
                 "description": "We see the share of 32-bit to 64-bit operating systems diverging over the last year, with 64-bit systems accounting for over 80% of our users. Note that this metric likely undercounts non-Windows OSs, as it relies on the environment.system.isWow64 Telemetry field.",
+                "patterns": {
+                    "fields": "^osArch_",
+                    "populations": ".*?_(.*)"
+                },
+                "populationModifications": {
+                    "renames": [
+                        {
+                            "from": "x86",
+                            "to": "32-bit"
+                        },
+                        {
+                            "from": "x86-64",
+                            "to": "64-bit"
+                        }
+                    ]
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -132,6 +486,9 @@
             "hasFlash": {
                 "title": "Has Flash",
                 "description": "Flash availability on Firefox shows a downward trend; Adobe will be ending support in 2020.",
+                "patterns": {
+                    "fields": "^hasFlash_True$"
+                },
                 "type": "line",
                 "axes": {
                     "y": {
@@ -170,458 +527,6 @@
                     "metrics": ["hasFlash", "hasUnity"]
                 }
             ]
-        },
-        "fieldNameModifications": [
-            {
-                "from": "has_unity_True",
-                "to": "hasUnity_True"
-            },
-            {
-                "from": "has_unity_False",
-                "to": "hasUnity_False"
-            }
-        ],
-        "ignoredFields": [
-            "inactive",
-            "broken"
-        ],
-        "ignoredFieldGroups": [
-            "cpuCoresSpeed"
-        ],
-        "populationModifications": {
-            "cpuSpeed": {
-                "replacementGroups": [
-                    {
-                        "name": "Less than 1.4 GHz",
-                        "members": [
-                            "1.3"
-                        ]
-                    },
-                    {
-                        "name": "1.4 GHz to 1.49 GHz",
-                        "members": [
-                            "1.4"
-                        ]
-                    },
-                    {
-                        "name": "1.5 GHz to 1.69 GHz",
-                        "members": [
-                            "1.5",
-                            "1.6"
-                        ]
-                    },
-                    {
-                        "name": "1.7 GHz to 1.99 GHz",
-                        "members": [
-                            "1.7",
-                            "1.8",
-                            "1.9"
-                        ]
-                    },
-                    {
-                        "name": "2.0 GHz to 2.29 GHz",
-                        "members": [
-                            "2.0",
-                            "2.1",
-                            "2.2"
-                        ]
-                    },
-                    {
-                        "name": "2.3 GHz to 2.69 GHz",
-                        "members": [
-                            "2.3",
-                            "2.4",
-                            "2.5",
-                            "2.6"
-                        ]
-                    },
-                    {
-                        "name": "2.7 GHz to 2.99 GHz",
-                        "members": [
-                            "2.7",
-                            "2.8",
-                            "2.9"
-                        ]
-                    },
-                    {
-                        "name": "3.0 GHz to 3.29 GHz",
-                        "members": [
-                            "3.0",
-                            "3.1",
-                            "3.2"
-                        ]
-                    },
-                    {
-                        "name": "3.3 GHz to 3.69 GHz",
-                        "members": [
-                            "3.3",
-                            "3.4",
-                            "3.5",
-                            "3.6"
-                        ]
-                    },
-                    {
-                        "name": "3.7 GHz to 3.99 GHz",
-                        "members": [
-                            "3.7"
-                        ]
-                    }
-                ]
-            },
-            "osName": {
-                "renames": [
-                    {
-                        "from": "Windows_NT-5.1",
-                        "to": "Windows XP"
-                    },
-                    {
-                        "from": "Windows_NT-6.0",
-                        "to": "Windows Vista"
-                    },
-                    {
-                        "from": "Windows_NT-6.1",
-                        "to": "Windows 7"
-                    },
-                    {
-                        "from": "Windows_NT-6.2",
-                        "to": "Windows 8"
-                    },
-                    {
-                        "from": "Windows_NT-6.3",
-                        "to": "Windows 8.1"
-                    },
-                    {
-                        "from": "Windows_NT-10.0",
-                        "to": "Windows 10"
-                    },
-                    {
-                        "from": "Windows_NT-Other",
-                        "to": "Windows Other"
-                    },
-                    {
-                        "from": "Darwin-14.5.0",
-                        "to": "macOS Yosemite"
-                    },
-                    {
-                        "from": "Darwin-Other",
-                        "to": "macOS Other"
-                    },
-                    {
-                        "from": "Linux-Other",
-                        "to": "Linux"
-                    }
-                ],
-                "replacementGroups": [
-                    {
-                        "name": "macOS El Capitan",
-                        "members": [
-                            "Darwin-15.0.0",
-                            "Darwin-15.1.0",
-                            "Darwin-15.2.0",
-                            "Darwin-15.3.0",
-                            "Darwin-15.4.0",
-                            "Darwin-15.5.0",
-                            "Darwin-15.6.0",
-                            "Darwin-15.7.0",
-                            "Darwin-15.8.0",
-                            "Darwin-15.9.0"
-                        ]
-                    },
-                    {
-                        "name": "macOS Sierra",
-                        "members": [
-                            "Darwin-16.0.0",
-                            "Darwin-16.1.0",
-                            "Darwin-16.2.0",
-                            "Darwin-16.3.0",
-                            "Darwin-16.4.0",
-                            "Darwin-16.5.0",
-                            "Darwin-16.6.0",
-                            "Darwin-16.7.0",
-                            "Darwin-16.8.0",
-                            "Darwin-16.9.0"
-                        ]
-                    },
-                    {
-                        "name": "macOS High Sierra",
-                        "members": [
-                            "Darwin-17.0.0",
-                            "Darwin-17.1.0",
-                            "Darwin-17.2.0",
-                            "Darwin-17.3.0",
-                            "Darwin-17.4.0",
-                            "Darwin-17.5.0",
-                            "Darwin-17.6.0",
-                            "Darwin-17.7.0",
-                            "Darwin-17.8.0",
-                            "Darwin-17.9.0"
-                        ]
-                    },
-                    {
-                        "name": "macOS Mojave",
-                        "members": [
-                            "Darwin-18.0.0",
-                            "Darwin-18.1.0",
-                            "Darwin-18.2.0",
-                            "Darwin-18.3.0",
-                            "Darwin-18.4.0",
-                            "Darwin-18.5.0",
-                            "Darwin-18.6.0",
-                            "Darwin-18.7.0",
-                            "Darwin-18.8.0",
-                            "Darwin-18.9.0"
-                        ]
-                    }
-                ]
-            },
-            "gpuModel": {
-                "renames": [
-                    {
-                        "from": "gen7.5-haswell-gt2",
-                        "to": "Haswell (GT2)"
-                    },
-                    {
-                        "from": "gen7-ivybridge-gt2",
-                        "to": "Ivy Bridge (GT2)"
-                    },
-                    {
-                        "from": "gen6-sandybridge-gt2",
-                        "to": "Sandy Bridge (GT2)"
-                    },
-                    {
-                        "from": "gen6-sandybridge-gt1",
-                        "to": "Sandy Bridge (GT1)"
-                    },
-                    {
-                        "from": "gen7-ivybridge-gt1",
-                        "to": "Ivy Bridge (GT1)"
-                    },
-                    {
-                        "from": "gen4.5-gma4500hd",
-                        "to": "GMA 4500HD"
-                    },
-                    {
-                        "from": "gen5-ironlake",
-                        "to": "Ironlake"
-                    },
-                    {
-                        "from": "gen7-baytrail",
-                        "to": "Bay Trail"
-                    },
-                    {
-                        "from": "gen4.5-gma4500",
-                        "to": "GMA 4500"
-                    },
-                    {
-                        "from": "gen8-broadwell-gt2",
-                        "to": "Broadwell (GT2)"
-                    },
-                    {
-                        "from": "gen3-gma3100",
-                        "to": "GMA 3100"
-                    },
-                    {
-                        "from": "gen3-gma950",
-                        "to": "GMA 950"
-                    },
-                    {
-                        "from": "gen7.5-haswell-gt21",
-                        "to": "Haswell (GT21)"
-                    },
-                    {
-                        "from": "gen7-ivybridge-gt22",
-                        "to": "Ivy Bridge (GT22)"
-                    },
-                    {
-                        "from": "gen6-sandybridge-gt23",
-                        "to": "Sandy Bridge (GT23)"
-                    },
-                    {
-                        "from": "gen6-sandybridge-gt14",
-                        "to": "Sandy Bridge (GT14)"
-                    },
-                    {
-                        "from": "gen7-ivybridge-gt15",
-                        "to": "Sandy Bridge (GT15)"
-                    },
-                    {
-                        "from": "gen4.5-gma4500hd6",
-                        "to": "GMA 4500HD 6"
-                    },
-                    {
-                        "from": "gen5-ironlake7",
-                        "to": "Ironlake"
-                    },
-                    {
-                        "from": "gen7-baytrail8",
-                        "to": "Bay Trail 8"
-                    },
-                    {
-                        "from": "gen4.5-gma45009",
-                        "to": "GMA 4500 9"
-                    },
-                    {
-                        "from": "gen8-broadwell-gt210",
-                        "to": "Broadwell (GT 210)"
-                    },
-                    {
-                        "from": "gen3-gma310011",
-                        "to": "GMA 310011"
-                    },
-                    {
-                        "from": "EVERGREEN-PALM",
-                        "to": "Evergreen (Palm)"
-                    },
-                    {
-                        "from": "gen9-skylake-gt2",
-                        "to": "Skylake (GT2)"
-                    },
-                    {
-                        "from": "EVERGREEN-CEDAR",
-                        "to": "Evergreen (Cedar)"
-                    },
-                    {
-                        "from": "CAYMAN-ARUBA",
-                        "to": "Cayman (Aruba)"
-                    },
-                    {
-                        "from": "gen4-gma3500",
-                        "to": "GMA 3500"
-                    },
-                    {
-                        "from": "Tesla-GT218",
-                        "to": "GeForce GT218"
-                    },
-                    {
-                        "from": "NV40-C61",
-                        "to": "GeForce NV40"
-                    },
-                    {
-                        "from": "gen7.5-haswell-gt3",
-                        "to": "Haswell (GT3)"
-                    },
-                    {
-                        "from": "gen7.5-haswell-gt1",
-                        "to": "Haswell (GT1)"
-                    },
-                    {
-                        "from": "EVERGREEN-TURKS",
-                        "to": "Evergreen (Turks)"
-                    },
-                    {
-                        "from": "gen8-cherryview",
-                        "to": "Cherry View"
-                    },
-                    {
-                        "from": "gen9-kabylake-gt2",
-                        "to": "Kabylake (GT2)"
-                    },
-                    {
-                        "from": "gen8-broadwell-gt3",
-                        "to": "Broadwell (GT3)"
-                    },
-                    {
-                        "from": "gen5-ironlake",
-                        "to": "Ironlake"
-                    }
-                ],
-                "removals": [
-                    "Other",
-                    "Unknown",
-                    "CIK-MULLINS",
-                    "R600-RS880"
-                ]
-            },
-            "ram": {
-                "renames": [
-                    {
-                        "from": "0",
-                        "to": "0GB"
-                    },
-                    {
-                        "from": "1",
-                        "to": "1GB"
-                    },
-                    {
-                        "from": "2",
-                        "to": "2GB"
-                    },
-                    {
-                        "from": "3",
-                        "to": "3GB"
-                    },
-                    {
-                        "from": "4",
-                        "to": "4GB"
-                    },
-                    {
-                        "from": "6",
-                        "to": "6GB"
-                    },
-                    {
-                        "from": "7",
-                        "to": "7GB"
-                    },
-                    {
-                        "from": "8",
-                        "to": "8GB"
-                    },
-                    {
-                        "from": "12",
-                        "to": "12GB"
-                    },
-                    {
-                        "from": "16",
-                        "to": "16GB"
-                    }
-                ]
-            },
-            "cpuVendor": {
-                "renames": [
-                    {
-                        "from": "GenuineIntel",
-                        "to": "Intel"
-                    },
-                    {
-                        "from": "AuthenticAMD",
-                        "to": "AMD"
-                    }
-                ]
-            },
-            "browserArch": {
-                "renames": [
-                    {
-                        "from": "x86",
-                        "to": "32-bit"
-                    },
-                    {
-                        "from": "x86-64",
-                        "to": "64-bit"
-                    }
-                ]
-            },
-            "osArch": {
-                "renames": [
-                    {
-                        "from": "x86",
-                        "to": "32-bit"
-                    },
-                    {
-                        "from": "x86-64",
-                        "to": "64-bit"
-                    }
-                ]
-            },
-            "hasFlash": {
-                "removals": [
-                    "False"
-                ]
-            },
-            "hasUnity": {
-                "removals": [
-                    "False"
-                ]
-            }
         }
     }
 }
