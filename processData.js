@@ -6,7 +6,7 @@ const QuantumFormatter = require('./formatters/QuantumFormatter');
 const BabbageFormatter = require('./formatters/BabbageFormatter');
 
 
-function processData(datasetName, datasetConfig, cb) {
+function processData(datasetName, datasetConfig, resolveProcess, reportError) {
     const dataFormat = datasetConfig.sources.data.format;
     const fetchPromises = [];
 
@@ -28,14 +28,13 @@ function processData(datasetName, datasetConfig, cb) {
         let formatter;
         switch(dataFormat) {
             case 'quantum':
-                formatter = new QuantumFormatter(datasetConfig, data, annotations);
+                formatter = new QuantumFormatter(datasetName, datasetConfig, data, annotations, reportError);
                 break;
             case 'babbage':
-                formatter = new BabbageFormatter(datasetConfig, data, annotations);
+                formatter = new BabbageFormatter(datasetName, datasetConfig, data, annotations, reportError);
                 break;
             default:
-                // eslint-disable-next-line no-console
-                return console.error(`Error: Format ${dataFormat} not supported`);
+                reportError(`Format "${dataFormat}" is not supported (set for dataset "${datasetName}")`);
         }
 
         const summary = formatter.getSummary();
@@ -57,16 +56,8 @@ function processData(datasetName, datasetConfig, cb) {
             });
         });
 
-        Promise.all(writePromises).then(() => {
-            cb();
-        }).catch(err => {
-            // eslint-disable-next-line no-console
-            console.error(err)
-        });
-    }).catch(err => {
-        // eslint-disable-next-line no-console
-        console.error(err)
-    });
+        Promise.all(writePromises).then(resolveProcess).catch(reportError);
+    }).catch(reportError);
 }
 
 function get(url, resolve, reject) {

@@ -52,8 +52,7 @@ module.exports = class extends Formatter {
                 data = this.formatTableData(categoryName, metricName);
                 break;
             default:
-                // eslint-disable-next-line no-console
-                return console.error(`Unsupported type: ${metricConfig.type}`);
+                this.reportError(`Unsupported type "${metricConfig.type}" for metric "${metricName}" in dataset "${this.datasetName}"`);
         }
 
         const annotations = this.getAnnotations(categoryName, metricName);
@@ -111,8 +110,7 @@ module.exports = class extends Formatter {
             }
 
             else {
-                // eslint-disable-next-line no-console
-                return console.error('Input format error');
+                this.reportError(`Raw data is not formatted properly for metric "${metricName}" in dataset "${this.datasetName}"`);
             }
         });
 

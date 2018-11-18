@@ -60,8 +60,7 @@ module.exports = class extends Formatter {
                 )
             } else if (matchingFields.length > 1) {
                 if (!metricConfig.patterns.populations) {
-                    // eslint-disable-next-line no-console
-                    return console.error(`No population pattern specified for ${metricName}`);
+                    this.reportError(`No population pattern specified for metric "${metricName}" in dataset "${this.datasetName}"`);
                 }
 
                 this.pushMultiplePopulations(
