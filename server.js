@@ -79,8 +79,7 @@ app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}...`)
 });
 
-const rewriteFilesInterval = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-setInterval(() => {
+function transpose() {
     exec('node transpose', (err, stdout, stderr) => {
         if (err || stderr) {
             if (err) {
@@ -97,4 +96,9 @@ setInterval(() => {
             console.log(stdout);
         }
     });
-}, rewriteFilesInterval);
+}
+
+transpose();
+
+const transposeInterval = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+setInterval(transpose, transposeInterval);
