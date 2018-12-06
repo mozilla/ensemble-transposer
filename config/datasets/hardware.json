@@ -517,7 +517,7 @@
                     "metrics": ["cpuVendor", "cpuCores", "cpuSpeed", "ram"]
                 },
                 {
-                    "key": "operatingsystem",
+                    "key": "operating-system",
                     "title": "Operating System",
                     "metrics": ["osName", "browserArch", "osArch"]
                 },
