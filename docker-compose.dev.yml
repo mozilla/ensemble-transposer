@@ -8,6 +8,7 @@ services:
         environment:
             - PORT
             - NODE_ENV
+            - REDASH_API_KEY
         ports:
             - target: ${PORT}
               published: ${PORT}

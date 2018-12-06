@@ -12,7 +12,7 @@ const Formatter = require('./Formatter');
  * easier to work with.
  */
 module.exports = class extends Formatter {
-    getSummary() {
+    async getSummary() {
         this.apiVersion = '1.0.0';
         this.defaultCategory = 'default';
         this.defaultPopulation = 'default';
@@ -27,7 +27,11 @@ module.exports = class extends Formatter {
         summary.description = this.config.options.description;
         summary.categories = [this.defaultCategory];
         summary.metrics = Object.keys(this.config.options.metrics);
-        summary.summaryMetrics = this.config.options.summaryMetrics;
+
+        if (this.config.options.summaryMetrics) {
+            summary.summaryMetrics = this.config.options.summaryMetrics;
+        }
+
         summary.dates = dates;
 
         if (this.config.options.dashboard.sectioned) {
@@ -39,7 +43,7 @@ module.exports = class extends Formatter {
         return summary;
     }
 
-    getMetric(categoryName, metricName) {
+    async getMetric(categoryName, metricName) {
         const metric = {};
 
         const metricConfig = this.config.options.metrics[metricName];
@@ -60,7 +64,7 @@ module.exports = class extends Formatter {
                 )
             } else if (matchingFields.length > 1) {
                 if (!metricConfig.patterns.populations) {
-                    this.reportError(`No population pattern specified for metric "${metricName}" in dataset "${this.datasetName}"`);
+                    throw new Error(`No population pattern specified for metric "${metricName}" in dataset "${this.datasetName}"`);
                 }
 
                 this.pushMultiplePopulations(

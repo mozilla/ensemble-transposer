@@ -1,81 +1,84 @@
-const request = require('request');
+const request = require('request-promise-native');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
 const QuantumFormatter = require('./formatters/QuantumFormatter');
 const BabbageFormatter = require('./formatters/BabbageFormatter');
+const RedashFormatter = require('./formatters/RedashFormatter');
 
 
-function processData(datasetName, datasetConfig, resolveProcess, reportError) {
-    const dataFormat = datasetConfig.sources.data.format;
-    const fetchPromises = [];
+module.exports = async (datasetName, datasetConfig) => {
+    const dataURL = parseDataURL(datasetConfig.sources.data.url);
 
-    // Data promise
-    fetchPromises.push(new Promise((resolve, reject) => {
-        get(datasetConfig.sources.data.url, resolve, reject);
-    }));
+    const data = await getJSON(dataURL);
 
-    // Annotation promise (if this dataset has annotations at all)
+    let annotations;
     if (datasetConfig.sources.annotations && datasetConfig.sources.annotations.url) {
-        fetchPromises.push(new Promise((resolve, reject) => {
-            get(datasetConfig.sources.annotations.url, resolve, reject);
-        }));
+        annotations = await getJSON(datasetConfig.sources.annotations.url);
     }
 
-    Promise.all(fetchPromises).then(([data, annotations]) => {
-        const writePromises = [];
+    const format = datasetConfig.sources.data.format;
 
-        let formatter;
-        switch(dataFormat) {
-            case 'quantum':
-                formatter = new QuantumFormatter(datasetName, datasetConfig, data, annotations, reportError);
-                break;
-            case 'babbage':
-                formatter = new BabbageFormatter(datasetName, datasetConfig, data, annotations, reportError);
-                break;
-            default:
-                reportError(`Format "${dataFormat}" is not supported (set for dataset "${datasetName}")`);
+    let FormatterConstructor;
+    switch(format) {
+        case 'quantum':
+            FormatterConstructor = QuantumFormatter;
+            break;
+        case 'babbage':
+            FormatterConstructor = BabbageFormatter;
+            break;
+        case 'redash':
+            FormatterConstructor = RedashFormatter;
+            break;
+        default:
+            throw new Error(`Format "${format}" is not supported (set for dataset "${datasetName}")`);
+    }
+
+    const formatter = new FormatterConstructor(datasetName, datasetConfig, data, annotations);
+
+    const summary = await formatter.getSummary();
+
+    const writePromises = [];
+
+    writePromises.push(new Promise(resolve => {
+        writeJSON(`transposed/${datasetName}/index.json`, summary, resolve);
+    }));
+
+    for (const categoryName of summary.categories) {
+        for (const metricName of summary.metrics) {
+
+            writePromises.push(new Promise(async resolve => {
+                const metric = await formatter.getMetric(categoryName, metricName);
+                const filename = `transposed/${datasetName}/${categoryName}/${metricName}/index.json`;
+                writeJSON(filename, metric, resolve);
+            }));
+
         }
+    }
 
-        const summary = formatter.getSummary();
-
-        writePromises.push(new Promise((resolve, reject) => {
-            writeJSON(`transposed/${datasetName}/index.json`, summary, resolve, reject);
-        }));
-
-        summary.categories.forEach(categoryName => {
-            summary.metrics.forEach(metricName => {
-                writePromises.push(new Promise((resolve, reject) => {
-                    writeJSON(
-                        `transposed/${datasetName}/${categoryName}/${metricName}/index.json`,
-                        formatter.getMetric(categoryName, metricName),
-                        resolve,
-                        reject,
-                    );
-                }));
-            });
-        });
-
-        Promise.all(writePromises).then(resolveProcess).catch(reportError);
-    }).catch(reportError);
+    await Promise.all(writePromises);
 }
 
-function get(url, resolve, reject) {
-    request(url, (err, response, body) => {
-        if (err) return reject(err);
-        return resolve(JSON.parse(body));
-    });
+function parseDataURL(urlConfig) {
+    if (typeof urlConfig === 'string') return urlConfig;
+    return urlConfig.base + '?' + Object.keys(urlConfig.query).map(q => {
+        return `${q}=${process.env[urlConfig.query[q]]}`;
+    }).join('&');
 }
 
-function writeJSON(path, json, resolve, reject) {
+async function getJSON(url) {
+    return JSON.parse(await request(url));
+}
+
+function writeJSON(path, json, resolve) {
     const dir = path.substr(0, path.lastIndexOf('/'));
 
     mkdirp(dir, err => {
-        if (err) return reject(err);
+        if (err) throw err;
 
         const startTime = process.hrtime.bigint();
         fs.writeFile(path, JSON.stringify(json), err => {
-            if (err) return reject(err);
+            if (err) throw err;
 
             const endTime = process.hrtime.bigint();
             const elapsedMilliseconds = Number(endTime - startTime) / 1000000;
@@ -87,5 +90,3 @@ function writeJSON(path, json, resolve, reject) {
         });
     });
 }
-
-module.exports = processData;

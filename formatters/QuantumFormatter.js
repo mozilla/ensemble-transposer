@@ -7,7 +7,7 @@ module.exports = class extends Formatter {
         this.apiVersion = '1.0.0';
     }
 
-    getSummary() {
+    async getSummary() {
         const summary = {};
 
         summary.title = this.config.options.title;
@@ -39,7 +39,7 @@ module.exports = class extends Formatter {
         return summary;
     }
 
-    getMetric(categoryName, metricName) {
+    async getMetric(categoryName, metricName) {
         const metricConfig = this.config.options.metrics[metricName];
         const metric = {};
 
@@ -52,7 +52,7 @@ module.exports = class extends Formatter {
                 data = this.formatTableData(categoryName, metricName);
                 break;
             default:
-                this.reportError(`Unsupported type "${metricConfig.type}" for metric "${metricName}" in dataset "${this.datasetName}"`);
+                throw new Error(`Unsupported type "${metricConfig.type}" for metric "${metricName}" in dataset "${this.datasetName}"`);
         }
 
         const annotations = this.getAnnotations(categoryName, metricName);
@@ -110,7 +110,7 @@ module.exports = class extends Formatter {
             }
 
             else {
-                this.reportError(`Raw data is not formatted properly for metric "${metricName}" in dataset "${this.datasetName}"`);
+                throw new Error(`Raw data is not formatted properly for metric "${metricName}" in dataset "${this.datasetName}"`);
             }
         });
 
