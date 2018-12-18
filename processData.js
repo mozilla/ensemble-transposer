@@ -40,23 +40,33 @@ module.exports = async (datasetName, datasetConfig) => {
 
     const writePromises = [];
 
-    writePromises.push(new Promise(resolve => {
-        writeJSON(`transposed/${datasetName}/index.json`, summary, resolve);
+    writePromises.push(new Promise((resolve, reject) => {
+        try {
+            writeJSON(`transposed/${datasetName}/index.json`, summary, resolve);
+        } catch(err) {
+            reject(err);
+        }
     }));
 
     for (const categoryName of summary.categories) {
         for (const metricName of summary.metrics) {
 
-            writePromises.push(new Promise(async resolve => {
-                const metric = await formatter.getMetric(categoryName, metricName);
-                const filename = `transposed/${datasetName}/${categoryName}/${metricName}/index.json`;
-                writeJSON(filename, metric, resolve);
+            writePromises.push(new Promise(async (resolve, reject) => {
+                try {
+                    const metric = await formatter.getMetric(categoryName, metricName);
+                    const filename = `transposed/${datasetName}/${categoryName}/${metricName}/index.json`;
+                    writeJSON(filename, metric, resolve);
+                } catch(err) {
+                    reject(err);
+                }
             }));
 
         }
     }
 
     await Promise.all(writePromises);
+
+    formatter.clearCache();
 }
 
 function parseDataURL(urlConfig) {

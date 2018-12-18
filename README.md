@@ -12,8 +12,9 @@ ensemble-transposer outputs.
 
 ensemble-transposer can easily enhance any data that adheres to [this
 format](https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/fxhealth.json).
-Let us know if you have any questions about this format or if you have a dataset
-that you would like us to spruce up.
+It can also process Redash dashboards (see this [example configuration
+file](docs/example-redash-config.json)). Let us know if you have any questions
+or if you have a dataset that you would like us to spruce up.
 
 ## API
 

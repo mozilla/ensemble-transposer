@@ -4,6 +4,8 @@ module.exports = class {
         this.config = config;
         this.rawData = rawData;
         this.rawAnnotations = rawAnnotations;
+
+        this.checkForErrors();
     }
 
     getSummary() {
@@ -31,5 +33,13 @@ module.exports = class {
         if (annotations.length) {
             return annotations;
         }
+    }
+
+    clearCache() {
+        return;
+    }
+
+    checkForErrors() {
+        return;
     }
 }

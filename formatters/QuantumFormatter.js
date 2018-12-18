@@ -30,7 +30,7 @@ module.exports = class extends Formatter {
             }, [])
         ));
 
-        if (this.config.options.dashboard.sectioned) {
+        if (this.config.options.dashboard && this.config.options.dashboard.sectioned) {
             summary.sections = this.config.options.dashboard.sections;
         }
 

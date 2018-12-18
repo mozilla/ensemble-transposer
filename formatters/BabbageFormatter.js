@@ -34,7 +34,7 @@ module.exports = class extends Formatter {
 
         summary.dates = dates;
 
-        if (this.config.options.dashboard.sectioned) {
+        if (this.config.options.dashboard && this.config.options.dashboard.sectioned) {
             summary.sections = this.config.options.dashboard.sections;
         }
 
