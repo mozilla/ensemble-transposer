@@ -1,4 +1,4 @@
-FROM node:10.14.1-alpine
+FROM node:10.14.2-alpine
 
 # Add a non-privileged user for installing and running the application, but
 # don't switch to it just yet
