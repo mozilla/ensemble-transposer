@@ -10,6 +10,11 @@ module.exports = class extends Formatter {
     async getSummary() {
         const summary = {};
 
+        const unsortedDates = new Set(Object.keys(this.rawData).reduce((acc, categoryName) => {
+            return acc.concat(this.rawData[categoryName].map(e => e.date));
+        }, []));
+        const sortedDates = Array.from(unsortedDates).sort().reverse();
+
         summary.title = this.config.options.title;
         summary.description = this.config.options.description;
         summary.categories = Object.keys(this.rawData);
@@ -24,11 +29,7 @@ module.exports = class extends Formatter {
             summary.summaryMetrics = this.config.options.summaryMetrics;
         }
 
-        summary.dates = Array.from(new Set(
-            Object.keys(this.rawData).reduce((acc, categoryName) => {
-                return acc.concat(this.rawData[categoryName].map(e => e.date));
-            }, [])
-        ));
+        summary.dates = sortedDates;
 
         if (this.config.options.dashboard && this.config.options.dashboard.sectioned) {
             summary.sections = this.config.options.dashboard.sections;

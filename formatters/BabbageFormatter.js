@@ -19,9 +19,9 @@ module.exports = class extends Formatter {
         this.valueMultiplier = 100;
 
         const summary = {};
-        const dates = Array.from(new Set(this.rawData.map(entry => {
-            return entry.date
-        })));
+
+        const unsortedDates = new Set(this.rawData.map(entry => entry.date));
+        const sortedDates = Array.from(unsortedDates).sort().reverse();
 
         summary.title = this.config.options.title;
         summary.description = this.config.options.description;
@@ -32,7 +32,7 @@ module.exports = class extends Formatter {
             summary.summaryMetrics = this.config.options.summaryMetrics;
         }
 
-        summary.dates = dates;
+        summary.dates = sortedDates;
 
         if (this.config.options.dashboard && this.config.options.dashboard.sectioned) {
             summary.sections = this.config.options.dashboard.sections;

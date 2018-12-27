@@ -110,7 +110,7 @@ module.exports = class extends Formatter {
             }
         }
 
-        return Array.from(dates).sort();
+        return Array.from(dates).sort().reverse();
     }
 
     // Ignore the x axis label for now. Ensemble currently only supports

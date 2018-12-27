@@ -25,7 +25,7 @@ module.exports = {
         'indent': ['warn', 4, { SwitchCase: 1 }],
     },
     overrides: [{
-        files: 'tests/*',
+        files: 'tests/**/*.test.js',
         rules: {
             "node/no-unpublished-require": 0,
         },
