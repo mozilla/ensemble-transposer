@@ -356,7 +356,7 @@
             },
             "osName": {
                 "title": "Operating System",
-                "description": "Windows 7 and Windows 10 are the most popular operating systems, accounting for almost 80% of our users. Although Windows 7 is trending down and Windows 10 is trending up, the older version still hangs on to the top spot.",
+                "description": "Windows 7 and Windows 10 are the most popular operating systems, accounting for almost 80% of our users. Windows 10 continues to grow in popularity versus Windows 8.",
                 "patterns": {
                     "fields": "^osName_",
                     "populations": ".*?_(.*)"
