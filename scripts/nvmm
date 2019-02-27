@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# nvmm: The nvm manager
+# Run a command in the version of Node specified by NODE_TARGET_VERSION
+
+set -e
+
+unset npm_config_prefix
+
+if [[ -z "$NVM_DIR" ]] && [[ -f "$NVM_DIR/nvm.sh" ]]; then
+    source "$NVM_DIR/nvm.sh"
+elif [[ -f "$HOME/.nvm/nvm.sh" ]]; then
+    source "$HOME/.nvm/nvm.sh"
+elif [[ -f "$(brew --prefix nvm)/nvm.sh" ]]; then
+    source "$(brew --prefix nvm)/nvm.sh"
+fi
+
+if ! hash nvm &> /dev/null; then
+    >&2 echo "Error: nvm does not appear to be installed"
+    return 1
+else
+    NODE_VERSION_ORIGINAL=$(nvm current)
+    NODE_VERSION_TARGET="v8.0.0"
+
+    echo "Current Node version: $NODE_VERSION_ORIGINAL"
+    echo "Target Node version: $NODE_VERSION_TARGET"
+
+    if [[ "$NODE_VERSION_ORIGINAL" == "$NODE_VERSION_TARGET" ]]; then
+        STARTED_ON_TARGET_NODE_VERSION=true
+    else
+        STARTED_ON_TARGET_NODE_VERSION=false
+    fi
+
+    if [[ "$STARTED_ON_TARGET_NODE_VERSION" != true ]]; then
+        nvm install "$NODE_VERSION_TARGET" &> /dev/null
+        nvm use "$NODE_VERSION_TARGET" &> /dev/null
+        echo "Switched to Node version: $NODE_VERSION_TARGET"
+    fi
+
+    # Run the command which was passed to this script as an argument
+    echo
+    echo "> $*"
+    eval "$@"
+
+    if [[ "$STARTED_ON_TARGET_NODE_VERSION" != true ]]; then
+        echo
+        nvm use "$NODE_VERSION_ORIGINAL" &> /dev/null
+
+        NODE_VERSION_FINAL=$(nvm current)
+
+        if [[ "$NODE_VERSION_FINAL" != "$NODE_VERSION_ORIGINAL" ]]; then
+            >&2 echo "Could not switch back to $NODE_VERSION_ORIGINAL"
+            return 1
+        fi
+
+        echo "Switched back to Node version: $NODE_VERSION_ORIGINAL"
+    fi
+fi

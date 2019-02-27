@@ -1,18 +1,6 @@
 # Node
 node_modules
+npm-debug.log*
 
-# Transposed output
-transposed
-
-# Docker
-.config
-.ash_history
-
-# Generated files
-version.json
-
-# Directories and files that are no longer used, but which may be present in the
-# working directories of some developers
-build
-data
-fake-data
+# Testing
+demo-output

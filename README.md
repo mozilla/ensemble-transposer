@@ -7,8 +7,10 @@ organizes it, adds useful information like explanations, and generates a series
 of files that are much easier for developers to work with.
 [Ensemble](https://github.com/mozilla/ensemble), the platform that powers the
 Firefox Public Data Report, uses this improved and re-formatted data to build
-dashboards. Other applications are also welcome to use the data that
-ensemble-transposer outputs.
+dashboards.
+
+Other applications are also welcome to use the data that ensemble-transposer
+outputs. See the [API documentation](#API) for more information.
 
 ensemble-transposer can easily enhance any data that adheres to [this
 format](https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/fxhealth.json).
@@ -18,16 +20,27 @@ or if you have a dataset that you would like us to spruce up.
 
 ## API
 
-### /datasets/[datasetName]
+Re-formatted data is currently hosted under the data.firefox.com domain, but you
+are also welcome to run ensemble-transposer yourself and host the re-formatted
+data elsewhere.
 
-For example: */datasets/user-activity*
+* **Valid `platform` values:** *desktop*
+* **Valid `datasetName` values:** *hardware*, *user-activity*, *usage-behavior*
+* **Valid `categoryName` values:** Listed in the output of the
+  */datasets/[platform]/[datasetName]* endpoint
+* **Valid `metricName` values:** Listed in the output of the
+  */datasets/[platform]/[datasetName]* endpoint
+
+### /datasets/[platform]/[datasetName]
+
+For example: https://data.firefox.com/datasets/desktop/user-activity
 
 A summary of the given dataset. For example, this includes a description of the
 dataset and a list of all metrics within it.
 
-### /dataset/[datasetName]/[categoryName]/[metricName]
+### /datasets/[platform]/[datasetName]/[categoryName]/[metricName]
 
-For example: */datasets/user-activity/Italy/YAU*
+For example: https://data.firefox.com/datasets/desktop/user-activity/Italy/YAU
 
 Everything you need to know about a given metric in a given category. For
 example, this includes a title, a description, and a set of suggested axis
@@ -37,23 +50,23 @@ labels.
 
 ### Development
 
-1. Install [Docker CE](https://docs.docker.com/install/)
-2. Install [Node and NPM](https://nodejs.org/en/download/)
-3. Run `npm run dev`
-
-Any of the environment variables in *.env* can be overridden. For example:
-
-`PORT=1234 npm run dev`
-
-If docker-compose does not shut down properly, it may not work later. To remedy
-this situation, run `npm run stopdev` (setting the `PORT` environment variable
-to match the value passed in to `npm run dev` earlier) and then run `npm run
-dev` again.
+1. Install [Node and NPM](https://nodejs.org/en/download/)
+2. Run `npm run dev`
 
 ### Production
 
-Run the Docker container. Any of the environment variables in *.env* can be
-overridden. Most should be.
+This project is meant to be run as a cloud task, like a Lambda function or
+Google Cloud Function. The main function is specified as the value of `main` in
+*package.json*. Most services read this value and do the right thing. If not,
+you may need to manually point your service to that function.
+
+Re-formatted data is written to S3. Before triggering the function, be sure to
+create an S3 bucket and set the following environment variables:
+
+* `AWS_BUCKET_NAME`
+* `AWS_REGION`
+* `AWS_ACCESS_KEY_ID`
+* `AWS_SECRET_ACCESS_KEY`
 
 ## Testing
 

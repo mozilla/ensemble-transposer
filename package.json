@@ -1,6 +1,6 @@
 {
     "name": "ensemble-transposer",
-    "version": "2.1.0",
+    "version": "3.0.0",
     "private": true,
     "description": "ensemble-transposer re-formats existing data so that it can be used by the Firefox Public Data Report.",
     "repository": {
@@ -13,28 +13,24 @@
     },
     "homepage": "https://github.com/mozilla/ensemble-transposer#readme",
     "engines": {
-        "node": ">=10.7.0"
+        "node": ">=8.0.0"
     },
+    "main": "transpose/index.js",
     "scripts": {
-        "start": "node server",
-        "dev": "docker-compose --file docker-compose.dev.yml up",
-        "stopdev": "docker-compose --file docker-compose.dev.yml stop",
-        "build": "node scripts/generateVersionJSON",
-        "compare": "mocha tests/special/api-equivalence.test.js",
-        "test": "npm-run-all lint mocha",
+        "start": "scripts/nvmm 'node start'",
+        "dev": "NODE_ENV=development scripts/nvmm 'node start'",
+        "test": "npm-run-all lint mocha:setup mocha:standard",
         "lint": "eslint --ext=.js,.json .",
-        "mocha": "mocha tests/standard",
+        "mocha:setup": "NODE_ENV=test scripts/nvmm 'node start'",
+        "mocha:standard": "NODE_ENV=test scripts/nvmm 'mocha tests/standard'",
+        "compare": "npm-run-all mocha:setup mocha:api-equivalence",
+        "mocha:api-equivalence": "NODE_ENV=test scripts/nvmm 'mocha tests/special/api-equivalence.test.js'",
         "posttest": "npm audit || true"
     },
     "dependencies": {
-        "cors": "2.8.5",
-        "decimal": "0.0.2",
-        "express": "4.16.4",
-        "express-force-ssl": "0.3.2",
-        "helmet": "3.15.1",
+        "aws-sdk": "2.411.0",
+        "big.js": "5.2.2",
         "memoizee": "0.4.14",
-        "mkdirp": "0.5.1",
-        "morgan": "1.9.1",
         "request": "2.88.0",
         "request-promise-native": "1.0.7"
     },
@@ -45,8 +41,8 @@
         "eslint-plugin-json": "1.4.0",
         "eslint-plugin-mocha": "5.3.0",
         "eslint-plugin-node": "8.0.1",
+        "mkdirp": "0.5.1",
         "mocha": "6.0.2",
-        "nodemon": "1.18.10",
         "npm-run-all": "4.1.5"
     }
 }

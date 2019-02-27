@@ -1,6 +1,7 @@
 module.exports = class {
-    constructor(datasetName, config, rawData, rawAnnotations) {
+    constructor(datasetName, platform, config, rawData, rawAnnotations) {
         this.datasetName = datasetName;
+        this.platform = platform;
         this.config = config;
         this.rawData = rawData;
         this.rawAnnotations = rawAnnotations;
@@ -9,11 +10,11 @@ module.exports = class {
     }
 
     getSummary() {
-        throw new Error(`getSummary not implemented for format ${this.config.sources.data.format}`);
+        throw new Error(`getSummary not implemented for format ${this.config.sources[this.platform].data.format}`);
     }
 
     getMetric() {
-        throw new Error(`getMetric not implemented for format ${this.config.sources.data.format}`);
+        throw new Error(`getMetric not implemented for format ${this.config.sources[this.platform].data.format}`);
     }
 
     getAnnotations(categoryName, metricName) {

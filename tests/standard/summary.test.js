@@ -7,11 +7,13 @@ it('All dates are in descending order', function(done) {
         const datasetNames = utils.getDatasetNames();
 
         for (const datasetName of datasetNames) {
-            const localSummary = await utils.getLocalJSON(datasetName);
-            const returnedDates = localSummary.dates;
-            const correctlySortedDates = returnedDates.concat().sort().reverse();
+            for (const platform of await utils.getPlatforms(datasetName)) {
+                const localSummary = await utils.getLocalJSON(`${platform}/${datasetName}`);
+                const returnedDates = localSummary.dates;
+                const correctlySortedDates = returnedDates.concat().sort().reverse();
 
-            assert.deepEqual(returnedDates, correctlySortedDates);
+                assert.deepEqual(returnedDates, correctlySortedDates);
+            }
         }
     }
 

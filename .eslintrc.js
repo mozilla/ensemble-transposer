@@ -14,6 +14,9 @@ module.exports = {
     ],
     root: true,
     rules: {
+        // Disabled
+        'node/no-unpublished-require': 0,
+
         // Errors
         'eqeqeq': 'error',
 
@@ -24,10 +27,4 @@ module.exports = {
         'quotes': ['warn', 'single', { avoidEscape: true }],
         'indent': ['warn', 4, { SwitchCase: 1 }],
     },
-    overrides: [{
-        files: 'tests/**/*.test.js',
-        rules: {
-            "node/no-unpublished-require": 0,
-        },
-    }],
 };

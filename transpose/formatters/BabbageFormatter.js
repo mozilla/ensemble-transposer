@@ -1,4 +1,5 @@
-const decimal = require('decimal');
+const Big = require('big.js');
+
 const Formatter = require('./Formatter');
 
 /**
@@ -99,9 +100,9 @@ module.exports = class extends Formatter {
     }
 
     pushSingleDataPoint(arr, entry, field) {
-        const value = decimal(
+        const value = parseFloat(new Big(
             entry[field]
-        ).mul(this.valueMultiplier).toNumber();
+        ).times(this.valueMultiplier));
 
         arr.push({
             x: entry.date,
@@ -136,16 +137,16 @@ module.exports = class extends Formatter {
                 createdAnyGroups = true;
 
                 if (groupTotals[replacementGroup.name]) {
-                    groupTotals[replacementGroup.name] = decimal(
+                    groupTotals[replacementGroup.name] = parseFloat(new Big(
                         groupTotals[replacementGroup.name]
-                    ).add(fieldValue).toNumber();
+                    ).plus(fieldValue));
                 } else {
                     groupTotals[replacementGroup.name] = fieldValue;
                 }
             } else if (!this.populationIsExcluded(metricConfig, rawPopulationName)) {
-                const value = decimal(
+                const value = parseFloat(new Big(
                     fieldValue
-                ).mul(this.valueMultiplier).toNumber();
+                ).times(this.valueMultiplier));
 
                 obj[populationName] = obj[populationName] || [];
                 obj[populationName].push({
@@ -157,9 +158,9 @@ module.exports = class extends Formatter {
 
         if (createdAnyGroups) {
             Object.keys(groupTotals).forEach(groupName => {
-                const value = decimal(
+                const value = parseFloat(new Big(
                     groupTotals[groupName]
-                ).mul(this.valueMultiplier).toNumber();
+                ).times(this.valueMultiplier));
 
                 obj[groupName] = obj[groupName] || [];
                 obj[groupName].push({

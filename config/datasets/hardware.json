@@ -1,11 +1,13 @@
 {
     "sources": {
-        "data": {
-            "url": "https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json",
-            "format": "babbage"
-        },
-        "annotations": {
-            "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_hardware.json"
+        "desktop": {
+            "data": {
+                "url": "https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json",
+                "format": "babbage"
+            },
+            "annotations": {
+                "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_hardware.json"
+            }
         }
     },
     "options": {
