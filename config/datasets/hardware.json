@@ -450,6 +450,9 @@
                             "from": "x86-64",
                             "to": "64-bit"
                         }
+                    ],
+                    "exclusions": [
+                        "aarch64"
                     ]
                 },
                 "type": "line",
