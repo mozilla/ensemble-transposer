@@ -178,7 +178,7 @@
                         },
                         {
                             "from": "gen9-kabylake-gt2",
-                            "to": "Kabylake (GT2)"
+                            "to": "Kaby Lake (GT2)"
                         },
                         {
                             "from": "gen8-broadwell-gt3",
@@ -187,6 +187,14 @@
                         {
                             "from": "gen5-ironlake",
                             "to": "Ironlake"
+                        },
+                        {
+                            "from": "gen9-coffeelake-gt2",
+                            "to": "Coffee Lake (GT2)"
+                        },
+                        {
+                            "from": "gen9-kabylake-gt1.5",
+                            "to": "Kaby Lake (GT1.5)"
                         }
                     ],
                     "exclusions": [
