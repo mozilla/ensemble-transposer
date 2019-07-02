@@ -42,7 +42,7 @@ module.exports = async (datasetName, datasetConfig) => {
 
         writePromises.push(new Promise((resolve, reject) => {
             writeData(
-                `${platform}/${datasetName}/index.json`,
+                `datasets/${platform}/${datasetName}/index.json`,
                 JSON.stringify(summary),
             ).then(resolve).catch(reject);
         }));
@@ -50,7 +50,7 @@ module.exports = async (datasetName, datasetConfig) => {
         for (const categoryName of summary.categories) {
             for (const metricName of summary.metrics) {
 
-                const filename = `${platform}/${datasetName}/${categoryName}/${metricName}/index.json`;
+                const filename = `datasets/${platform}/${datasetName}/${categoryName}/${metricName}/index.json`;
                 const metric = await formatter.getMetric(categoryName, metricName);
 
                 writePromises.push(new Promise((resolve, reject) => {
