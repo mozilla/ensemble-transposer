@@ -133,6 +133,7 @@ function writeData(filename, data) {
                 Bucket: bucketName,
                 Key: filename,
                 Body: data,
+                ContentType: 'application/json',
             };
 
             const startTime = process.hrtime();
