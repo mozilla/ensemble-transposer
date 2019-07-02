@@ -30,7 +30,7 @@ async function getPlatforms(datasetName) {
 async function getLocalJSON(identifier) {
     const localFilename = path.join(
         __dirname,
-        `../demo-output/${identifier}/index.json`,
+        `../demo-output/datasets/${identifier}/index.json`,
     );
     return JSON.parse(await readFilePromisified(localFilename, 'utf-8'));
 }
