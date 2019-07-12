@@ -229,19 +229,6 @@
                     }
                 }
             },
-            "hasUnity": {
-                "title": "Has Unity",
-                "description": "As of March 2016, Unity dropped support for the Unity Web Player in favor of WebGL export.",
-                "patterns": {
-                    "fields": "^has_unity_True$"
-                },
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "%"
-                    }
-                }
-            },
             "cpuSpeed": {
                 "title": "CPU Speeds",
                 "description": "A quarter of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.",
@@ -537,7 +524,7 @@
                 {
                     "key": "plugins",
                     "title": "Plugins",
-                    "metrics": ["hasFlash", "hasUnity"]
+                    "metrics": ["hasFlash"]
                 }
             ]
         }
