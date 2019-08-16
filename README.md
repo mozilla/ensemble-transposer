@@ -53,6 +53,13 @@ labels.
 1. Install [Node and NPM](https://nodejs.org/en/download/)
 2. Run `npm run dev`
 
+#### Writing files to S3
+
+Follow these steps to test writing to S3 from a development environment.
+
+1. Copy *.env-dist* to *.env* and provide values for all environment variables
+2. Run `npm start`
+
 ### Production
 
 This project is meant to be run as a cloud task, like a Lambda function or

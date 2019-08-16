@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const request = require('request-promise-native');
 const fs = require('fs');
 const S3 = require('aws-sdk/clients/s3');
