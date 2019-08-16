@@ -14,7 +14,7 @@ const Formatter = require('./Formatter');
  */
 module.exports = class extends Formatter {
     async getSummary() {
-        this.apiVersion = '1.0.0';
+        this.apiVersion = '1.1.0';
         this.defaultCategory = 'default';
         this.defaultPopulation = 'default';
         this.valueMultiplier = 100;
@@ -26,6 +26,11 @@ module.exports = class extends Formatter {
 
         summary.title = this.config.options.title;
         summary.description = this.config.options.description;
+
+        if (this.config.options.metaDescription) {
+            summary.metaDescription = this.config.options.metaDescription;
+        }
+
         summary.categories = [this.defaultCategory];
         summary.metrics = Object.keys(this.config.options.metrics);
 

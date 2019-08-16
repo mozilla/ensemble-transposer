@@ -4,7 +4,7 @@ const Formatter = require('./Formatter');
 module.exports = class extends Formatter {
     constructor(...args) {
         super(...args);
-        this.apiVersion = '1.0.0';
+        this.apiVersion = '1.1.0';
     }
 
     async getSummary() {
@@ -17,6 +17,11 @@ module.exports = class extends Formatter {
 
         summary.title = this.config.options.title;
         summary.description = this.config.options.description;
+
+        if (this.config.options.metaDescription) {
+            summary.metaDescription = this.config.options.metaDescription;
+        }
+
         summary.categories = Object.keys(this.rawData);
 
         if (this.config.options.defaultCategory) {

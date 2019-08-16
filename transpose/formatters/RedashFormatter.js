@@ -6,7 +6,7 @@ const memoize = require('memoizee');
 module.exports = class extends Formatter {
     constructor(...args) {
         super(...args);
-        this.apiVersion = '1.0.0';
+        this.apiVersion = '1.1.0';
 
         this.getRawMetric = memoize(async metricName => {
             const visualization = this.getVisualization(metricName);
@@ -21,6 +21,11 @@ module.exports = class extends Formatter {
 
         summary.title = this.rawData.name;
         summary.description = this.config.options.description;
+
+        if (this.config.options.metaDescription) {
+            summary.metaDescription = this.config.options.metaDescription;
+        }
+
         summary.categories = ['default'];
         summary.metrics = this.rawData.widgets.map(w => w.visualization.query.id.toString());
 
