@@ -13,6 +13,7 @@
     "options": {
         "title": "User Activity",
         "description": "User Activity is a weekly report describing web consumption and the state of the Firefox Desktop userbase.",
+        "metaDescription": "The state of the Firefox userbase, including user totals, usage hours, and version adoption. Use our public data to improve your Firefox support!",
         "defaultCategory": "Worldwide",
         "metrics": {
             "YAU": {
