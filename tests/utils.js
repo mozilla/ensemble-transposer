@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const request = require('request-promise-native');
+const S3 = require('aws-sdk/clients/s3');
 const { promisify } = require('util');
 
 
@@ -27,12 +28,20 @@ async function getPlatforms(datasetName) {
     return Object.keys(datasetConfig.sources);
 }
 
-async function getLocalJSON(identifier) {
-    const localFilename = path.join(
-        __dirname,
-        `../demo-output/datasets/${identifier}/index.json`,
-    );
-    return JSON.parse(await readFilePromisified(localFilename, 'utf-8'));
+async function getDevelopmentJSON(identifier) {
+    const objectParams = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: `datasets/${identifier}/index.json`,
+    };
+
+    const { Body } = await new S3({
+        apiVersion: '2006-03-01',
+        region: process.env.AWS_REGION,
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    }).getObject(objectParams).promise();
+
+    return JSON.parse(Body);
 }
 
 async function getProductionJSON(identifier) {
@@ -44,6 +53,6 @@ async function getProductionJSON(identifier) {
 module.exports = {
     getDatasetNames,
     getPlatforms,
-    getLocalJSON,
+    getDevelopmentJSON,
     getProductionJSON,
 };

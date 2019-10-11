@@ -1,8 +1,10 @@
+.env
+
+# Misc
+.DS_Store
+*.sw?
+
 # Node
 node_modules
 npm-debug.log*
-
-# Testing
-demo-output
-
-.env
+*.log
