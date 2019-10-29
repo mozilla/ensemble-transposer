@@ -15,8 +15,6 @@ RUN npm install && \
 COPY config ./config
 COPY tests ./tests
 COPY transpose ./transpose
-COPY .eslintignore .
-COPY .eslintrc.js .
-COPY start.js .
+COPY .eslintignore .eslintrc.js start.js ./
 
 CMD ["npm", "start"]
