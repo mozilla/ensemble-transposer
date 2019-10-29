@@ -49,7 +49,7 @@ async function getDevelopmentJSON(identifier) {
 
 async function getProductionJSON(identifier) {
     return JSON.parse(await request(
-        `https://data.firefox.com/datasets/${identifier}`
+        `https://data.firefox.com/datasets/${identifier}/index.json`
     ));
 }
 

@@ -31,16 +31,16 @@ data elsewhere.
 * **Valid `metricName` values:** Listed in the output of the
   */datasets/[platform]/[datasetName]* endpoint
 
-### /datasets/[platform]/[datasetName]
+### /datasets/[platform]/[datasetName]/index.json
 
-For example: https://data.firefox.com/datasets/desktop/user-activity
+For example: https://data.firefox.com/datasets/desktop/user-activity/index.json
 
 A summary of the given dataset. For example, this includes a description of the
 dataset and a list of all metrics within it.
 
-### /datasets/[platform]/[datasetName]/[categoryName]/[metricName]
+### /datasets/[platform]/[datasetName]/[categoryName]/[metricName]/index.json
 
-For example: https://data.firefox.com/datasets/desktop/user-activity/Italy/YAU
+For example: https://data.firefox.com/datasets/desktop/user-activity/Italy/YAU/index.json
 
 Everything you need to know about a given metric in a given category. For
 example, this includes a title, a description, and a set of suggested axis
