@@ -1,6 +1,6 @@
 {
     "name": "ensemble-transposer",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "private": true,
     "description": "ensemble-transposer re-formats existing data so that it can be used by the Firefox Public Data Report.",
     "repository": {
