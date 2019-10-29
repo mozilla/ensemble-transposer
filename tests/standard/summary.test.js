@@ -8,7 +8,7 @@ it('All dates are in descending order', function(done) {
 
         for (const datasetName of datasetNames) {
             for (const platform of await utils.getPlatforms(datasetName)) {
-                const localSummary = await utils.getLocalJSON(`${platform}/${datasetName}`);
+                const localSummary = await utils.getDevelopmentJSON(`${platform}/${datasetName}`);
                 const returnedDates = localSummary.dates;
                 const correctlySortedDates = returnedDates.concat().sort().reverse();
 

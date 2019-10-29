@@ -46,48 +46,47 @@ Everything you need to know about a given metric in a given category. For
 example, this includes a title, a description, and a set of suggested axis
 labels.
 
-## Running
+## Development
 
-### Development
+### Setup
 
-1. Install [Node and NPM](https://nodejs.org/en/download/)
-2. Run `npm run dev`
+1. Install [Docker](https://docs.docker.com/install/)
+2. Create a new [Amazon S3](https://aws.amazon.com/s3/) bucket
+3. Copy *.env-dist* to *.env* and provide values for all environment variables
 
-#### Writing files to S3
+### Inspecting output
 
-Follow these steps to test writing to S3 from a development environment.
+Run `make start` and inspect that data that is uploaded to S3.
 
-1. Copy *.env-dist* to *.env* and provide values for all environment variables
-2. Run `npm start`
+### Testing
 
-### Production
+Run `make test` to lint code and run standard tests.
+
+Run `make compare` to compare the data in your S3 bucket to the data in the
+production S3 bucket. This can be useful when upgrading packages or refactoring
+code, for example.
+
+## Deployment
 
 This project is meant to be run as a cloud task, like a Lambda function or
 Google Cloud Function. The main function is specified as the value of `main` in
 *package.json*. Most services read this value and do the right thing. If not,
 you may need to manually point your service to that function.
 
-Re-formatted data is written to S3. Before triggering the function, be sure to
-create an S3 bucket and set the following environment variables:
+Before triggering the function, be sure to create an [Amazon
+S3](https://aws.amazon.com/s3/) bucket and set the following environment
+variables:
 
 * `AWS_BUCKET_NAME`
 * `AWS_REGION`
 * `AWS_ACCESS_KEY_ID`
 * `AWS_SECRET_ACCESS_KEY`
 
-## Testing
-
-Run `npm test`
-
-To compare the local API and the production API, run `npm run compare`. This can
-be useful when upgrading packages or refactoring code, for example.
-
 ## Notes
 
 ### Versioning
 
-To adhere to [Dockerflow](https://github.com/mozilla-services/Dockerflow), we
-maintain a version number for this project in *package.json*. It should be
+We maintain a version number for this project in *package.json*. It should be
 incremented whenever new code is pushed.
 
 The number looks like a semantic version number, but [semver isn't meant for

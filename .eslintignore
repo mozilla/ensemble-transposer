@@ -1,5 +1,4 @@
 package-lock.json
-demo-output
 
 # Reverse matches (i.e., DO NOT ignore these files)
 !.eslintrc.js

@@ -1,6 +1,6 @@
 {
     "name": "ensemble-transposer",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "private": true,
     "description": "ensemble-transposer re-formats existing data so that it can be used by the Firefox Public Data Report.",
     "repository": {
@@ -13,18 +13,17 @@
     },
     "homepage": "https://github.com/mozilla/ensemble-transposer#readme",
     "engines": {
-        "node": ">=8.0.0"
+        "node": ">=8.16.2"
     },
     "main": "transpose/index.js",
     "scripts": {
-        "start": "scripts/nvmm 'node start'",
-        "dev": "NODE_ENV=development scripts/nvmm 'node start'",
-        "test": "npm-run-all lint mocha:setup mocha:standard",
+        "start": "node start",
+        "test": "npm-run-all lint mocha",
         "lint": "eslint --ext=.js,.json .",
-        "mocha:setup": "NODE_ENV=test scripts/nvmm 'node start'",
-        "mocha:standard": "NODE_ENV=test scripts/nvmm 'mocha tests/standard'",
-        "compare": "npm-run-all mocha:setup mocha:api-equivalence",
-        "mocha:api-equivalence": "NODE_ENV=test scripts/nvmm 'mocha tests/special/api-equivalence.test.js'",
+        "premocha": "node start",
+        "mocha": "mocha tests/standard",
+        "precompare": "node start",
+        "compare": "mocha tests/special/api-equivalence.test.js",
         "posttest": "npm audit || true"
     },
     "dependencies": {

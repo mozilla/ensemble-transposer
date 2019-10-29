@@ -6,7 +6,7 @@ const utils = require('../utils');
 chai.use(deepEqualInAnyOrder);
 
 
-it('Local API output is equivalent to production API output', function(done) {
+it('Development API output is equivalent to production API output', function(done) {
     this.timeout(50000);
 
     async function compare() {
@@ -15,20 +15,20 @@ it('Local API output is equivalent to production API output', function(done) {
         for (const datasetName of datasetNames) {
 
             for (const platform of await utils.getPlatforms(datasetName)) {
-                const localSummary = await utils.getLocalJSON(`${platform}/${datasetName}`);
+                const developmentSummary = await utils.getDevelopmentJSON(`${platform}/${datasetName}`);
                 const productionSummary = await utils.getProductionJSON(`${platform}/${datasetName}`);
 
-                chai.expect(productionSummary).to.deep.equalInAnyOrder(localSummary);
+                chai.expect(productionSummary).to.deep.equalInAnyOrder(developmentSummary);
 
                 // The order of the dates *does* matter
-                chai.expect(productionSummary.dates).to.deep.equal(localSummary.dates);
+                chai.expect(productionSummary.dates).to.deep.equal(developmentSummary.dates);
 
-                for (const categoryName of localSummary.categories) {
-                    for (const metricName of localSummary.metrics) {
+                for (const categoryName of developmentSummary.categories) {
+                    for (const metricName of developmentSummary.metrics) {
                         const metricPath = `${platform}/${datasetName}/${categoryName}/${metricName}`;
-                        const localMetric = await utils.getLocalJSON(metricPath, platform);
+                        const developmentMetric = await utils.getDevelopmentJSON(metricPath, platform);
                         const productionMetric = await utils.getProductionJSON(metricPath, platform);
-                        chai.expect(productionMetric).to.deep.equalInAnyOrder(localMetric);
+                        chai.expect(productionMetric).to.deep.equalInAnyOrder(developmentMetric);
                     }
                 }
             }
