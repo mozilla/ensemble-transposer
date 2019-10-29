@@ -12,9 +12,8 @@ RUN npm install && \
 #
 # NB: Docker copies the contents of directories, not the directories themselves,
 # to the specified target. That's why we need to name target directories.
+COPY src ./src
 COPY config ./config
-COPY tests ./tests
-COPY transpose ./transpose
-COPY .eslintignore .eslintrc.js start.js ./
+COPY .eslintignore .eslintrc.js ./
 
 CMD ["npm", "start"]

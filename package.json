@@ -1,6 +1,6 @@
 {
     "name": "ensemble-transposer",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "private": true,
     "description": "ensemble-transposer re-formats existing data so that it can be used by the Firefox Public Data Report.",
     "repository": {
@@ -15,15 +15,15 @@
     "engines": {
         "node": ">=8.16.2"
     },
-    "main": "transpose/index.js",
+    "main": "src/index.js",
     "scripts": {
-        "start": "node start",
+        "start": "node --eval \"require('./src').default();\"",
         "test": "npm-run-all lint mocha",
         "lint": "eslint --ext=.js,.json .",
-        "premocha": "node start",
-        "mocha": "mocha tests/standard",
-        "precompare": "node start",
-        "compare": "mocha tests/special/api-equivalence.test.js",
+        "premocha": "npm start",
+        "mocha": "mocha src/tests/standard",
+        "precompare": "npm start",
+        "compare": "mocha src/tests/special/api-equivalence.test.js",
         "posttest": "npm audit || true"
     },
     "dependencies": {

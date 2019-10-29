@@ -8,7 +8,10 @@ const { promisify } = require('util');
 const readFilePromisified = promisify(fs.readFile);
 
 function getDatasetNames() {
-    const datasetConfigDirectory = path.join(__dirname, '../config/datasets');
+    const datasetConfigDirectory = path.join(
+        __dirname,
+        '../../config/datasets'
+    );
     const filenames = fs.readdirSync(datasetConfigDirectory);
     const datasetNames = [];
 
@@ -22,7 +25,7 @@ function getDatasetNames() {
 async function getPlatforms(datasetName) {
     const datasetConfig = JSON.parse(await readFilePromisified(path.join(
         __dirname,
-        `../config/datasets/${datasetName}.json`
+        `../../config/datasets/${datasetName}.json`
     ), 'utf-8'));
 
     return Object.keys(datasetConfig.sources);
