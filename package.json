@@ -27,12 +27,12 @@
         "posttest": "npm audit || true"
     },
     "dependencies": {
-        "aws-sdk": "2.559.0",
+        "aws-sdk": "2.563.0",
         "big.js": "5.2.2",
         "dotenv": "8.2.0",
         "memoizee": "0.4.14",
         "request": "2.88.0",
-        "request-promise-native": "1.0.7"
+        "request-promise-native": "1.0.8"
     },
     "devDependencies": {
         "chai": "4.2.0",
