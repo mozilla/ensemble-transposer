@@ -202,7 +202,8 @@
                         "Other",
                         "Unknown",
                         "CIK-MULLINS",
-                        "R600-RS880"
+                        "R600-RS880",
+                        "CIK-KABINI"
                     ]
                 },
                 "type": "line",
@@ -414,6 +415,10 @@
                         {
                             "name": "macOS Mojave",
                             "memberPattern": "^Darwin-18\\."
+                        },
+                        {
+                            "name": "macOS Catalina",
+                            "memberPattern": "^Darwin-19\\."
                         },
                         {
                             "name": "macOS Other",
