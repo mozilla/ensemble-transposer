@@ -422,8 +422,8 @@
                         },
                         {
                             "name": "macOS Other",
-                            "__comment__": "This regex matches any Darwin version other than 14-18",
-                            "memberPattern": "^Darwin-(?!1[4-8]).*"
+                            "__comment__": "This regex matches any Darwin version other than 14-19",
+                            "memberPattern": "^Darwin-(?!1[4-9]).*"
                         }
                     ]
                 },
