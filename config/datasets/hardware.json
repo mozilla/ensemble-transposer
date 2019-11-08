@@ -393,13 +393,10 @@
                         {
                             "from": "Linux-Other",
                             "to": "Linux"
-                        }
-                    ],
-                    "replacementGroups": [
+                        },
                         {
-                            "name": "macOS Other",
-                            "__comment__": "This regex matches any Darwin version other than 14-19",
-                            "memberPattern": "^Darwin-(?!1[4-9]).*"
+                            "from": "Darwin-Other",
+                            "to": "Darwin Other"
                         }
                     ]
                 },
