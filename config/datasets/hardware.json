@@ -397,30 +397,6 @@
                     ],
                     "replacementGroups": [
                         {
-                            "name": "macOS Yosemite",
-                            "memberPattern": "^Darwin-14\\."
-                        },
-                        {
-                            "name": "macOS El Capitan",
-                            "memberPattern": "^Darwin-15\\."
-                        },
-                        {
-                            "name": "macOS Sierra",
-                            "memberPattern": "^Darwin-16\\."
-                        },
-                        {
-                            "name": "macOS High Sierra",
-                            "memberPattern": "^Darwin-17\\."
-                        },
-                        {
-                            "name": "macOS Mojave",
-                            "memberPattern": "^Darwin-18\\."
-                        },
-                        {
-                            "name": "macOS Catalina",
-                            "memberPattern": "^Darwin-19\\."
-                        },
-                        {
                             "name": "macOS Other",
                             "__comment__": "This regex matches any Darwin version other than 14-19",
                             "memberPattern": "^Darwin-(?!1[4-9]).*"
