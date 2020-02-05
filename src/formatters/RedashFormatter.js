@@ -6,7 +6,7 @@ const memoize = require('memoizee');
 module.exports = class extends Formatter {
     constructor(...args) {
         super(...args);
-        this.apiVersion = '1.1.0';
+        this.apiVersion = '2.0.0';
 
         this.getRawMetric = memoize(async metricName => {
             const visualization = this.getVisualization(metricName);

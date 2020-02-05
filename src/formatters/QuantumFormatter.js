@@ -4,7 +4,7 @@ const Formatter = require('./Formatter');
 module.exports = class extends Formatter {
     constructor(...args) {
         super(...args);
-        this.apiVersion = '1.1.0';
+        this.apiVersion = '2.0.0';
     }
 
     async getSummary() {

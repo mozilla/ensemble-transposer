@@ -14,7 +14,7 @@ const Formatter = require('./Formatter');
  */
 module.exports = class extends Formatter {
     async getSummary() {
-        this.apiVersion = '1.1.0';
+        this.apiVersion = '2.0.0';
         this.defaultCategory = 'default';
         this.defaultPopulation = 'default';
         this.valueMultiplier = 100;
