@@ -27,16 +27,16 @@
         "posttest": "npm audit || true"
     },
     "dependencies": {
-        "aws-sdk": "2.614.0",
+        "aws-sdk": "2.621.0",
         "big.js": "5.2.2",
         "dotenv": "8.2.0",
         "memoizee": "0.4.14",
-        "request": "2.88.0",
+        "request": "2.88.2",
         "request-promise-native": "1.0.8"
     },
     "devDependencies": {
         "chai": "4.2.0",
-        "deep-equal-in-any-order": "1.0.21",
+        "deep-equal-in-any-order": "1.0.24",
         "eslint": "6.8.0",
         "eslint-plugin-json": "2.0.1",
         "eslint-plugin-mocha": "6.2.2",
