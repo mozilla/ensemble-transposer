@@ -2,7 +2,7 @@
     "sources": {
         "desktop": {
             "data": {
-                "url": "https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json",
+                "url": "https://telemetry-public-analysis-2.s3-us-west-2.amazonaws.com/hardware-report-poc/data/hwsurvey-weekly.json",
                 "format": "babbage"
             },
             "annotations": {
