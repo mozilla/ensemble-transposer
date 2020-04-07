@@ -27,7 +27,7 @@
         "posttest": "npm audit || true"
     },
     "dependencies": {
-        "aws-sdk": "2.648.0",
+        "aws-sdk": "2.655.0",
         "big.js": "5.2.2",
         "dotenv": "8.2.0",
         "memoizee": "0.4.14",
@@ -36,7 +36,7 @@
     },
     "devDependencies": {
         "chai": "4.2.0",
-        "deep-equal-in-any-order": "1.0.25",
+        "deep-equal-in-any-order": "1.0.27",
         "eslint": "6.8.0",
         "eslint-plugin-json": "2.1.1",
         "eslint-plugin-mocha": "6.3.0",
