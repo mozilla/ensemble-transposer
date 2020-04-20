@@ -394,10 +394,6 @@
                             "from": "Linux-Other",
                             "to": "Linux"
                         },
-                        {
-                            "from": "Darwin-Other",
-                            "to": "Darwin Other"
-                        }
                     ]
                 },
                 "type": "line",
