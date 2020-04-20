@@ -394,6 +394,34 @@
                             "from": "Linux-Other",
                             "to": "Linux"
                         },
+                        {
+                            "from": "Darwin-14.x",
+                            "to": "macOS Yosemite"
+                        },
+                        {
+                            "from": "Darwin-15.x",
+                            "to": "macOS El Capitan"
+                        },
+                        {
+                            "from": "Darwin-16.x",
+                            "to": "macOS Sierra"
+                        },
+                        {
+                            "from": "Darwin-17.x",
+                            "to": "macOS High Sierra"
+                        },
+                        {
+                            "from": "Darwin-18.x",
+                            "to": "macOS Mojave"
+                        },
+                        {
+                            "from": "Darwin-19.x",
+                            "to": "macOS Catalina"
+                        },
+                        {
+                            "from": "Darwin-Other",
+                            "to": "macOS Other"
+                        }
                     ]
                 },
                 "type": "line",
