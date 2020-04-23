@@ -197,6 +197,9 @@
                             "from": "gen9-kabylake-gt1.5",
                             "to": "Kaby Lake (GT1.5)"
                         }
+                    ],
+                    "exclusions": [
+                        "Other"
                     ]
                 },
                 "type": "line",
