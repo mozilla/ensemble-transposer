@@ -27,7 +27,7 @@
         "posttest": "npm audit || true"
     },
     "dependencies": {
-        "aws-sdk": "2.664.0",
+        "aws-sdk": "2.669.0",
         "big.js": "5.2.2",
         "dotenv": "8.2.0",
         "memoizee": "0.4.14",
