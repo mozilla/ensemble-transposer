@@ -2,7 +2,7 @@
     "sources": {
         "desktop": {
             "data": {
-                "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/fxhealth.json",
+                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report-dev/user_activity/fxhealth.json",
                 "format": "quantum"
             },
             "annotations": {
@@ -19,17 +19,6 @@
         "metaDescription": "The state of the Firefox userbase, including user totals, usage hours, and version adoption. Use our public data to improve your Firefox support!",
         "defaultCategory": "Worldwide",
         "metrics": {
-            "YAU": {
-                "title": "Yearly Active Users",
-                "description": "Yearly Active Users (YAU) measures the number of Firefox Desktop clients active in the past 365 days. This metric provides a long-term view of our userbase without being skewed by the seasonal effects which influence browser use.",
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "clients",
-                        "suggestedMin": 0
-                    }
-                }
-            },
             "MAU": {
                 "title": "Monthly Active Users",
                 "description": [
