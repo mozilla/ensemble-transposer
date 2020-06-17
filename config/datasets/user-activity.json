@@ -13,8 +13,7 @@
     "options": {
         "title": "User Activity",
         "description": [
-            "Usage Behavior is a weekly report describing ways in which desktop users are interacting with the web.",
-            "**Due to changes in our data infrastructure, these charts do not show data after mid-December 2019. We are working to address this issue as soon as possible.**"
+            "Usage Behavior is a weekly report describing ways in which desktop users are interacting with the web."
         ],
         "metaDescription": "The state of the Firefox userbase, including user totals, usage hours, and version adoption. Use our public data to improve your Firefox support!",
         "defaultCategory": "Worldwide",
@@ -22,7 +21,7 @@
             "MAU": {
                 "title": "Monthly Active Users",
                 "description": [
-                    "Monthly Active Users (MAU) measures the number of Firefox Desktop clients active in the past 28 days. Unlike YAU, MAU provides a shorter-term view of the userbase and is much more influenced by seasonal factors.",
+                    "Monthly Active Users (MAU) measures the number of Firefox Desktop clients active in the past 28 days.",
                     "Generally, MAU fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while China's holiday dip occurs in mid-to-late February (corresponding with Spring Festival)."
                 ],
                 "type": "line",
@@ -48,8 +47,8 @@
             "avg_intensity": {
                 "title": "Average Intensity",
                 "description": [
-                    "Average Intensity measures the engagement level of a typical Firefox Desktop client. It is the proportion of time that a client actively engaged with the browser.",
-                    "Overall, the typical Firefox client engages with the browser about a third of the time when the browser is open. European countries seem to have the highest levels of engagement, with France, Poland, and Italy all showing Average Intensity over 0.35 and Germany approaching 0.40. Most other countries in the top 10 have an Average Intensity around 0.30."
+                    "Intuitively, intensity shows how many days per week do users use the browser.",
+                    "Overall, the typical Firefox client uses the browser 3.5 days in a week. Russia, Poland, United States, France and Germany typically have the highest, above average intensity."
                 ],
                 "type": "line",
                 "axes": {
