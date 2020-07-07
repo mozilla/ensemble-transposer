@@ -12,10 +12,7 @@
     },
     "options": {
         "title": "User Activity",
-        "description": [
-            "Usage Behavior is a weekly report describing ways in which desktop users are interacting with the web.",
-            "**Due to changes in our data infrastructure, these charts do not show data after mid-December 2019. We are working to address this issue as soon as possible.**"
-        ],
+        "description": "Usage Behavior is a weekly report describing ways in which desktop users are interacting with the web.",
         "metaDescription": "The state of the Firefox userbase, including user totals, usage hours, and version adoption. Use our public data to improve your Firefox support!",
         "defaultCategory": "Worldwide",
         "metrics": {
