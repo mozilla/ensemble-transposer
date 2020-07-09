@@ -45,8 +45,8 @@
             "avg_intensity": {
                 "title": "Average Intensity",
                 "description": [
-                    "Intuitively, intensity shows how many days per week do users use the browser.",
-                    "Overall, the typical Firefox client uses the browser 3.5 days in a week. Russia, Poland, United States, France and Germany typically have the highest, above average intensity."
+                    "Intensity shows how many days per week users use the browser.",
+                    "Overall, the typical Firefox client uses the browser 3.5 days per week. Russia, Poland, the United States, France, and Germany typically have above-average intensity."
                 ],
                 "type": "line",
                 "axes": {
