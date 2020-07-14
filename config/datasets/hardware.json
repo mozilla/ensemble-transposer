@@ -407,6 +407,10 @@
                             "to": "macOS Catalina"
                         },
                         {
+                            "from": "Darwin-20.x",
+                            "to": "macOS Big Sur"
+                        },
+                        {
                             "from": "Darwin-Other",
                             "to": "macOS Other"
                         }
