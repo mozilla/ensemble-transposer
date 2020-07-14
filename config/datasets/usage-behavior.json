@@ -2,20 +2,17 @@
     "sources": {
         "desktop": {
             "data": {
-                "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/webusage.json",
+                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report/user_activity/webusage.json",
                 "format": "quantum"
             },
             "annotations": {
-                "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_webusage.json"
+                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report/annotations/annotations_webusage.json"
             }
         }
     },
     "options": {
         "title": "Usage Behavior",
-        "description": [
-            "Usage Behavior is a weekly report describing ways in which desktop users are interacting with the web.",
-            "**Due to changes in our data infrastructure, these charts do not show data after mid-December 2019. We are working to address this issue as soon as possible.**"
-        ],
+        "description": "Usage Behavior is a weekly report describing ways in which desktop users are interacting with the web.",
         "metaDescription": "How Firefox users interact with the web, including top languages, tracking protection, and top add-ons. Use our public data to understand your audience!",
         "defaultCategory": "Worldwide",
         "metrics": {
@@ -25,20 +22,6 @@
                     "Top Languages shows the distribution of the top 5 language settings for Firefox Desktop.",
                     "Worldwide, English (US) remains the most common, at about 40% of the population, with German (11%) and French (6.5%) coming 2^nd^ and 3^rd^. Russian and Spanish (Spain) are the 4^th^ and 5^th^ most common languages, with around 5% of the population each.",
                     "For most countries in the top 10, the majority (>90%) of users have their language set to the local language, with a notable exception in Indonesia, which has about 80% English (US) and 20% Indonesian."
-                ],
-                "type": "line",
-                "axes": {
-                    "y": {
-                        "unit": "%"
-                    }
-                }
-            },
-            "pct_TP": {
-                "title": "Always On Tracking Protection",
-                "description": [
-                    "Always On Tracking Protection shows the percentage of Firefox Desktop clients with Tracking Protection enabled for all browsing sessions.",
-                    "Tracking Protection is a feature which blocks sites from tracking users across multiple websites, adding a layer of privacy to browsing. This feature is on by default in Private Browsing sessions, but starting in FF57, we gave users the option to [enable this feature for all browsing sessions](https://support.mozilla.org/kb/tracking-protection).",
-                    "Note: This is only the percentage of users with Always On Tracking Protection and does not include Tracking Protection use in Private Browsing."
                 ],
                 "type": "line",
                 "axes": {
