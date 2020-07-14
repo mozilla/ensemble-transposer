@@ -2,11 +2,11 @@
     "sources": {
         "desktop": {
             "data": {
-                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report-dev/user_activity/webusage.json",
+                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report/user_activity/webusage.json",
                 "format": "quantum"
             },
             "annotations": {
-                "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_webusage.json"
+                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report/annotations/annotations_webusage.json"
             }
         }
     },

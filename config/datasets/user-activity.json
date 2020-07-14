@@ -2,11 +2,11 @@
     "sources": {
         "desktop": {
             "data": {
-                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report-dev/user_activity/fxhealth.json",
+                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report/user_activity/fxhealth.json",
                 "format": "quantum"
             },
             "annotations": {
-                "url": "https://public-data.telemetry.mozilla.org/prod/usage_report_data/v1/master/annotations_fxhealth.json"
+                "url": "https://analysis-output.telemetry.mozilla.org/public-data-report/annotations/annotations_fxhealth.json"
             }
         }
     },
