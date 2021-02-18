@@ -480,7 +480,7 @@
             },
             "hasFlash": {
                 "title": "Has Flash",
-                "description": "Flash availability on Firefox shows a downward trend; Adobe will be ending support in 2020.",
+                "description": "Flash availability on Firefox shows a downward trend; Adobe stopped supporting Flash Player beginning December 31, 2020.",
                 "patterns": {
                     "fields": "^hasFlash_True$"
                 },
