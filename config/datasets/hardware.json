@@ -17,7 +17,7 @@
         "metrics": {
             "resolution": {
                 "title": "Display Resolution",
-                "description": "Two display resolutions, 1366x768px and 1920x1080px, stand out as the most highly-used, with the latter showing an upward trend.",
+                "description": "Two display resolutions, 1920x1080px and 1366x768px, stand out as the most highly-used, with the former showing an upward trend.",
                 "patterns": {
                     "fields": "^resolution_",
                     "populations": ".*?_(.*)"
@@ -204,8 +204,7 @@
             "gpuVendor": {
                 "title": "GPU Vendor",
                 "description": [
-                    "Intel makes up the largest part of the desktop GPU market, accounting for over 60% of our release Desktop population. AMD and Nvidia come in at 2^nd^ and 3^rd^.",
-                    "Since 2016, we see that Intel has increased their share as well, going from about 60% to 66% while AMD and Nvidia both dropped from around 18% to around 14%.",
+                    "Intel makes up the largest part of the desktop GPU market, accounting for over 65% of our release Desktop population. AMD and Nvidia come in virtually tied for 2^nd^.",
                     "Note: this report only includes the primary GPU for each machine. Any supplemental GPUs are not included and this report is not representative of accelerated graphics."
                 ],
                 "patterns": {
@@ -221,7 +220,7 @@
             },
             "cpuSpeed": {
                 "title": "CPU Speeds",
-                "description": "A quarter of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.",
+                "description": "About 20% of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.",
                 "patterns": {
                     "fields": "^cpuSpeed",
                     "populations": ".*?_(.*)"
@@ -283,7 +282,7 @@
             },
             "ram": {
                 "title": "Memory",
-                "description": "The most popular memory sizes are 4GB and 8GB, with almost one-third and one-quarter of our Release users, respectively. The number of users with 2GB of memory is trending down.",
+                "description": "The most popular memory sizes are 8GB and 4GB, with almost one-third and one-fifth of our Release users, respectively. The number of users with 16GB of memory is trending up and is poised to pass the number of users with 4GB of memory in the near future.",
                 "patterns": {
                     "fields": "^ram_",
                     "populations": ".*?_(.*)"
@@ -303,7 +302,7 @@
             },
             "cpuCores": {
                 "title": "CPU Cores",
-                "description": "Nearly 70% of users have machines with two physical cores.",
+                "description": "Nearly 42% of users have machines with two physical cores, with machines with four physical cores poised to be the most common soon.",
                 "patterns": {
                     "fields": "^cpuCores_",
                     "populations": ".*?_(.*)"
@@ -317,7 +316,7 @@
             },
             "cpuVendor": {
                 "title": "CPU Vendor",
-                "description": "Intel leads the share of CPUs found in our Release users, with over 88% of profiles, while AMD follows behind with about 11%.",
+                "description": "Intel leads the share of CPUs found in our Release users, with about 85% of profiles, while AMD follows behind with about 13%.",
                 "patterns": {
                     "fields": "^cpuVendor",
                     "populations": ".*?_(.*)"
@@ -343,7 +342,7 @@
             },
             "osName": {
                 "title": "Operating System",
-                "description": "Windows 7 and Windows 10 are the most popular operating systems, accounting for almost 80% of our users. Windows 10 continues to grow in popularity versus Windows 8.",
+                "description": "Windows 10 and Windows 7 are the most popular operating systems, accounting for almost 85% of our users.",
                 "patterns": {
                     "fields": "^osName_",
                     "populations": ".*?_(.*)"
