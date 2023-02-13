@@ -20,7 +20,7 @@
                 "title": "Top Languages",
                 "description": [
                     "Top Languages shows the distribution of the top 5 language settings for Firefox Desktop.",
-                    "Worldwide, English (US) remains the most common, at about 40% of the population, with German (11%) and French (6.5%) coming 2^nd^ and 3^rd^. Russian and Spanish (Spain) are the 4^th^ and 5^th^ most common languages, with around 5% of the population each.",
+                    "Worldwide, English (US) remains the most common, at about 40% of the population, with German (11%) and French (8.1%) coming 2^nd^ and 3^rd^. Simplified Chinese is the 4^th^ most common language (6.7%), and Russian and Spanish (Spain) are the 5^th^ and 6^th^ most common languages, with around 5% of the population each.",
                     "For most countries in the top 10, the majority (>90%) of users have their language set to the local language, with a notable exception in Indonesia, which has about 80% English (US) and 20% Indonesian."
                 ],
                 "type": "line",
