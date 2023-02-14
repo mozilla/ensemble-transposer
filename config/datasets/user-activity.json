@@ -67,7 +67,7 @@
                 "title": "Latest Version",
                 "description": [
                     "Latest Version shows the percentage of Firefox Desktop clients running the latest version of Firefox or greater (for that week).",
-                    "Firefox typically releases major updates roughly every 50 days (although there are exceptions, such as between FF57 and FF58, which lasted 70 days), and generally release on Tuesdays (though there are, again, exceptions, such as FF56, which released on a Thursday).",
+                    "Firefox typically releases major updates roughly every 30 days and generally releases on Tuesdays (though there are exceptions, such as FF56, which was released on a Thursday).",
                     "Since Mozilla throttles the rollout of a new version (incrementally upgrading the percentage of the population getting upgrades), it takes about four weeks for about 70% of clients to upgrade before stabilizing."
                 ],
                 "type": "line",
