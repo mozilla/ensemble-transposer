@@ -68,7 +68,9 @@ code, for example.
 
 ## Deployment
 
-This project is meant to be run as a cloud task, like a Lambda function or
+### AWS
+
+This project was originally meant to be run as a cloud task, like a Lambda function or
 Google Cloud Function. The main function is specified as the value of `main` in
 *package.json*. Most services read this value and do the right thing. If not,
 you may need to manually point your service to that function.
@@ -81,6 +83,20 @@ variables:
 * `AWS_REGION`
 * `AWS_ACCESS_KEY_ID`
 * `AWS_SECRET_ACCESS_KEY`
+
+### Google Cloud
+
+This project can be run as a Docker container. The default command is `npm start`, but it may need
+to be explicitly configured in some environments. When running the container in GKE, authentication
+will be automatically detected. Before running, be sure to create a [Google Cloud
+Storage](https://cloud.google.com/storage) bucket and set the following environment variable:
+
+* `GCS_BUCKET_NAME`
+
+### Other
+
+When neither `AWS_BUCKET_NAME` nor `GCS_BUCKET_NAME` are present in the environment, this project
+will write data to `./target`, which can then be copied to otherwise unsupported systems.
 
 ## Notes
 
