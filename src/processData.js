@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const request = require('request-promise-native');
 const S3 = require('aws-sdk/clients/s3');
+const {Storage} = require('@google-cloud/storage');
+const fse = require('fs-extra');
 
 const QuantumFormatter = require('./formatters/QuantumFormatter');
 const BabbageFormatter = require('./formatters/BabbageFormatter');
@@ -84,30 +86,44 @@ async function getJSON(url) {
 
 function writeData(filename, data) {
     return new Promise((resolve, reject) => {
-        const bucketName = process.env.AWS_BUCKET_NAME;
-
-        const objectParams = {
-            Bucket: bucketName,
-            Key: filename,
-            Body: data,
-            ContentType: 'application/json',
-        };
-
         const startTime = process.hrtime();
+        var protocol;
+        var bucketName;
+        var uploadPromise;
 
-        const uploadPromise = new S3({
-            apiVersion: '2006-03-01',
-            region: process.env.AWS_REGION,
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        }).putObject(objectParams).promise();
+        if (process.env.GCS_BUCKET_NAME !== undefined) {
+            protocol = 'gs'
+            bucketName = process.env.GCS_BUCKET_NAME;
+            uploadPromise = new Storage().bucket(bucketName).file(filename).save(data, {contentType: 'application/json'});
+        } else if (process.env.AWS_BUCKET_NAME !== undefined) {
+            protocol = 's3'
+            bucketName = process.env.AWS_BUCKET_NAME;
+
+            const objectParams = {
+                Bucket: bucketName,
+                Key: filename,
+                Body: data,
+                ContentType: 'application/json',
+            };
+
+            uploadPromise = new S3({
+                apiVersion: '2006-03-01',
+                region: process.env.AWS_REGION,
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+            }).putObject(objectParams).promise();
+        } else {
+            protocol = 'file'
+            bucketName = `${process.cwd()}/target`
+            uploadPromise = fse.outputFile(`${bucketName}/${filename}`, data);
+        }
 
         uploadPromise.then(() => {
             const timeDifference = process.hrtime(startTime);
             const elapsedMilliseconds = timeDifferenceToMilliseconds(timeDifference);
 
             // eslint-disable-next-line no-console
-            console.log(`[${new Date().toISOString()}] wrote s3://${bucketName}/${filename} in ${elapsedMilliseconds.toPrecision(timePrecision)}ms`);
+            console.log(`[${new Date().toISOString()}] wrote ${protocol}://${bucketName}/${filename} in ${elapsedMilliseconds.toPrecision(timePrecision)}ms`);
 
             return resolve();
         }).catch(err => {
