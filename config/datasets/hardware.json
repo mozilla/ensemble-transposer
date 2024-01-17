@@ -374,6 +374,10 @@
                             "to": "Windows 10"
                         },
                         {
+                            "from": "Windows_NT-10.0.2xxxx",
+                            "to": "Windows 11"
+                        },
+                        {
                             "from": "Windows_NT-Other",
                             "to": "Windows Other"
                         },
