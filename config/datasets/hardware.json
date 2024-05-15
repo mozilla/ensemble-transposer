@@ -442,10 +442,11 @@
                         {
                             "from": "x86-64",
                             "to": "64-bit"
+                        },
+                        {
+                            "from": "aarch64",
+                            "to": "64-bit ARM"
                         }
-                    ],
-                    "exclusions": [
-                        "aarch64"
                     ]
                 },
                 "type": "line",
@@ -471,6 +472,10 @@
                         {
                             "from": "x86-64",
                             "to": "64-bit"
+                        },
+                        {
+                            "from": "aarch64",
+                            "to": "64-bit ARM"
                         }
                     ]
                 },
