@@ -20,7 +20,7 @@
                 "title": "Monthly Active Users",
                 "description": [
                     "Monthly Active Users (MAU) measures the number of Firefox Desktop clients active in the past 28 days.",
-                    "Generally, MAU fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing China and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while China's holiday dip occurs in mid-to-late February (corresponding with Spring Festival)."
+                    "Generally, MAU fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing Spain and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while Spain has this holiday dip as well as another dip in March/April (corresponding with the Easter)"
                 ],
                 "type": "line",
                 "axes": {
@@ -33,7 +33,7 @@
                 "title": "Daily Usage",
                 "description": [
                     "Daily Usage shows the hours spent browsing for a typical Firefox Desktop client in a typical day of use.",
-                    "Globally, the typical Firefox client averages around 5 hours of use per day. Among the top 10 countries, Americans and Russians are the heaviest users, with about 6.0 hours of daily use and 5.5 hours of daily use, respectively. On the opposite end of the spectrum, Italy and India show the lowest daily use, about 3.7 hours."
+                    "Globally, the typical Firefox client averages around 5.5 hours of use per day. Among the top 10 countries, Americans and Canadians are the heaviest users, with about 7 hours of daily use. On the opposite end of the spectrum, Italy and India show the lowest daily use, about 4 hours."
                 ],
                 "type": "line",
                 "axes": {
@@ -46,7 +46,7 @@
                 "title": "Average Intensity",
                 "description": [
                     "Intensity shows how many days per week users use the browser.",
-                    "Overall, the typical Firefox client uses the browser 3.5 days per week. Russia, Poland, the United States, France, and Germany typically have above-average intensity."
+                    "Overall, the typical Firefox client uses the browser 3.5 days per week. Canada, the United States, and the United Kingdom typically have above-average intensity."
                 ],
                 "type": "line",
                 "axes": {

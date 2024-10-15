@@ -282,7 +282,7 @@
             },
             "ram": {
                 "title": "Memory",
-                "description": "The most popular memory sizes are 8GB and 4GB, with almost one-third and one-fifth of our Release users, respectively. The number of users with 16GB of memory is trending up and is poised to pass the number of users with 4GB of memory in the near future.",
+                "description": "The most popular memory sizes are 8GB and 16GB, with almost one-third and one-fifth of our Release users, respectively.",
                 "patterns": {
                     "fields": "^ram_",
                     "populations": ".*?_(.*)"
@@ -302,7 +302,7 @@
             },
             "cpuCores": {
                 "title": "CPU Cores",
-                "description": "Nearly 42% of users have machines with two physical cores, with machines with four physical cores poised to be the most common soon.",
+                "description": "Nearly 34% of users have machines with two physical cores, and an additional 34% of users have machines with four physical cores.",
                 "patterns": {
                     "fields": "^cpuCores_",
                     "populations": ".*?_(.*)"
@@ -316,7 +316,7 @@
             },
             "cpuVendor": {
                 "title": "CPU Vendor",
-                "description": "Intel leads the share of CPUs found in our Release users, with about 85% of profiles, while AMD follows behind with about 13%.",
+                "description": "Intel leads the share of CPUs found in our Release users, with about 82% of profiles, while AMD follows behind with about 14%.",
                 "patterns": {
                     "fields": "^cpuVendor",
                     "populations": ".*?_(.*)"
@@ -342,7 +342,7 @@
             },
             "osName": {
                 "title": "Operating System",
-                "description": "Windows 10 and Windows 7 are the most popular operating systems, accounting for almost 85% of our users.",
+                "description": "Windows 10 and Windows 11 are the most popular operating systems, accounting for around 75% of our users.",
                 "patterns": {
                     "fields": "^osName_",
                     "populations": ".*?_(.*)"
@@ -458,7 +458,7 @@
             },
             "osArch": {
                 "title": "Operating Systems by Architecture",
-                "description": "We see the share of 32-bit to 64-bit operating systems diverging over the last year, with 64-bit systems accounting for over 80% of our users. Note that this metric likely undercounts non-Windows OSs, as it relies on the environment.system.isWow64 Telemetry field.",
+                "description": "We see 64-bit systems accounting for over 85% of our users. Note that this metric likely undercounts non-Windows OSs, as it relies on the environment.system.isWow64 Telemetry field.",
                 "patterns": {
                     "fields": "^osArch_",
                     "populations": ".*?_(.*)"
@@ -488,7 +488,7 @@
             },
             "hasFlash": {
                 "title": "Has Flash",
-                "description": "Flash availability on Firefox shows a downward trend; Adobe stopped supporting Flash Player beginning December 31, 2020.",
+                "description": "Since Adobe stopped supporting Flash Player beginning December 31, 2020, Flash availability on Firefox is now below 1%.",
                 "patterns": {
                     "fields": "^hasFlash_True$"
                 },
