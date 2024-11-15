@@ -20,8 +20,8 @@
                 "title": "Top Languages",
                 "description": [
                     "Top Languages shows the distribution of the top 5 language settings for Firefox Desktop.",
-                    "Worldwide, English (US) remains the most common, at about 40% of the population, with German (11%) and French (8.1%) coming 2^nd^ and 3^rd^. Simplified Chinese is the 4^th^ most common language (6.7%), and Russian and Spanish (Spain) are the 5^th^ and 6^th^ most common languages, with around 5% of the population each.",
-                    "For most countries in the top 10, the majority (>90%) of users have their language set to the local language, with a notable exception in Indonesia, which has about 80% English (US) and 20% Indonesian."
+                    "Worldwide, English (US) remains the most common, at about 40% of the population, with German (11%) and French (8.1%) coming 2^nd^ and 3^rd^. Simplified Chinese is the 4^th^ most common language (6.7%), and Spanish (Spain) is the 5^th^ most common language (5%).",
+                    "For most countries in the top 10, the majority (>90%) of users have their language set to the local language, with a notable exception in Indonesia, which has about 71% English (US) and 27% Indonesian."
                 ],
                 "type": "line",
                 "axes": {
@@ -34,8 +34,8 @@
                 "title": "Has Add-on",
                 "description": [
                     "Has Add-on shows the percentage of Firefox Desktop clients with user-installed add-ons.",
-                    "One of the best things about Firefox is the robust add-on community which gives users the option to customize and control their browsing experience. Our users agree, with over a third of Firefox users having at least 1 installed add-on.",
-                    "This metric varies globally. On one end is China and Brazil, where 20% and 18% have add-ons, respectively. On the other is Russia, where almost 60% of users have add-ons."
+                    "One of the best things about Firefox is the robust add-on community which gives users the option to customize and control their browsing experience. Our users agree, with over 40% of Firefox users having at least 1 installed add-on.",
+                    "This metric varies globally. On one end is India, where 19% of users have add-ons, and on the other is Russia and Canada, where almost 60% of users have add-ons."
                 ],
                 "type": "line",
                 "axes": {
