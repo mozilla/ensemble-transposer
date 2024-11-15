@@ -20,7 +20,7 @@
                 "title": "Monthly Active Users",
                 "description": [
                     "Monthly Active Users (MAU) measures the number of Firefox Desktop clients active in the past 28 days.",
-                    "Generally, MAU fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing Spain and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while Spain has this holiday dip as well as another dip in March/April (corresponding with the Easter)"
+                    "Generally, MAU fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing Spain and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while Spain has this holiday dip as well as another dip in March/April. (corresponding with the Easter holiday)"
                 ],
                 "type": "line",
                 "axes": {
