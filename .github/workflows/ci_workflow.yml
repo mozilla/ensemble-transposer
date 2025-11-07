@@ -1,0 +1,57 @@
+name: CI Workflow
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "10.18.1"
+      - name: Check code formatting
+        run: make lint
+      - name: Run unit tests
+        run: |
+          touch .env
+          make test
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
+    permissions:
+      id-token: write
+      contents: read
+    needs:
+      - test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set Docker tag
+        id: docker_tag
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          if [[ "$BRANCH" == refs/tags/* ]]; then
+            echo "tag=$BRANCH" >> $GITHUB_OUTPUT
+          else
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          fi
+      - name: Build the Docker image
+        env:
+          DOCKER_TAG: ${{ steps.docker_tag.outputs.tag }}
+        run: docker build . -t us-docker.pkg.dev/moz-fx-data-artifacts-prod/ensemble-transposer/ensemble-transposer:$DOCKER_TAG
+      - name: Push Docker image to GAR
+        uses: mozilla-it/deploy-actions/docker-push@v4.3.2
+        with:
+          project_id: moz-fx-data-artifacts-prod
+          image_tags: us-docker.pkg.dev/moz-fx-data-artifacts-prod/ensemble-transposer/ensemble-transposer:${{ steps.docker_tag.outputs.tag }}
+          workload_identity_pool_project_number: ${{ vars.GCPV2_WORKLOAD_IDENTITY_POOL_PROJECT_NUMBER }}
+          service_account_name: ensemble-transposer

@@ -18,7 +18,7 @@
     "main": "src/index.js",
     "scripts": {
         "start": "node --eval \"require('./src').default();\"",
-        "test": "npm-run-all lint mocha",
+        "test": "npm run lint && npm run mocha",
         "lint": "eslint --ext=.js,.json .",
         "premocha": "npm start",
         "mocha": "mocha src/tests/standard",
@@ -28,22 +28,20 @@
     },
     "dependencies": {
         "@google-cloud/storage": "^6.9.5",
-        "aws-sdk": "2.720.0",
+        "aws-sdk": "^2.1692.0",
         "big.js": "5.2.2",
         "dotenv": "8.2.0",
         "fs-extra": "^11.1.1",
         "memoizee": "0.4.14",
-        "request": "2.88.2",
-        "request-promise-native": "1.0.9"
+        "node-fetch": "^2.7.0"
     },
     "devDependencies": {
         "chai": "4.2.0",
         "deep-equal-in-any-order": "1.0.28",
-        "eslint": "7.5.0",
+        "eslint": "7.32.0",
         "eslint-plugin-json": "2.1.2",
         "eslint-plugin-mocha": "7.0.1",
         "eslint-plugin-node": "11.1.0",
-        "mocha": "8.0.1",
-        "npm-run-all": "4.1.5"
+        "mocha": "8.4.0"
     }
 }

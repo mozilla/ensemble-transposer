@@ -1,6 +1,6 @@
+const fetch = require("node-fetch");
 const fs = require('fs');
 const path = require('path');
-const request = require('request-promise-native');
 const { promisify } = require('util');
 
 
@@ -36,9 +36,8 @@ async function getDevelopmentJSON(identifier) {
 }
 
 async function getProductionJSON(identifier) {
-    return JSON.parse(await request(
-        `https://data.firefox.com/datasets/${identifier}/index.json`
-    ));
+    const response = await fetch(`https://data.firefox.com/datasets/${identifier}/index.json`);
+    return await response.json();
 }
 
 module.exports = {
