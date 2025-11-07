@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const request = require('request-promise-native');
+const fetch = require('node-fetch');
 const S3 = require('aws-sdk/clients/s3');
 const {Storage} = require('@google-cloud/storage');
 const fse = require('fs-extra');
@@ -81,7 +81,8 @@ function parseDataURL(urlConfig) {
 }
 
 async function getJSON(url) {
-    return JSON.parse(await request(url));
+    const response = await fetch(url);
+    return await response.json()
 }
 
 function writeData(filename, data) {

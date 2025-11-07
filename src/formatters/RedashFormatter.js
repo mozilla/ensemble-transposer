@@ -1,5 +1,5 @@
+const fetch = require("node-fetch");
 const Formatter = require('./Formatter');
-const request = require('request-promise-native');
 const memoize = require('memoizee');
 
 
@@ -12,7 +12,8 @@ module.exports = class extends Formatter {
             const visualization = this.getVisualization(metricName);
             const apiKey = visualization.query.api_key;
             const endpoint = `https://sql.telemetry.mozilla.org/api/queries/${metricName}/results.json?api_key=${apiKey}`;
-            return JSON.parse(await request(endpoint));
+            const response = await fetch(endpoint);
+            return await response.json()
         });
     }
 
