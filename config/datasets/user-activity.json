@@ -12,15 +12,14 @@
     },
     "options": {
         "title": "User Activity",
-        "description": "Usage Behavior is a weekly report describing ways in which desktop users are interacting with the web.",
+        "description": "Usage Behavior is a weekly report describing ways in which users are interacting with the web.",
         "metaDescription": "The state of the Firefox userbase, including user totals, usage hours, and version adoption. Use our public data to improve your Firefox support!",
         "defaultCategory": "Worldwide",
         "metrics": {
             "MAU": {
                 "title": "Monthly Active Users",
                 "description": [
-                    "Monthly Active Users (MAU) measures the number of Firefox Desktop clients active in the past 28 days.",
-                    "Generally, MAU fluctuates over the course of a year, dropping in the summer months and during holidays. This effect can be observed quite clearly when comparing Spain and the United States. Both countries have noticeable dips starting in late Spring/early Summer and ending in September. However, the second holiday dip for the US occurs in December/January (corresponding with the Christmas/New Year's holidays), while Spain has this holiday dip as well as another dip in March/April. (corresponding with the Easter holiday)"
+                    "Monthly Active Users (MAU) measures the number of Desktop and Mobile clients active in the past 28 days. MAU typically fluctuates over the year: dipping in the summer, around the New Year, and during major holidays."
                 ],
                 "type": "line",
                 "axes": {
@@ -32,8 +31,7 @@
             "avg_daily_usage(hours)": {
                 "title": "Daily Usage",
                 "description": [
-                    "Daily Usage shows the hours spent browsing for a typical Firefox Desktop client in a typical day of use.",
-                    "Globally, the typical Firefox client averages around 5.5 hours of use per day. Among the top 10 countries, Americans and Canadians are the heaviest users, with about 7 hours of daily use. On the opposite end of the spectrum, Italy and India show the lowest daily use, about 4 hours."
+                    "Daily Usage shows the hours spent browsing for a typical Firefox Desktop client in a typical day of use. Globally, the typical Firefox client averages around 4.5 hours of use per day."
                 ],
                 "type": "line",
                 "axes": {
@@ -45,8 +43,7 @@
             "avg_intensity": {
                 "title": "Average Intensity",
                 "description": [
-                    "Intensity shows how many days per week users use the browser.",
-                    "Overall, the typical Firefox client uses the browser 3.5 days per week. Canada, the United States, and the United Kingdom typically have above-average intensity."
+                    "Intensity shows how many days per week users use Firefox Desktop. Overall, the typical Firefox client uses the browser 3.5 days per week."
                 ],
                 "type": "line",
                 "axes": {
@@ -58,17 +55,15 @@
             "pct_new_user": {
                 "title": "New Profile Rate",
                 "description": [
-                    "New Profile Rate measures the rate at which new profiles are being created. A profile is a folder on your computer that Firefox uses to store all of the add-ons and customizations that make your browser unique. Think of it as your browser's identity.",
-                    "But why profiles? Why not just measure new user rate? Because we don't track users. We think you should be able to walk away from your computer without the internet following you. Profiles let us keep track of how the browser is being used without digging into who you are. It makes our job harder but we think it's worth it. After all, freedom isn't free, but we're happy to pay."
+                    "New Profile Rate measures how often new Firefox Desktop profiles are created. A profile is the folder Firefox uses to store your add-ons, settings, and other customizations; essentially, your browser's identity.",
+                    "We measure profiles rather than “new users” because Firefox doesn't track individuals. Profiles let us understand how the browser is used without identifying who's using it. It makes our job harder, but we think your privacy is worth it."
                 ],
                 "type": "line"
             },
             "pct_latest_version": {
                 "title": "Latest Version",
                 "description": [
-                    "Latest Version shows the percentage of Firefox Desktop clients running the latest version of Firefox or greater (for that week).",
-                    "Firefox typically releases major updates roughly every 30 days and generally releases on Tuesdays (though there are exceptions, such as FF56, which was released on a Thursday).",
-                    "Since Mozilla throttles the rollout of a new version (incrementally upgrading the percentage of the population getting upgrades), it takes about four weeks for about 70% of clients to upgrade before stabilizing."
+                    "Latest Version shows the percentage of Firefox Desktop clients running the latest version of Firefox or greater (for that week). Firefox typically releases major updates roughly every 30 days and generally releases on Tuesdays."
                 ],
                 "type": "line",
                 "axes": {
