@@ -414,6 +414,26 @@
                             "to": "macOS Big Sur"
                         },
                         {
+                            "from": "Darwin-21.x",
+                            "to": "macOS Monterey"
+                        },
+                        {
+                            "from": "Darwin-22.x",
+                            "to": "macOS Ventura"
+                        },
+                        {
+                            "from": "Darwin-23.x",
+                            "to": "macOS Sonoma"
+                        },
+                        {
+                            "from": "Darwin-24.x",
+                            "to": "macOS Sequoia"
+                        },
+                        {
+                            "from": "Darwin-25.x",
+                            "to": "macOS Tahoe"
+                        },
+                        {
                             "from": "Darwin-Other",
                             "to": "macOS Other"
                         }
