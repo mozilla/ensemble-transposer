@@ -10,6 +10,28 @@ const BabbageFormatter = require('./formatters/BabbageFormatter');
 const RedashFormatter = require('./formatters/RedashFormatter');
 
 const timePrecision = 5;
+const uploadConcurrency = 10;
+
+const gcsStorage = process.env.GCS_BUCKET_NAME !== undefined ? new Storage() : null;
+const s3Client = process.env.AWS_BUCKET_NAME !== undefined ? new S3({
+    apiVersion: '2006-03-01',
+    region: process.env.AWS_REGION,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+}) : null;
+
+async function runWithConcurrency(tasks, limit) {
+    const results = [];
+    let index = 0;
+    const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
+        while (index < tasks.length) {
+            const current = index++;
+            results[current] = await tasks[current]();
+        }
+    });
+    await Promise.all(workers);
+    return results;
+}
 
 module.exports = async (datasetName, datasetConfig) => {
     for (const platform of Object.keys(datasetConfig.sources)) {
@@ -42,32 +64,26 @@ module.exports = async (datasetName, datasetConfig) => {
 
         const summary = await formatter.getSummary();
 
-        const writePromises = [];
+        const writeTasks = [];
 
-        writePromises.push(new Promise((resolve, reject) => {
-            writeData(
-                `datasets/${platform}/${datasetName}/index.json`,
-                JSON.stringify(summary),
-            ).then(resolve).catch(reject);
-        }));
+        writeTasks.push(() => writeData(
+            `datasets/${platform}/${datasetName}/index.json`,
+            JSON.stringify(summary),
+        ));
 
         for (const categoryName of summary.categories) {
             for (const metricName of summary.metrics) {
 
                 const filename = `datasets/${platform}/${datasetName}/${categoryName}/${metricName}/index.json`;
                 const metric = await formatter.getMetric(categoryName, metricName);
+                const body = JSON.stringify(metric);
 
-                writePromises.push(new Promise((resolve, reject) => {
-                    writeData(
-                        filename,
-                        JSON.stringify(metric),
-                    ).then(resolve).catch(reject);
-                }));
+                writeTasks.push(() => writeData(filename, body));
 
             }
         }
 
-        await Promise.all(writePromises);
+        await runWithConcurrency(writeTasks, uploadConcurrency);
 
         formatter.clearCache();
     }
@@ -95,7 +111,7 @@ function writeData(filename, data) {
         if (process.env.GCS_BUCKET_NAME !== undefined) {
             protocol = 'gs'
             bucketName = process.env.GCS_BUCKET_NAME;
-            uploadPromise = new Storage().bucket(bucketName).file(filename).save(data, {contentType: 'application/json'});
+            uploadPromise = gcsStorage.bucket(bucketName).file(filename).save(data, {contentType: 'application/json'});
         } else if (process.env.AWS_BUCKET_NAME !== undefined) {
             protocol = 's3'
             bucketName = process.env.AWS_BUCKET_NAME;
@@ -107,12 +123,7 @@ function writeData(filename, data) {
                 ContentType: 'application/json',
             };
 
-            uploadPromise = new S3({
-                apiVersion: '2006-03-01',
-                region: process.env.AWS_REGION,
-                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-            }).putObject(objectParams).promise();
+            uploadPromise = s3Client.putObject(objectParams).promise();
         } else {
             protocol = 'file'
             bucketName = `${process.cwd()}/target`
