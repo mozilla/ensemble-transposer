@@ -20,7 +20,7 @@ module.exports = class {
     getAnnotations(categoryName, metricName) {
         const annotations = [];
 
-        if (this.rawAnnotations) {
+        if (this.rawAnnotations && this.rawAnnotations[categoryName]) {
             this.rawAnnotations[categoryName].forEach(annotation => {
                 if (metricName in annotation.annotation) {
                     annotations.push({
