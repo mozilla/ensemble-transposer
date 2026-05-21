@@ -204,7 +204,7 @@
             "gpuVendor": {
                 "title": "GPU Vendor",
                 "description": [
-                    "Intel makes up the largest part of the desktop GPU market, accounting for over 65% of our release Desktop population. AMD and Nvidia come in virtually tied for 2^nd^.",
+                    "Intel makes up the largest part of the desktop GPU market, accounting for around 65% of our release Desktop population. AMD and Nvidia come in virtually tied for 2^nd^.",
                     "Note: this report only includes the primary GPU for each machine. Any supplemental GPUs are not included and this report is not representative of accelerated graphics."
                 ],
                 "patterns": {
@@ -282,7 +282,7 @@
             },
             "ram": {
                 "title": "Memory",
-                "description": "The most popular memory sizes are 8GB and 16GB, with almost one-third and one-fifth of our Release users, respectively.",
+                "description": "The most popular memory sizes are 8GB and 16GB, with about a third and a quarter of our Release users, respectively.",
                 "patterns": {
                     "fields": "^ram_",
                     "populations": ".*?_(.*)"
@@ -302,7 +302,7 @@
             },
             "cpuCores": {
                 "title": "CPU Cores",
-                "description": "Nearly 34% of users have machines with two physical cores, and an additional 34% of users have machines with four physical cores.",
+                "description": "Machines with two physical cores account to less than 30% of users, and machines with four physical cores also keep under 30%, with higher number of physical cores being represented more often.",
                 "patterns": {
                     "fields": "^cpuCores_",
                     "populations": ".*?_(.*)"
@@ -316,7 +316,7 @@
             },
             "cpuVendor": {
                 "title": "CPU Vendor",
-                "description": "Intel leads the share of CPUs found in our Release users, with about 82% of profiles, while AMD follows behind with about 14%.",
+                "description": "Intel leads the share of CPUs found in our Release users, with around three quarters of profiles, while AMD follows behind with about one fifth.",
                 "patterns": {
                     "fields": "^cpuVendor",
                     "populations": ".*?_(.*)"
